@@ -8,7 +8,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "yarn rollup -c"
+    "build": "yarn rollup -c",
+    "start": "yarn serve"
   },
   "dependencies": {
     "react": "^16.11.0",
@@ -19,6 +20,7 @@
     "@babel/preset-react": "^7.6.3",
     "rollup": "^1.25.2",
     "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-external-globals": "^0.4.0"
+    "rollup-plugin-external-globals": "^0.4.0",
+    "serve": "^11.3.2"
   }
 }
