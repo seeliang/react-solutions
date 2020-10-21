@@ -1,0 +1,24 @@
+{
+  "name": "rollup-react-es6",
+  "version": "1.0.0",
+  "description": "rollup for react es6 build",
+  "main": "index.js",
+  "repository": "git@github.com:seeliang/rollup-react-es6.git",
+  "author": "sihui <me@sihuiliang.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "yarn rollup -c"
+  },
+  "dependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-react": "^7.6.3",
+    "rollup": "^1.25.2",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-external-globals": "^0.4.0"
+  }
+}
