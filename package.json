@@ -1,0 +1,11 @@
+{
+  "name": "react-solutions",
+  "version": "1.0.0",
+  "description": "react solutions in one place",
+  "main": "index.js",
+  "repository": "git@github.com:seeliang/react-solutions.git",
+  "author": "seeliang <hi@sihuiliang.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": ["solutions/**"]
+}
