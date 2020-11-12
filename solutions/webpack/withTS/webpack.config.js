@@ -2,7 +2,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.tsx',
+    entry: './src/index.ts',
     externals: {
         react: 'React',
         'react-dom': 'ReactDOM'
