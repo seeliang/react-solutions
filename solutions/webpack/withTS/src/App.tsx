@@ -1,5 +1,5 @@
 import React from 'react';
-import { Part } from './part.ts';
+import { Part } from './part.tsx';
 
 function App() {
   return (

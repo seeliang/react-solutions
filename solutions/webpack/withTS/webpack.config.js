@@ -2,7 +2,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.ts',
+    entry: './src/index.tsx',
     externals: {
         react: 'React',
         'react-dom': 'ReactDOM'
@@ -10,7 +10,7 @@ module.exports = {
     module: {
       rules: [
         {
-          test: /\.ts$/,
+          test: /\.ts?x$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
