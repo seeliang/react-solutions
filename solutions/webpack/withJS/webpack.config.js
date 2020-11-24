@@ -1,7 +1,7 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const { GenerateConfig } = require('@infomediacode/generate-config');
+const { GenerateConfig } = require('@kickoffready/generate-config');
 
 const react = require("../config/index") 
 
