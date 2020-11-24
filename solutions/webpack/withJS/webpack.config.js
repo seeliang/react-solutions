@@ -3,14 +3,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const { GenerateConfig } = require('@kickoffready/generate-config');
 
-const {reactJs,  devSet} = require("../config/index") 
+const {reactJs,  devSet, fileConfig} = require("../config/index") 
 
 const base = {
-    entry: './src/index.js',
-    output: {
-        path: path.resolve(__dirname, 'dist/'),
-        filename: 'bundle.js'
-    },
     plugins: [
       new CopyWebpackPlugin({
         patterns: [{
@@ -23,6 +18,7 @@ const base = {
 const set = new GenerateConfig()
   .addConfig(base)
   .addConfig(reactJs)
+  .addConfig(fileConfig({entry: './src/index'}))
   .addConfig(devSet({port: 9011}))
   .setup
 console.log(JSON.stringify(set))

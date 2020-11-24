@@ -39,6 +39,14 @@ const devSet = ({port = 8888, dist = 'dist/'}) => ({
     },
 })
 
+const fileConfig = ({entry = './src/index', dist = 'dist/', outputFile = 'bundle.js'}) => ({
+    entry,
+    output: {
+        path: path.resolve(__dirname, dist),
+        filename: outputFile,
+    },
+})
+
 const reactJs = new GenerateConfig()
     .addConfig(reactBase)
     .addConfig(reactJsExt)
@@ -47,4 +55,5 @@ const reactJs = new GenerateConfig()
 module.exports = {
     reactJs,
     devSet,
+    fileConfig,
 }
