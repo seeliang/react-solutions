@@ -3,15 +3,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const { GenerateConfig } = require('@kickoffready/generate-config');
 
-const react = require("../config/index") 
+const {reactJs,  devSet} = require("../config/index") 
 
 const base = {
     entry: './src/index.js',
-    devtool: 'source-map' ,
-    devServer: {
-        contentBase: path.join(__dirname, 'dist/'),
-        port: 9011
-      },
     output: {
         path: path.resolve(__dirname, 'dist/'),
         filename: 'bundle.js'
@@ -25,6 +20,10 @@ const base = {
     ]
 };
 
-const set = new GenerateConfig().addConfig(base).addConfig(react.reactJs).setup
+const set = new GenerateConfig()
+  .addConfig(base)
+  .addConfig(reactJs)
+  .addConfig(devSet({port: 9011}))
+  .setup
 console.log(JSON.stringify(set))
 module.exports = set

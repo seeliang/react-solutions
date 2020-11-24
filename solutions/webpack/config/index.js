@@ -1,4 +1,5 @@
 const { GenerateConfig } = require('@kickoffready/generate-config');
+const path = require('path');
 
 const reactBase = {
     externals: {
@@ -20,7 +21,7 @@ const reactBase = {
     },
 };
 
-reactJsExt = {
+const reactJsExt = {
     module: {
       rules: [
         {
@@ -30,11 +31,20 @@ reactJsExt = {
     },
 };
 
+const devSet = ({port = 8888, dist = 'dist/'}) => ({
+    devtool: 'source-map' ,
+    devServer: {
+        contentBase: path.join(__dirname, dist),
+        port,
+    },
+})
+
 const reactJs = new GenerateConfig()
     .addConfig(reactBase)
     .addConfig(reactJsExt)
     .setup
 
 module.exports = {
-    reactJs
+    reactJs,
+    devSet,
 }
