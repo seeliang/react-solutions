@@ -31,6 +31,35 @@ const reactJsExt = {
     },
 };
 
+const reactTsExt = {
+    module: {
+      rules: [
+        {
+          test: /\.ts(|x)$/,
+        }
+      ],
+    },
+};
+
+const typescript = {
+    module: {
+        rules: [
+          {
+            use: {
+              options: {
+                presets: [
+                  '@babel/preset-typescript',
+                ]
+              }
+            }
+          }
+        ],
+      },
+      resolve: {
+        extensions: [".ts", ".tsx", ".js"],
+    },
+}
+
 const devSet = ({port = 8888, dist = 'dist/'}) => ({
     devtool: 'source-map' ,
     devServer: {
@@ -52,8 +81,15 @@ const reactJs = new GenerateConfig()
     .addConfig(reactJsExt)
     .setup
 
+const reactTs = new GenerateConfig()
+    .addConfig(typescript)
+    .addConfig(reactBase)
+    .addConfig(reactTsExt)
+    .setup
+
 module.exports = {
     reactJs,
     devSet,
     fileConfig,
+    reactTs,
 }
