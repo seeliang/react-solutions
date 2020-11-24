@@ -1401,6 +1401,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@kickoffready/generate-config@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@kickoffready/generate-config/-/generate-config-1.2.1.tgz#d021609213e99b1bbef2c52859659fa0ba7f4d62"
+  integrity sha512-LIWyqfvfGn5ncvc5SXsFY8WUpKKjXacoJrq4D/YUdnao7QzCJReAvHyBy+lupSxfSusqW2ASSN+gaGWILr4EhQ==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"

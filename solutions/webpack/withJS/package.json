@@ -12,6 +12,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-react": "^7.12.1",
+    "@kickoffready/generate-config": "^1.2.1",
     "babel-loader": "^8.1.0",
     "copy-webpack-plugin": "^6.3.0",
     "webpack": "^5.2.0",

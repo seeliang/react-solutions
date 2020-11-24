@@ -1,26 +1,12 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = {
+const { GenerateConfig } = require('@infomediacode/generate-config');
+
+const react = require("../config/index") 
+
+const base = {
     entry: './src/index.js',
-    externals: {
-        react: 'React',
-        'react-dom': 'ReactDOM'
-      },
-    module: {
-      rules: [
-        {
-          test: /\.m?js$/,
-          exclude: /(node_modules|bower_components)/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-react']
-            }
-          }
-        }
-      ],
-    },
     devtool: 'source-map' ,
     devServer: {
         contentBase: path.join(__dirname, 'dist/'),
@@ -38,3 +24,7 @@ module.exports = {
       })
     ]
 };
+
+const set = new GenerateConfig().addConfig(base).addConfig(react.reactJs).setup
+console.log(JSON.stringify(set))
+module.exports = set
