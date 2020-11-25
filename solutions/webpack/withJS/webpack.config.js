@@ -3,7 +3,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const { GenerateConfig } = require('@kickoffready/generate-config');
 
-const {reactJs,  devSet, fileConfig} = require("../config/index") 
+const {reactJs,  devSet, fileConfig} = require("@kickoffready/webpack-react") 
 
 const base = {
     plugins: [

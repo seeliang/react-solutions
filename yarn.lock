@@ -1406,6 +1406,11 @@
   resolved "https://registry.yarnpkg.com/@kickoffready/generate-config/-/generate-config-1.2.1.tgz#d021609213e99b1bbef2c52859659fa0ba7f4d62"
   integrity sha512-LIWyqfvfGn5ncvc5SXsFY8WUpKKjXacoJrq4D/YUdnao7QzCJReAvHyBy+lupSxfSusqW2ASSN+gaGWILr4EhQ==
 
+"@kickoffready/webpack-react@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@kickoffready/webpack-react/-/webpack-react-1.1.0.tgz#1b3af6e94d81b3c614f804d0e0db1e49c33aec98"
+  integrity sha512-mvgGrWnQNjkhp0ckkTeG0RhDxcFDKD1aPSyt9nwynsdt9DMkEmqYxs6u2aH6KYECfHoIi4YGsZWZ3JCMQs00cw==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
