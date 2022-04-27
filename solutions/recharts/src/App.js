@@ -62,6 +62,9 @@ function App() {
   
     <Sample showTitle={true}/>
     <Sample/>
+    <Sample/>
+    <Sample/>
+    <Sample/>
     </div>
   );
 }
