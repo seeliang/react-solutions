@@ -44,7 +44,7 @@ function App() {
     <div className="App">
   
       <LineChart width={500} height={300} data={data}>
-    <XAxis dataKey="name" orientation='top'/>
+    <XAxis dataKey="name" orientation='top' scale="band"/>
     <YAxis domain={[40, 160]}/>
     <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
     <Line type="monotone" dataKey="uv" stroke="#8884d8" />
