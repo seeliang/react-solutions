@@ -45,12 +45,11 @@ function App() {
   
       <LineChart width={500} height={300} data={data}>
     <XAxis dataKey="name" orientation='top' scale="band"/>
-    <YAxis domain={[40, 160]}/>
-    <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
-    <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-    <Line type="monotone" dataKey="pv" stroke="#82ca9d" />
-    <ReferenceArea  y1={110} y2={120} fill="orange" strokeOpacity={0.3} />
-    <ReferenceArea  y1={120} y2={150} fill="red" strokeOpacity={0.3} />
+    <YAxis domain={[60, 160]}/>
+    <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
+    <Line type="monotone" dataKey="uv" stroke='black' dot={{ stroke: 'black', strokeWidth: 4 }}  />
+    <ReferenceArea  y1={110} y2={120} fill="orange" strokeOpacity={0.5} />
+    <ReferenceArea  y1={120} y2={150} fill="red" strokeOpacity={0.5} />
   </LineChart>
     </div>
   );
