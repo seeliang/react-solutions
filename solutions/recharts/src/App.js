@@ -4,37 +4,37 @@ import './App.css';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
 const data = [
   {
-    name: "Page A",
-    uv: 4000,
+    name: "",
+    uv: 100,
 
   },
   {
-    name: "Page B",
-    uv: 3000,
+    name: "",
+    uv: 100,
   
   },
   {
-    name: "Page C",
-    uv: 2000,
+    name: "",
+    uv: 100,
    
   },
   {
-    name: "Page D",
-    uv: 2780,
+    name: "",
+    uv: 90,
     
   },
   {
-    name: "Page E",
-    uv: 1890,
+    name: "",
+    uv: 70,
    
   },
   {
-    name: "Page F",
-    uv: 2390,
+    name: "",
+    uv: 110,
   },
   {
     name: "Page G",
-    uv: 3490,
+    uv: 140,
   }
 ];
 
@@ -45,7 +45,7 @@ function App() {
   
       <LineChart width={500} height={300} data={data}>
     <XAxis dataKey="name"/>
-    <YAxis/>
+    <YAxis domain={[40, 200]}/>
     <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
     <Line type="monotone" dataKey="uv" stroke="#8884d8" />
     <Line type="monotone" dataKey="pv" stroke="#82ca9d" />
