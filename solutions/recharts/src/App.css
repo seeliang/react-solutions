@@ -38,13 +38,25 @@
 }
 
 .table {
-  display: table;
+  display: inline-flex;
 }
 
 .cell {
-  display: table-cell;
   vertical-align: middle;
   border: 1px solid #eee;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.mod {
+  margin-top: 30px;
+}
+
+.sticky {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: white;
 }
 
 .title {
