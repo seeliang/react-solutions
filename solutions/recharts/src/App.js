@@ -35,7 +35,7 @@ const data = [
   },
   {
     name: "21/07 13:30",
-    uv: 140,
+    uv: 208,
     kk: 110
   },
   {
@@ -80,7 +80,7 @@ class CustomizedLabel extends PureComponent {
     const { x, y, value } = this.props;
 
     return (
-      <text x={x} y={y} dy={6} fontSize={16} fill={"white"} textAnchor="middle">
+      <text x={x} y={y} dy={5} fontSize={14} fill={"white"} textAnchor="middle">
         {value}
       </text>
     );
@@ -94,12 +94,12 @@ const Sample = ({showTitle}) => (
   <span className="cell">
     <LineChart width={1700} height={300} data={data}>
   <XAxis dataKey={"name"} hide={!showTitle} orientation='top' scale="band" angle="-8"/>
-  <YAxis domain={[45, 160]} tickCount="10"/>
+  <YAxis domain={[65, 220]} tickCount="10"/>
   <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
   <Line type="monotone" dataKey="uv" stroke='black' dot={{ stroke: 'black', strokeWidth: 25 }}  label={<CustomizedLabel />}  />
   <Line type="monotone" dataKey="kk" stroke='green' dot={{ stroke: 'green', strokeWidth: 8 }}  />
   <ReferenceArea  y1={110} y2={120} fill="orange" strokeOpacity={0.5} />
-  <ReferenceArea  y1={120} y2={150} fill="red" strokeOpacity={0.5} />
+  <ReferenceArea  y1={120} y2={220} fill="red" strokeOpacity={0.5} />
   <ReferenceArea  y1={60} y2={65} fill="blue" strokeOpacity={0.5} />
 </LineChart>
 </span>
