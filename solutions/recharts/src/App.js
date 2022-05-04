@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { PureComponent } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip } from 'recharts';
 const data = [
   {
     name: "21/07 12:00",
@@ -94,7 +94,7 @@ const Sample = ({showTitle}) => (
   <span className=" title">Heart Beat Rate</span>
   <span className="cell" >
     <LineChart width={70} height={300} data={data}>
-      <YAxis domain={[65, 240]} tickCount="10"/>
+      <YAxis domain={[65, 240]} tickCount="10" />
     </LineChart>
 </span>
 </span>
@@ -102,6 +102,7 @@ const Sample = ({showTitle}) => (
     <LineChart width={1700} height={300} data={data}>
   <XAxis dataKey={"name"} hide={!showTitle} orientation='top' scale="band" angle="-8"/>
   <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
+  <Tooltip />
   <YAxis domain={[65, 240]} tickCount="10" hide={true}/>
   <Line type="monotone" dataKey="uv" stroke='black' dot={{ stroke: 'black', strokeWidth: 25 }}  label={<CustomizedLabel />}  />
   <Line type="monotone" dataKey="kk" stroke='green' dot={{ stroke: 'green', strokeWidth: 8 }}  />
