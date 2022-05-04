@@ -90,11 +90,11 @@ class CustomizedLabel extends PureComponent {
 
 const Sample = ({showTitle}) => (
   <div className="table">
-    <span class="sticky cell table">
+    <span className="sticky cell table">
   <span className=" title">Heart Beat Rate</span>
   <span className="cell" >
     <LineChart width={70} height={300} data={data}>
-      <YAxis domain={[65, 220]} tickCount="10"/>
+      <YAxis domain={[65, 240]} tickCount="10"/>
     </LineChart>
 </span>
 </span>
@@ -102,10 +102,11 @@ const Sample = ({showTitle}) => (
     <LineChart width={1700} height={300} data={data}>
   <XAxis dataKey={"name"} hide={!showTitle} orientation='top' scale="band" angle="-8"/>
   <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
+  <YAxis domain={[65, 240]} tickCount="10" hide={true}/>
   <Line type="monotone" dataKey="uv" stroke='black' dot={{ stroke: 'black', strokeWidth: 25 }}  label={<CustomizedLabel />}  />
   <Line type="monotone" dataKey="kk" stroke='green' dot={{ stroke: 'green', strokeWidth: 8 }}  />
   <ReferenceArea  y1={110} y2={120} fill="orange" strokeOpacity={0.5} />
-  <ReferenceArea  y1={120} y2={220} fill="red" strokeOpacity={0.5} />
+  <ReferenceArea  y1={120} y2={240} fill="red" strokeOpacity={0.5} />
   <ReferenceArea  y1={60} y2={65} fill="blue" strokeOpacity={0.5} />
 </LineChart>
 </span>
