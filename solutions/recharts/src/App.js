@@ -104,8 +104,8 @@ const Sample = ({showTitle}) => (
   <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
   <Tooltip />
   <YAxis domain={[65, 240]} tickCount="10" hide={true}/>
-  <Line type="monotone" dataKey="uv" stroke='black' dot={{ stroke: 'black', strokeWidth: 25 }}  label={<CustomizedLabel />}  />
-  <Line type="monotone" dataKey="kk" stroke='green' dot={{ stroke: 'green', strokeWidth: 8 }}  />
+  <Line type="monotone" dataKey="max" stroke='black' dot={{ stroke: 'black', strokeWidth: 25 }}  label={<CustomizedLabel />}  />
+  <Line type="monotone" dataKey="min" stroke='green' dot={{ stroke: 'green', strokeWidth: 8 }}  />
   <ReferenceArea  y1={110} y2={120} fill="orange" strokeOpacity={0.5} />
   <ReferenceArea  y1={120} y2={240} fill="red" strokeOpacity={0.5} />
   <ReferenceArea  y1={60} y2={65} fill="blue" strokeOpacity={0.5} />
