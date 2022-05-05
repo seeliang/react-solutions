@@ -116,7 +116,7 @@ const Sample = () => (
     <span className=" title">Heart Beat Rate</span>
     <span className="cell" >
       <LineChart width={120} height={300} data={data}>
-        <YAxis domain={[50, 240]} width={120} tickFormatter={formatYAxis} tickCount="10" />
+        <YAxis domain={[50, 240]} width={110} tickFormatter={formatYAxis} tickCount="10" />
       </LineChart>
     </span>
   </span>
