@@ -75,6 +75,12 @@ const data = [
   }
 ];
 
+function formatYAxis(value) {
+  if(value > 100) return "Over-100"
+  if(value < 99) return "Under-100"
+  return value
+}
+
 class CustomizedLabel extends PureComponent {
   render() {
     const { x, y, value } = this.props;
@@ -93,8 +99,8 @@ const Sample = ({showTitle}) => (
     <span className="sticky cell table">
   <span className=" title">Heart Beat Rate</span>
   <span className="cell" >
-    <LineChart width={70} height={300} data={data}>
-      <YAxis domain={[65, 240]} tickCount="10" />
+    <LineChart width={120} height={300} data={data}>
+      <YAxis domain={[50, 240]} width={120} tickFormatter={formatYAxis} tickCount="10" />
     </LineChart>
 </span>
 </span>
@@ -103,12 +109,12 @@ const Sample = ({showTitle}) => (
   <XAxis dataKey={"name"} hide={!showTitle} orientation='top' scale="band" angle="-8"/>
   <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
   <Tooltip />
-  <YAxis domain={[65, 240]} tickCount="10" hide={true}/>
+  <YAxis domain={[50, 240]} tickCount="10" hide={true}/>
   <Line type="monotone" dataKey="max" stroke='black' dot={{ stroke: 'black', strokeWidth: 25 }}  label={<CustomizedLabel />}  />
   <Line type="monotone" dataKey="min" stroke='green' dot={{ stroke: 'green', strokeWidth: 8 }}  />
   <ReferenceArea  y1={110} y2={120} fill="orange" strokeOpacity={0.5} />
   <ReferenceArea  y1={120} y2={240} fill="red" strokeOpacity={0.5} />
-  <ReferenceArea  y1={60} y2={65} fill="blue" strokeOpacity={0.5} />
+  <ReferenceArea  y1={50} y2={65} fill="blue" strokeOpacity={0.5} />
 </LineChart>
 </span>
 </div>
