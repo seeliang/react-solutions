@@ -5,73 +5,73 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip } f
 const data = [
   {
     name: "21/07 12:00",
-    uv: 100,
-    kk: 89,
+    max: 100,
+    min: 89,
   },
   {
     name: "21/07 12:15",
-    uv: 100,
-    kk: 67
+    max: 100,
+    min: 67
   },
   {
     name: "21/07 12:30",
-    uv: 100,
-    kk: 90
+    max: 100,
+    min: 90
   },
   {
     name: "21/07 12:45",
-    uv: 90,
-    kk: 86
+    max: 90,
+    min: 86
   },
   {
     name: "21/07 13:00",
-    uv: 70,
-    kk: 64
+    max: 70,
+    min: 64
   },
   {
     name: "21/07 13:15",
-    uv: 110,
-    kk: 85
+    max: 110,
+    min: 85
   },
   {
     name: "21/07 13:30",
-    uv: 208,
-    kk: 110
+    max: 208,
+    min: 110
   },
   {
     name: "21/07 14:00",
-    uv: 100,
-    kk: 89,
+    max: 100,
+    min: 89,
   },
   {
     name: "21/07 14:15",
-    uv: 100,
-    kk: 67
+    max: 100,
+    min: 67
   },
   {
     name: "21/07 14:30",
-    uv: 100,
-    kk: 90
+    max: 100,
+    min: 90
   },
   {
     name: "21/07 14:45",
-    uv: 90,
-    kk: 86
+    max: 90,
+    min: 86
   },
   {
     name: "21/07 15:00",
-    uv: 70,
-    kk: 64
+    max: 70,
+    min: 64
   },
   {
     name: "21/07 15:15",
-    uv: 110,
-    kk: 85
+    max: 110,
+    min: 85
   },
   {
     name: "21/07 15:30",
-    uv: 140,
-    kk: 110
+    max: 140,
+    min: 110
   }
 ];
 
