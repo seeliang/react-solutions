@@ -127,7 +127,7 @@ const Sample = () => (
   <YAxis domain={[50, 220]} tickCount="15" hide={true}/>
   <Line type="monotone" dataKey="max" stroke='black' dot={{ stroke: 'black', strokeWidth: 25 }}  label={<CustomizedLabel />}  />
   <Line type="monotone" dataKey="min" stroke='green' dot={{ stroke: 'green', strokeWidth: 8 }}  />
-  <ReferenceArea  y1={110} y2={200} fill="orange" strokeOpacity={0.5} />
+  <ReferenceArea  y1={160} y2={200} fill="orange" strokeOpacity={0.5} />
   <ReferenceArea  y1={200} y2={220} fill="red" strokeOpacity={0.5} />
   <ReferenceArea  y1={50} y2={80} fill="blue" strokeOpacity={0.5} />
 </LineChart>
