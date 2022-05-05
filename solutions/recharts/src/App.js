@@ -76,8 +76,8 @@ const data = [
 ];
 
 function formatYAxis(value) {
-  if(value > 200) return "Over 200"
-  if(value < 80) return "Under-80"
+  if(value === 200) return "Over 200"
+  if(value === 80) return "Under-80"
   return value
 }
 
@@ -115,7 +115,7 @@ const Sample = () => (
     <span className=" title">Heart Beat Rate</span>
     <span className="cell" >
       <LineChart width={120} height={300} data={data}>
-        <YAxis domain={[50, 220]} width={110} tickFormatter={formatYAxis} tickCount="10" />
+        <YAxis domain={[50, 220]} width={110} tickFormatter={formatYAxis} tickCount="15" />
       </LineChart>
     </span>
   </span>
@@ -124,12 +124,12 @@ const Sample = () => (
   <XAxis dataKey={"name"} hide={true} orientation='top' scale="band" angle="-8"/>
   <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
   <Tooltip />
-  <YAxis domain={[50, 220]} tickCount="10" hide={true}/>
+  <YAxis domain={[50, 220]} tickCount="15" hide={true}/>
   <Line type="monotone" dataKey="max" stroke='black' dot={{ stroke: 'black', strokeWidth: 25 }}  label={<CustomizedLabel />}  />
   <Line type="monotone" dataKey="min" stroke='green' dot={{ stroke: 'green', strokeWidth: 8 }}  />
-  <ReferenceArea  y1={110} y2={180} fill="orange" strokeOpacity={0.5} />
-  <ReferenceArea  y1={180} y2={220} fill="red" strokeOpacity={0.5} />
-  <ReferenceArea  y1={50} y2={65} fill="blue" strokeOpacity={0.5} />
+  <ReferenceArea  y1={110} y2={200} fill="orange" strokeOpacity={0.5} />
+  <ReferenceArea  y1={200} y2={220} fill="red" strokeOpacity={0.5} />
+  <ReferenceArea  y1={50} y2={80} fill="blue" strokeOpacity={0.5} />
 </LineChart>
 </span>
 </div>
