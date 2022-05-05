@@ -76,7 +76,8 @@ const data = [
 ];
 
 function formatYAxis(value) {
-  if(value > 100) return "Over-100"
+  if(value > 160) return "Over 160"
+  if(value > 100 && value < 160) return "100-160"
   if(value < 99) return "Under-100"
   return value
 }
@@ -93,20 +94,35 @@ class CustomizedLabel extends PureComponent {
   }
 }
 
-
-const Sample = ({showTitle}) => (
+const TableHead = () => (
   <div className="table">
     <span className="sticky cell table">
-  <span className=" title">Heart Beat Rate</span>
+  <span className=" title"></span>
   <span className="cell" >
-    <LineChart width={120} height={300} data={data}>
-      <YAxis domain={[50, 240]} width={120} tickFormatter={formatYAxis} tickCount="10" />
-    </LineChart>
-</span>
-</span>
+  
+  </span>
+  </span>
+  <span className="cell">
+  <LineChart width={1700} height={40} data={data}>
+  <XAxis dataKey={"name"} orientation='top' scale="band" angle="-8"/>
+  </LineChart>
+  </span>
+  </div>
+)
+
+const Sample = () => (
+  <div className="table">
+  <span className="sticky cell table">
+    <span className=" title">Heart Beat Rate</span>
+    <span className="cell" >
+      <LineChart width={120} height={300} data={data}>
+        <YAxis domain={[50, 240]} width={120} tickFormatter={formatYAxis} tickCount="10" />
+      </LineChart>
+    </span>
+  </span>
   <span className="cell">
     <LineChart width={1700} height={300} data={data}>
-  <XAxis dataKey={"name"} hide={!showTitle} orientation='top' scale="band" angle="-8"/>
+  <XAxis dataKey={"name"} hide={true} orientation='top' scale="band" angle="-8"/>
   <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
   <Tooltip />
   <YAxis domain={[50, 240]} tickCount="10" hide={true}/>
@@ -124,8 +140,8 @@ const Sample = ({showTitle}) => (
 function App() {
   return (
     <div className="App">
-  
-    <Sample showTitle={true}/>
+      <TableHead />
+    <Sample />
     <Sample/>
     <Sample/>
     <Sample/>
