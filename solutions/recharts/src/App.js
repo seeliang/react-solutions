@@ -25,7 +25,7 @@ const data = [
   },
   {
     name: "21/07 13:00",
-    max: 70,
+    max: 77,
     min: 64
   },
   {
@@ -75,6 +75,14 @@ const data = [
   }
 ];
 
+function round5 (x) {
+  return Math.ceil(x/10)*10 - 5
+}
+
+function addDisplayToData (data) {
+  return data.map(i => ({...i, display: {max: round5(i.max), min: round5(i.min) } }) )
+}
+
 function formatYAxis(value) {
   if(value === 200) return "Over 200"
   if (value < 200 && value > 80) return value
@@ -84,11 +92,13 @@ function formatYAxis(value) {
 
 class CustomizedLabel extends PureComponent {
   render() {
-    const { x, y, value } = this.props;
+    const { x, y, index, data } = this.props;
+
+    console.log(this.props)
 
     return (
       <text x={x} y={y} dy={5} fontSize={14} fill={"white"} textAnchor="middle">
-        {value}
+        {data[index].max}
       </text>
     );
   }
@@ -103,31 +113,33 @@ const TableHead = () => (
   </span>
   </span>
   <span className="cell">
-  <LineChart width={1700} height={40} data={data}>
+  <LineChart width={1700} height={40} data={addDisplayToData(data)}>
   <XAxis dataKey={"name"} orientation='top' scale="band" angle="-8"/>
   </LineChart>
   </span>
   </div>
 )
 
+const tickCount = "13";
+
 const Sample = () => (
   <div className="table">
   <span className="sticky cell table">
     <span className=" title">Heart Beat Rate</span>
     <span className="cell" >
-      <LineChart width={120} height={300} data={data}>
-        <YAxis domain={[50, 220]} width={110} tickFormatter={formatYAxis} tickCount="14" />
+      <LineChart width={120} height={300} data={addDisplayToData(data)}>
+        <YAxis domain={[50, 220]} width={110} tickFormatter={formatYAxis} tickCount={tickCount} />
       </LineChart>
     </span>
   </span>
   <span className="cell">
-    <LineChart width={1700} height={300} data={data}>
+    <LineChart width={1700} height={300} data={addDisplayToData(data)}>
   <XAxis dataKey={"name"} hide={true} orientation='top' scale="band" angle="-8"/>
   <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
   <Tooltip />
-  <YAxis domain={[50, 220]} tickCount="14" hide={true}/>
-  <Line type="monotone" dataKey="max" stroke='black' dot={{ stroke: 'black', strokeWidth: 25 }}  label={<CustomizedLabel />}  />
-  <Line type="monotone" dataKey="min" stroke='green' dot={{ stroke: 'green', strokeWidth: 8 }}  />
+  <YAxis domain={[50, 220]} tickCount={tickCount}  hide={true}/>
+  <Line type="monotone" dataKey="display.max" stroke='black' dot={{ stroke: 'black', strokeWidth: 25 }}  label={<CustomizedLabel data={data} />}  />
+  <Line type="monotone" dataKey="display.min" stroke='green' dot={{ stroke: 'green', strokeWidth: 8 }}  />
   <ReferenceArea  y1={160} y2={200} fill="orange" strokeOpacity={0.5} />
   <ReferenceArea  y1={200} y2={220} fill="red" strokeOpacity={0.5} />
   <ReferenceArea  y1={50} y2={80} fill="blue" strokeOpacity={0.5} />
