@@ -63,3 +63,10 @@
 .title {
   padding: 15px;
 }
+
+.tooltip {
+  display: block;
+  background-color: white;
+  border: 1px solid gray;
+  padding: 4px;
+}

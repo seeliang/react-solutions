@@ -94,8 +94,6 @@ class CustomizedLabel extends PureComponent {
   render() {
     const { x, y, index, data } = this.props;
 
-    console.log(this.props)
-
     return (
       <text x={x} y={y} dy={5} fontSize={14} fill={"white"} textAnchor="middle">
         {data[index].max}
@@ -120,6 +118,23 @@ const TableHead = () => (
   </div>
 )
 
+const ModifyTooltip = (props) => {
+  const {payload} = props;
+  const render = payload.map(i => i.payload);
+  if(!render[0]) {
+    return;
+  }
+  const {name, max, min} = render[0];
+
+  return(
+    <span className='tooltip'>
+       <p> time: {name} </p>
+      <p> max: {max} </p>
+      <p> min: {min} </p>
+    </span>
+  )
+  }
+
 const tickCount = "13";
 
 const Sample = () => (
@@ -136,7 +151,7 @@ const Sample = () => (
     <LineChart width={1700} height={300} data={addDisplayToData(data)}>
   <XAxis dataKey={"name"} hide={true} orientation='top' scale="band" angle="-8"/>
   <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
-  <Tooltip />
+  <Tooltip content={ModifyTooltip}/>
   <YAxis domain={[50, 220]} tickCount={tickCount}  hide={true}/>
   <Line type="monotone" dataKey="display.max" stroke='black' dot={{ stroke: 'black', strokeWidth: 25 }}  label={<CustomizedLabel data={data} />}  />
   <Line type="monotone" dataKey="display.min" stroke='green' dot={{ stroke: 'green', strokeWidth: 8 }}  />
