@@ -83,20 +83,17 @@ function addDisplayToData (data) {
   return data.map(i => ({...i, display: {max: round5(i.max), min: round5(i.min) } }) )
 }
 
-function formatYAxis(value) {
-  if(value === 200) return "Over 200"
-  if (value < 200 && value > 80) return value
-  if(value === 80) return "Under-80"
-  return ""
-}
+
 
 class CustomizedLabel extends PureComponent {
   render() {
-    const { x, y, index, data } = this.props;
+    const { x, y, index, data, displayKey } = this.props;
+
+    const content = displayKey? displayKey : "max"
 
     return (
       <text x={x} y={y} dy={5} fontSize={14} fill={"white"} textAnchor="middle">
-        {data[index].max}
+        {data[index][content]}
       </text>
     );
   }
@@ -134,8 +131,35 @@ const ModifyTooltip = (props) => {
     </span>
   )
   }
+  const YDomain = [60,220];
 
-const tickCount = "13";
+  const safeRange = [70,120]
+
+  function formatYAxis(value) {
+
+    if(value === YDomain[1]) return "Over " + YDomain[1]
+    if (value < YDomain[1] && value > YDomain[0]) return value
+    if(value === YDomain[0]) return "Under " + YDomain[0] 
+    return ""
+  }
+
+const tickCount = "6"// Math.ceil((YDomain[1] - YDomain[0])/10).toString(10);
+
+console.log(tickCount);
+
+const ConditionLabel = (props) => {
+  const {value, x, y} = props;
+
+  console.log(x)
+
+  if (value < safeRange[1] && value > safeRange[0]) {
+    return <circle r="7" fill="green" cx={x} cy={y}/>;
+  };
+  return (<>
+    <circle r="15" fill="green" cx={x} cy={y}/>;
+    <CustomizedLabel {...props} displayKey="min" />
+  </>)
+}
 
 const Sample = () => (
   <div className="table">
@@ -143,21 +167,22 @@ const Sample = () => (
     <span className=" title">Heart Beat Rate</span>
     <span className="cell" >
       <LineChart width={120} height={300} data={addDisplayToData(data)}>
-        <YAxis domain={[50, 220]} width={110} tickFormatter={formatYAxis} tickCount={tickCount} />
+        <YAxis domain={YDomain} width={110} tickFormatter={formatYAxis} tickCount={tickCount} />
       </LineChart>
     </span>
   </span>
   <span className="cell">
     <LineChart width={1700} height={300} data={addDisplayToData(data)}>
+    <ReferenceArea  y1={150} y2={180} fill="orange" strokeOpacity={0.5} />
+  <ReferenceArea  y1={180} y2={220} fill="red" strokeOpacity={0.5} />
+  <ReferenceArea  y1={60} y2={80} fill="blue" strokeOpacity={0.5} />
   <XAxis dataKey={"name"} hide={true} orientation='top' scale="band" angle="-8"/>
-  <CartesianGrid stroke="#ddd" strokeDasharray="5 5"/>
+  <CartesianGrid stroke="#ddd"/>
   <Tooltip content={ModifyTooltip}/>
-  <YAxis domain={[50, 220]} tickCount={tickCount}  hide={true}/>
+  <YAxis domain={YDomain} tickCount={tickCount}  hide={true}/>
   <Line type="monotone" dataKey="display.max" stroke='black' dot={{ stroke: 'black', strokeWidth: 25 }}  label={<CustomizedLabel data={data} />}  />
-  <Line type="monotone" dataKey="display.min" stroke='green' dot={{ stroke: 'green', strokeWidth: 8 }}  />
-  <ReferenceArea  y1={160} y2={200} fill="orange" strokeOpacity={0.5} />
-  <ReferenceArea  y1={200} y2={220} fill="red" strokeOpacity={0.5} />
-  <ReferenceArea  y1={50} y2={80} fill="blue" strokeOpacity={0.5} />
+  <Line type="monotone" dataKey="display.min" stroke='green' label={<ConditionLabel data={data} />}   />
+
 </LineChart>
 </span>
 </div>
