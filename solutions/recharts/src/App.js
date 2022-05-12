@@ -133,24 +133,22 @@ const ModifyTooltip = (props) => {
   }
   const YDomain = [60,220];
 
-  const safeRange = [70,120]
+  const safeRange = [80,180]
 
   function formatYAxis(value) {
 
-    if(value === YDomain[1]) return "Over " + YDomain[1]
-    if (value < YDomain[1] && value > YDomain[0]) return value
-    if(value === YDomain[0]) return "Under " + YDomain[0] 
+    if(value === safeRange[1]) return "Over " + safeRange[1]
+    if (value < safeRange[1] && value > safeRange[0]) return value
+    if(value === safeRange[0]) return "Under " + safeRange[0] 
     return ""
   }
 
-const tickCount = "6"// Math.ceil((YDomain[1] - YDomain[0])/10).toString(10);
+const tickCount = (Math.ceil((YDomain[1] - YDomain[0])/10) + 2).toString(10);
 
 console.log(tickCount);
 
 const ConditionLabel = (props) => {
   const {value, x, y} = props;
-
-  console.log(x)
 
   if (value < safeRange[1] && value > safeRange[0]) {
     return <circle r="7" fill="green" cx={x} cy={y}/>;
@@ -167,15 +165,15 @@ const Sample = () => (
     <span className=" title">Heart Beat Rate</span>
     <span className="cell" >
       <LineChart width={120} height={300} data={addDisplayToData(data)}>
-        <YAxis domain={YDomain} width={110} tickFormatter={formatYAxis} tickCount={tickCount} />
+        <YAxis domain={YDomain} width={110} tickFormatter={formatYAxis} tickCount={tickCount} interval="preserveStartEnd"/>
       </LineChart>
     </span>
   </span>
   <span className="cell">
     <LineChart width={1700} height={300} data={addDisplayToData(data)}>
-    <ReferenceArea  y1={150} y2={180} fill="orange" strokeOpacity={0.5} />
-  <ReferenceArea  y1={180} y2={220} fill="red" strokeOpacity={0.5} />
-  <ReferenceArea  y1={60} y2={80} fill="blue" strokeOpacity={0.5} />
+    <ReferenceArea  y1={150} y2={safeRange[1]} fill="orange" strokeOpacity={0.5} />
+  <ReferenceArea  y1={safeRange[1]} y2={YDomain[1]} fill="red" strokeOpacity={0.5} />
+  <ReferenceArea  y1={YDomain[0]} y2={safeRange[0]} fill="blue" strokeOpacity={0.5} />
   <XAxis dataKey={"name"} hide={true} orientation='top' scale="band" angle="-8"/>
   <CartesianGrid stroke="#ddd"/>
   <Tooltip content={ModifyTooltip}/>
