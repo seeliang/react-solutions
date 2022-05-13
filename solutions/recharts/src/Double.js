@@ -154,7 +154,6 @@ const ModifyTooltip = (props) => {
 
 const tickCount = (Math.ceil(displayReset(YDomain[1])/10) + 2).toString(10);
 
-console.log(tickCount);
 
 const ConditionLabel = (props) => {
   const {value, x, y, displayKey, color} = props;

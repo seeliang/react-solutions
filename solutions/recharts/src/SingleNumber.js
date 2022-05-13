@@ -138,9 +138,9 @@ const ModifyTooltip = (props) => {
     </span>
   )
   }
-  const YDomain = [60,220];
+  const YDomain = [60,140];
 
-  const safeRange = [80,180]
+  const safeRange = [80,120]
 
 
 
@@ -155,7 +155,7 @@ const ModifyTooltip = (props) => {
     return ""
   }
 
-const tickCount = (Math.ceil(displayReset(YDomain[1])/10) + 2).toString(10);
+const tickCount = (Math.ceil(displayReset(YDomain[1])/10) + 1).toString(10);
 
 const YAxisSharedProps = {
   tickCount,
@@ -163,7 +163,7 @@ const YAxisSharedProps = {
 }
 
 const LineChartProps = {
-  height: 400,
+  height: 300,
   data: addDisplayToData(data)
 }
 
@@ -179,7 +179,7 @@ const LineChartProps = {
   </span>
   <span className="cell">
     <LineChart width={1700} {...LineChartProps}>
-      <ReferenceArea  y1={displayReset(150)} y2={displayReset(safeRange[1])} fill="orange" strokeOpacity={0.5} />
+      <ReferenceArea  y1={displayReset(110)} y2={displayReset(safeRange[1])} fill="orange" strokeOpacity={0.5} />
       <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(YDomain[1])} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(safeRange[1] + 2)} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={0} y2={displayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
