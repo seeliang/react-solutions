@@ -177,7 +177,7 @@ const YAxisSharedProps = {
 }
 
 const LineChartProps = {
-  height: 700,
+  height: 400,
   data: addDisplayToData(data)
 }
 
@@ -195,9 +195,10 @@ const Sample = () => (
     <LineChart width={1700} {...LineChartProps}>
       <ReferenceArea  y1={displayReset(150)} y2={displayReset(safeRange[1])} fill="orange" strokeOpacity={0.5} />
       <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(YDomain[1])} fill="red" strokeOpacity={0.5} />
+      <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(safeRange[1] + 2)} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={0} y2={displayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
       <XAxis dataKey={"name"} hide={true} orientation='top' scale="band" angle="-8"/>
-      <CartesianGrid stroke="#ddd"/>
+      <CartesianGrid stroke="#ddd" />
       <Tooltip content={ModifyTooltip}/>
       <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>
       <Line type="monotone" dataKey="display.max" stroke='black' dot={{ stroke: 'black', strokeWidth: 25 }}  label={<CustomizedLabel data={data} />}  />
