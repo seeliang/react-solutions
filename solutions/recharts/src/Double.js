@@ -157,16 +157,18 @@ const tickCount = (Math.ceil(displayReset(YDomain[1])/10) + 2).toString(10);
 console.log(tickCount);
 
 const ConditionLabel = (props) => {
-  const {value, x, y, displayKey} = props;
+  const {value, x, y, displayKey, color} = props;
 
   const text = displayKey ? displayKey : "min"
 
+  const fill = color ? color : "green"
+
   if (value < displayReset(safeRange[1])&& value > displayReset(safeRange[0])) {
-    return <circle r="7" fill="green" cx={x} cy={y}/>;
+    return <circle r="7" fill={fill} cx={x} cy={y}/>;
   };
 
   return (<>
-    <circle r="15" fill="green" cx={x} cy={y}/>;
+    <circle r="15" fill={fill} cx={x} cy={y}/>;
     <CustomizedLabel {...props} displayKey={text} />
   </>)
 }
@@ -201,7 +203,7 @@ const LineChartProps = {
       <CartesianGrid stroke="#ddd" />
       <Tooltip content={ModifyTooltip}/>
       <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>
-      <Line dataKey="display.max" stroke='green' label={<ConditionLabel data={data} displayKey="max" />}  />
+      <Line dataKey="display.max" stroke='blue' label={<ConditionLabel data={data} displayKey="max" color ="indigo"/>}  />
       <Line dataKey="display.min" stroke='green' label={<ConditionLabel data={data}  />} />
   </LineChart>
 </span>
