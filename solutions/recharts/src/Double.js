@@ -165,7 +165,6 @@ const ConditionLabel = (props) => {
     return <circle r="7" fill="green" cx={x} cy={y}/>;
   };
 
-  console.log(text);
   return (<>
     <circle r="15" fill="green" cx={x} cy={y}/>;
     <CustomizedLabel {...props} displayKey={text} />
@@ -202,8 +201,8 @@ const LineChartProps = {
       <CartesianGrid stroke="#ddd" />
       <Tooltip content={ModifyTooltip}/>
       <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>
-      <Line type="monotone" dataKey="display.max" stroke='green' label={<ConditionLabel data={data} displayKey="max" />}  />
-      <Line type="monotone" dataKey="display.min" stroke='green' label={<ConditionLabel data={data}  />} />
+      <Line dataKey="display.max" stroke='green' label={<ConditionLabel data={data} displayKey="max" />}  />
+      <Line dataKey="display.min" stroke='green' label={<ConditionLabel data={data}  />} />
   </LineChart>
 </span>
 </div>
