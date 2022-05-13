@@ -122,22 +122,6 @@ export const TableHead = () => (
   </div>
 )
 
-const ModifyTooltip = (props) => {
-  const {payload} = props;
-  const render = payload.map(i => i.payload);
-  if(!render[0]) {
-    return;
-  }
-  const {name, max, min} = render[0];
-
-  return(
-    <span className='tooltip'>
-       <p> time: {name} </p>
-      <p> max: {max} </p>
-      <p> min: {min} </p>
-    </span>
-  )
-  }
   const YDomain = [60,140];
 
   const safeRange = [80,120]
