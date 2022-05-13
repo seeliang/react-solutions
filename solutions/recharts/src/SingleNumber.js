@@ -185,7 +185,6 @@ const LineChartProps = {
       <ReferenceArea  y1={0} y2={displayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
       <XAxis dataKey={"name"} hide={true} orientation='top' scale="band" angle="-8"/>
       <CartesianGrid stroke="#ddd" />
-      <Tooltip content={ModifyTooltip}/>
       <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>
       <Line dataKey="display.max" stroke='green' label={<CustomizedLabel data={data}/>}  />
   </LineChart>
