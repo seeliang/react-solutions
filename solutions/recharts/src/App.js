@@ -107,7 +107,7 @@ class CustomizedLabel extends PureComponent {
 }
 
 const TableHead = () => (
-  <div className="table">
+  <div className="table sticky-header">
     <span className="sticky cell table">
   <span className=" title"></span>
   <span className="cell" >

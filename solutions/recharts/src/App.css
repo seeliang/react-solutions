@@ -41,6 +41,15 @@
   display: inline-flex;
 }
 
+.sticky-header {
+  position: sticky;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  background-color: white;
+  height: 40px;
+}
+
 .cell {
   vertical-align: middle;
   border: 1px solid #eee;
