@@ -95,9 +95,13 @@ export class CustomizedLabel extends PureComponent {
 
     const content = displayKey? displayKey : "max"
 
+    const word = data[index][content];
+
+    const incorrect = word < 40 
+
     return (
-      <text x={x} y={y} dy={5} fontSize={14} fill={"white"} textAnchor="middle">
-        {data[index][content]}
+      <text x={x} y={y} dy={5} fontSize={14} fill={incorrect? "red" : "white"} textAnchor="middle" textDecoration={incorrect ? "line-through" : ""}>
+        {word}
       </text>
     );
   }
