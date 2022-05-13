@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip } from 'recharts';
+
+
 const data = [
   {
     name: "21/07 12:00",
@@ -11,7 +13,7 @@ const data = [
   {
     name: "21/07 12:15",
     max: 100,
-    min: 67
+    min: 35
   },
   {
     name: "21/07 12:30",
@@ -35,7 +37,7 @@ const data = [
   },
   {
     name: "21/07 13:30",
-    max: 208,
+    max: 308,
     min: 110
   },
   {
@@ -75,6 +77,8 @@ const data = [
   }
 ];
 
+const displayReset = (value) => value - YDomain[0];
+
 function round5 (x) {
   return Math.ceil(x/10)*10 - 5
 }
@@ -82,8 +86,8 @@ function round5 (x) {
 function addDisplayToData (data) {
   return data.map(i => ({...i, 
     display: {
-    max: i.max > YDomain[1] ? 225 : round5(i.max - YDomain[0]), 
-    min: i.min < YDomain[0] ? 65 : round5(i.min - YDomain[0]) 
+    max: i.max > YDomain[1] ? displayReset(YDomain[1] - 5) : round5(displayReset(i.max)), 
+    min: i.min < YDomain[0] ? displayReset(YDomain[0] + 5) : round5(displayReset(i.min)) 
     } 
   }) )
 }
@@ -142,23 +146,23 @@ const ModifyTooltip = (props) => {
 
   function formatYAxis(value) {
 
-    const start = 0;
-    const end = YDomain[1] - YDomain[0]
+    const start = 10;
+    const end = displayReset(YDomain[1] - 10);
 
-    if(value === end ) return "Over " + YDomain[1]
+    if(value === end ) return "Over " + (YDomain[1] - 10)
     if (value < end && value > start) return value + YDomain[0]
     if(value === start) return "Under " + YDomain[0] 
     return ""
   }
 
-const tickCount = (Math.ceil((safeRange[1] - safeRange[0])/10) ).toString(10);
+const tickCount = (Math.ceil(displayReset(YDomain[1])/10) + 2).toString(10);
 
 console.log(tickCount);
 
 const ConditionLabel = (props) => {
   const {value, x, y} = props;
 
-  if (value < safeRange[1] - YDomain[0] && value > safeRange[0]- YDomain[0]) {
+  if (value < displayReset(safeRange[1])&& value > displayReset(safeRange[0])) {
     return <circle r="7" fill="green" cx={x} cy={y}/>;
   };
   return (<>
@@ -169,7 +173,12 @@ const ConditionLabel = (props) => {
 
 const YAxisSharedProps = {
   tickCount,
-  // domain: YDomain,
+  domain:[0,displayReset(YDomain[1])]
+}
+
+const LineChartProps = {
+  height: 700,
+  data: addDisplayToData(data)
 }
 
 const Sample = () => (
@@ -177,20 +186,20 @@ const Sample = () => (
   <span className="sticky cell table">
     <span className=" title">Heart Beat Rate</span>
     <span className="cell" >
-      <LineChart width={120} height={300} data={addDisplayToData(data)}>
+      <LineChart width={120} {...LineChartProps}>
         <YAxis {...YAxisSharedProps} width={110} tickFormatter={formatYAxis} />
       </LineChart>
     </span>
   </span>
   <span className="cell">
-    <LineChart width={1700} height={300} data={addDisplayToData(data)}>
-      <ReferenceArea  y1={150} y2={safeRange[1]} fill="orange" strokeOpacity={0.5} />
-      <ReferenceArea  y1={safeRange[1]} y2={YDomain[1]} fill="red" strokeOpacity={0.5} />
-      <ReferenceArea  y1={YDomain[0]} y2={safeRange[0]} fill="blue" strokeOpacity={0.5} />
+    <LineChart width={1700} {...LineChartProps}>
+      <ReferenceArea  y1={displayReset(150)} y2={displayReset(safeRange[1])} fill="orange" strokeOpacity={0.5} />
+      <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(YDomain[1])} fill="red" strokeOpacity={0.5} />
+      <ReferenceArea  y1={0} y2={displayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
       <XAxis dataKey={"name"} hide={true} orientation='top' scale="band" angle="-8"/>
       <CartesianGrid stroke="#ddd"/>
       <Tooltip content={ModifyTooltip}/>
-      <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis}/>
+      <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>
       <Line type="monotone" dataKey="display.max" stroke='black' dot={{ stroke: 'black', strokeWidth: 25 }}  label={<CustomizedLabel data={data} />}  />
       <Line type="monotone" dataKey="display.min" stroke='green' label={<ConditionLabel data={data} />} />
   </LineChart>
