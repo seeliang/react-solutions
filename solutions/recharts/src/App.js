@@ -151,7 +151,7 @@ const ModifyTooltip = (props) => {
 
     if(value === end ) return "Over " + (YDomain[1] - 10)
     if (value < end && value > start) return value + YDomain[0]
-    if(value === start) return "Under " + YDomain[0] 
+    if(value === start) return "Under " + (YDomain[0] + 10 )
     return ""
   }
 
