@@ -6,11 +6,14 @@ import Number from './SingleNumber'
 
 import OneRow from './OneRow'
 
+import SingleFloat from './SingleFloat'
+
 
 function App() {
   return (
     <div className="App">
       <TableHead />
+      <SingleFloat />
     <Double />
     <Number />
     <OneRow />
