@@ -92,10 +92,10 @@ export class CustomizedLabel extends PureComponent {
     const content = displayKey? displayKey : "min"
 
     return (<>
-      <circle r="16" fill="green" cx={x} cy={y}/>
-      <text x={x} y={y} dy={5} fontSize={14} fill={"white"} textAnchor="middle">
+      <circle r="8" fill="green" cx={x} cy={y}/>
+      {/* <text x={x} y={y} dy={5} fontSize={14} fill={"white"} textAnchor="middle">
         {data[index][content]}
-      </text>
+      </text> */}
       </>
 
     );
@@ -120,17 +120,13 @@ export const TableHead = () => (
 
   const YDomain = [34,42];
 
-  const safeRange = [36.4,37.2]
-
-
+  const safeRange = [36.0,38.0]
 
   function formatYAxis(value) {
     const gap = 0.4
 
     const start = gap;
     const end = parseFloat(displayReset(YDomain[1] - gap).toFixed(1));
-
-    console.log(typeof end, typeof value)
 
     if(value === end ) return "Over " + (YDomain[1] - gap)
     if (value < end && value > start) return value + YDomain[0]
@@ -163,7 +159,7 @@ const YAxisSharedProps = {
 }
 
 const LineChartProps = {
-  height: 700,
+  height: 500,
   data: addDisplayToData(data),
 }
 
