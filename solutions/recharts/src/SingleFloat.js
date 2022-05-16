@@ -68,10 +68,10 @@ function roundToHalf (x) {
 
 function formatData (value)  {
   if (value < YDomain[0]) {
-    return 0.4 / 2
+    return gap / 2
   }
   if (value > YDomain[1]) {
-    return 41.8 - YDomain[0]
+    return displayReset(YDomain[1]) - gap / 2;
   }
 
   return roundToHalf(displayReset(value))
@@ -119,11 +119,11 @@ export const TableHead = () => (
 )
 
   const YDomain = [34,42];
-
+  const gap = 0.4
   const safeRange = [36.0,38.0]
 
   function formatYAxis(value) {
-    const gap = 0.4
+
 
     const start = gap;
     const end = parseFloat(displayReset(YDomain[1] - gap).toFixed(1));
@@ -180,7 +180,7 @@ const LineChartProps = {
       <ReferenceArea  y1={0} y2={displayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
       <XAxis dataKey={"name"} hide={true} orientation='top' scale="band" angle="-8"/>
       <Tooltip content={ModifyTooltip}/>
-      <CartesianGrid stroke="#ddd" />
+      <CartesianGrid stroke="#ddd"/>
       <YAxis {...YAxisSharedProps} hide={true}/>
       <Line dataKey="display.min" stroke='green' label={<CustomizedLabel data={data}/>}  />
   </LineChart>
