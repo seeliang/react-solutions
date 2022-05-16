@@ -4,6 +4,8 @@ import Double, {TableHead} from './Double';
 
 import Number from './SingleNumber'
 
+import OneRow from './OneRow'
+
 
 function App() {
   return (
@@ -11,6 +13,7 @@ function App() {
       <TableHead />
     <Double />
     <Number />
+    <OneRow />
     </div>
   );
 }
