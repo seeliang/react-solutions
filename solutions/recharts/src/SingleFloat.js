@@ -63,7 +63,7 @@ const data = [
 const displayReset = (value) => value - YDomain[0];
 
 function roundToHalf (x) {
-  return Math.ceil(x/0.4)*0.4 - 0.2
+  return Math.ceil(x/gap)*gap - gap / 2
 }
 
 function formatData (value)  {
@@ -150,7 +150,7 @@ export const TableHead = () => (
     )
     }
 
-const tickCount = (Math.ceil(displayReset(YDomain[1])/0.4) + 2).toString(10);
+const tickCount = (Math.ceil(displayReset(YDomain[1])/gap) + 2).toString(10);
 
 const YAxisSharedProps = {
   tickCount,
@@ -176,7 +176,7 @@ const LineChartProps = {
   <span className="cell">
     <LineChart width={1700} {...LineChartProps}>
       <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(YDomain[1])} fill="red" strokeOpacity={0.5} />
-      <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(safeRange[1] + 0.2)} fill="red" strokeOpacity={0.5} />
+      <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(safeRange[1] + gap / 2)} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={0} y2={displayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
       <XAxis dataKey={"name"} hide={true} orientation='top' scale="band" angle="-8"/>
       <Tooltip content={ModifyTooltip}/>
