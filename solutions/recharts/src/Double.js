@@ -3,72 +3,72 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip } f
 
 const data = [
   {
-    name: "21/07 12:00",
+    name: "12:00",
     max: 100,
     min: 89,
   },
   {
-    name: "21/07 12:15",
+    name: "12:15",
     max: 100,
     min: 35
   },
   {
-    name: "21/07 12:30",
+    name: "12:30",
     max: 100,
     min: 90
   },
   {
-    name: "21/07 12:45",
+    name: "12:45",
     max: 90,
     min: 86
   },
   {
-    name: "21/07 13:00",
+    name: "13:00",
     max: 77,
     min: 64
   },
   {
-    name: "21/07 13:15",
+    name: "13:15",
     max: 110,
     min: 85
   },
   {
-    name: "21/07 13:30",
+    name: "13:30",
     max: 308,
     min: 110
   },
   {
-    name: "21/07 14:00",
+    name: "14:00",
     max: 100,
     min: 89,
   },
   {
-    name: "21/07 14:15",
+    name: "14:15",
     max: 100,
     min: 67
   },
   {
-    name: "21/07 14:30",
+    name: "14:30",
     max: 100,
     min: 90
   },
   {
-    name: "21/07 14:45",
+    name: "14:45",
     max: 90,
     min: 86
   },
   {
-    name: "21/07 15:00",
+    name: "15:00",
     max: 70,
     min: 64
   },
   {
-    name: "21/07 15:15",
+    name: "15:15",
     max: 110,
     min: 85
   },
   {
-    name: "21/07 15:30",
+    name: "15:30",
     max: 140,
     min: 110
   }
@@ -110,7 +110,7 @@ export class CustomizedLabel extends PureComponent {
 export const TableHead = () => (
   <div className="table sticky-header">
     <span className="sticky cell table">
-  <span className=" title"></span>
+  <span className=" title"> From 21/07</span>
   <span className="cell" >
   
   </span>

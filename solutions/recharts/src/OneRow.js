@@ -3,70 +3,70 @@ import { LineChart, Line, XAxis, YAxis,  } from 'recharts';
 
 const data = [
   {
-    name: "21/07 12:00",
+    name: "12:00",
 
     min: 8,
   },
   {
-    name: "21/07 12:15",
+    name: "12:15",
     min: 3
   },
   {
-    name: "21/07 12:30",
+    name: "12:30",
 
     min: 9
   },
   {
-    name: "21/07 12:45",
+    name: "12:45",
 
     min: 8
   },
   {
-    name: "21/07 13:00",
+    name: "13:00",
     min: 6
   },
   {
-    name: "21/07 13:15",
+    name: "13:15",
 
     min: 8
   },
   {
-    name: "21/07 13:30",
+    name: "13:30",
 
     min: 1
   },
   {
-    name: "21/07 14:00",
+    name: "14:00",
 
     min: 8,
   },
   {
-    name: "21/07 14:15",
+    name: "14:15",
 
     min: 6
   },
   {
-    name: "21/07 14:30",
+    name: "14:30",
 
     min: 9
   },
   {
-    name: "21/07 14:45",
+    name: "14:45",
  
     min: 8
   },
   {
-    name: "21/07 15:00",
+    name: "15:00",
 
     min: 6
   },
   {
-    name: "21/07 15:15",
+    name: "15:15",
 
     min: 8
   },
   {
-    name: "21/07 15:30",
+    name: "15:30",
 
     min: 1
   }
