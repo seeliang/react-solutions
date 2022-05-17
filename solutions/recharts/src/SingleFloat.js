@@ -102,22 +102,6 @@ export class CustomizedLabel extends PureComponent {
   }
 }
 
-export const TableHead = () => (
-  <div className="table sticky-header">
-    <span className="sticky cell table">
-  <span className=" title"></span>
-  <span className="cell" >
-  
-  </span>
-  </span>
-  <span className="cell">
-  <LineChart width={1700} height={40} data={addDisplayToData(data)}>
-  <XAxis dataKey={"name"} orientation='top' scale="band" angle="-8"/>
-  </LineChart>
-  </span>
-  </div>
-)
-
   const YDomain = [34,42];
   const gap = 0.4
   const safeRange = [36.0,38.0]
@@ -149,6 +133,10 @@ export const TableHead = () => (
       </span>
     )
     }
+const TimeToNum = (string) => {
+  const raw = string.split(":");
+  return raw[0] * 60 + raw[1]
+}
 
 const tickCount = (Math.ceil(displayReset(YDomain[1])/gap) + 2).toString(10);
 
