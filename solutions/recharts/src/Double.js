@@ -117,7 +117,7 @@ export const TableHead = () => (
   </span>
   <span className="cell">
   <LineChart width={1700} height={40} data={addDisplayToData(data)}>
-  <XAxis dataKey={"name"} orientation='top' scale="band" angle="-8"/>
+  <XAxis dataKey={"name"} orientation='top' scale="band"/>
   </LineChart>
   </span>
   </div>
