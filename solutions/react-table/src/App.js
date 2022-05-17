@@ -49,9 +49,7 @@ function Table({ columns, data }) {
 function App() {
   const columns = useMemo(
     () => [
-      {
-        Header: 'Name',
-        columns: [
+     
           {
             Header: 'First Name',
             accessor: 'firstName',
@@ -60,11 +58,6 @@ function App() {
             Header: 'Last Name',
             accessor: 'lastName',
           },
-        ],
-      },
-      {
-        Header: 'Info',
-        columns: [
           {
             Header: 'Age',
             accessor: 'age',
@@ -81,8 +74,6 @@ function App() {
             Header: 'Profile Progress',
             accessor: 'progress',
           },
-        ],
-      },
     ],
     []
   );
