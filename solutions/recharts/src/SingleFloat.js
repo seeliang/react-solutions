@@ -60,7 +60,7 @@ const data = [
   }
 ];
 
-const displayReset = (value) => value - YDomain[0];
+const YDisplayReset = (value) => value - YDomain[0];
 
 function roundToHalf (x) {
   return Math.ceil(x/gap)*gap - gap / 2
@@ -71,16 +71,19 @@ function formatData (value)  {
     return gap / 2
   }
   if (value > YDomain[1]) {
-    return displayReset(YDomain[1]) - gap / 2;
+    return YDisplayReset(YDomain[1]) - gap / 2;
   }
 
-  return roundToHalf(displayReset(value))
+  return roundToHalf(YDisplayReset(value))
 }
 
 function addDisplayToData (data) {
+
+  console.log(timeToNum(data[0].name));
   return data.map(i => ({...i, 
     display: {
-    min: formatData(i.min) 
+    min: formatData(i.min),
+    time: timeToNum(i.name)
     } 
   }) )
 }
@@ -110,7 +113,7 @@ export class CustomizedLabel extends PureComponent {
 
 
     const start = gap;
-    const end = parseFloat(displayReset(YDomain[1] - gap).toFixed(1));
+    const end = parseFloat(YDisplayReset(YDomain[1] - gap).toFixed(1));
 
     if(value === end ) return "Over " + (YDomain[1] - gap)
     if (value < end && value > start) return value + YDomain[0]
@@ -133,16 +136,21 @@ export class CustomizedLabel extends PureComponent {
       </span>
     )
     }
-const TimeToNum = (string) => {
+
+const timeToNum = (string) => {
+  console.log(string);
   const raw = string.split(":");
-  return raw[0] * 60 + raw[1]
+
+  const result = parseInt(raw[0]) * 60 + parseInt(raw[1]) 
+  console.log(raw, result);
+  return result;
 }
 
-const tickCount = (Math.ceil(displayReset(YDomain[1])/gap) + 2).toString(10);
+const tickCount = (Math.ceil(YDisplayReset(YDomain[1])/gap) + 2).toString(10);
 
 const YAxisSharedProps = {
   tickCount,
-  domain:[0,displayReset(YDomain[1])],
+  domain:[0,YDisplayReset(YDomain[1])],
   tickFormatter: formatYAxis
 }
 
@@ -163,10 +171,10 @@ const LineChartProps = {
   </span>
   <span className="cell">
     <LineChart width={1700} {...LineChartProps}>
-      <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(YDomain[1])} fill="red" strokeOpacity={0.5} />
-      <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(safeRange[1] + gap / 2)} fill="red" strokeOpacity={0.5} />
-      <ReferenceArea  y1={0} y2={displayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
-      <XAxis dataKey={"name"} hide={true} orientation='top' scale="band" angle="-8"/>
+      <ReferenceArea  y1={YDisplayReset(safeRange[1])} y2={YDisplayReset(YDomain[1])} fill="red" strokeOpacity={0.5} />
+      <ReferenceArea  y1={YDisplayReset(safeRange[1])} y2={YDisplayReset(safeRange[1] + gap / 2)} fill="red" strokeOpacity={0.5} />
+      <ReferenceArea  y1={0} y2={YDisplayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
+      <XAxis dataKey="display.time" type="number"/>
       <Tooltip content={ModifyTooltip}/>
       <CartesianGrid stroke="#ddd"/>
       <YAxis {...YAxisSharedProps} hide={true}/>
