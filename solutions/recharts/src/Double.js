@@ -202,7 +202,7 @@ const LineChartProps = {
       <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(YDomain[1])} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(safeRange[1] + 2)} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={0} y2={displayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
-      <XAxis dataKey={"name"} hide={true} orientation='top' scale="band" angle="-8"/>
+      <XAxis dataKey={"name"} hide={true} orientation='top' scale="band"/>
       <CartesianGrid stroke="#ddd" />
       <Tooltip content={ModifyTooltip}/>
       <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>
