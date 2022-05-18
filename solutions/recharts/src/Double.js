@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip } from 'recharts';
-import {XAxisJustifiedProps, timeToNum, XDisplayReset} from './SingleFloat';
+import {XAxisJustifiedProps, timeToNum, XDisplayReset, ErrorInputProps} from './SingleFloat';
 
 const data = [
   {
@@ -99,10 +99,8 @@ export class CustomizedLabel extends PureComponent {
 
     const word = data[index][content];
 
-    const incorrect = word < 40 
-
     return (
-      <text x={x} y={y} dy={5} fontSize={14} fill={incorrect? "red" : "white"} textAnchor="middle" textDecoration={incorrect ? "line-through" : ""}>
+      <text x={x} y={y} dy={5} fontSize={14} fill="white" textAnchor="middle" >
         {word}
       </text>
     );
@@ -194,6 +192,7 @@ const LineChartProps = {
       <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>
       <Line dataKey="display.max" stroke='blue' label={<ConditionLabel data={data} displayKey="max" color ="indigo"/>}  />
       <Line dataKey="display.min" stroke='green' label={<ConditionLabel data={data}  />} />
+      <ReferenceArea  {...ErrorInputProps} />
   </LineChart>
 </span>
 </div>

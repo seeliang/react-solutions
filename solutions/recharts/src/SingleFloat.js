@@ -183,7 +183,14 @@ const XAxisProps = {
    orientation:'top',
     tickCount:"17",
      tickFormatter:formatXAxis,
-      padding: {left: 20}
+      padding: {left: 40},
+}
+
+export const ErrorInputProps = {
+  x1:13,
+  x2:17,
+  fill: "red",
+  strokeOpacity:"0.5" 
 }
 
 export const XAxisJustifiedProps =  {...XAxisProps, hide: true}
@@ -213,6 +220,7 @@ const LineChartProps = {
       <CartesianGrid stroke="#ddd"/>
       <YAxis {...YAxisSharedProps} hide={true}/>
       <Line dataKey="display.min" stroke='green' label={<CustomizedLabel data={data}/>}  />
+      <ReferenceArea  {...ErrorInputProps} />
   </LineChart>
 </span>
 </div>

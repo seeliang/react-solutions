@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip } from 'recharts';
-import {XAxisJustifiedProps, timeToNum, XDisplayReset} from './SingleFloat';
+import {XAxisJustifiedProps, timeToNum, XDisplayReset, ErrorInputProps} from './SingleFloat';
 
 const data = [
   {
@@ -172,6 +172,7 @@ const LineChartProps = {
       <CartesianGrid stroke="#ddd" />
       <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>
       <Line dataKey="display.max" stroke='green' label={<CustomizedLabel data={data}/>}  />
+      <ReferenceArea  {...ErrorInputProps} />
   </LineChart>
 </span>
 </div>

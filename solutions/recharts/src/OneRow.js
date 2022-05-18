@@ -1,7 +1,7 @@
 import { PureComponent } from 'react';
-import { LineChart, Line, XAxis, YAxis,  } from 'recharts';
+import { LineChart, Line, XAxis, YAxis,  ReferenceArea} from 'recharts';
 
-import {XAxisJustifiedProps, timeToNum, XDisplayReset} from './SingleFloat';
+import {XAxisJustifiedProps, timeToNum, XDisplayReset, ErrorInputProps} from './SingleFloat';
 
 const data = [
   {
@@ -148,7 +148,9 @@ const LineChartProps = {
       <XAxis {...XAxisJustifiedProps}/>
 
       <YAxis {...YAxisSharedProps}  hide={true}/>
+      
       <Line dataKey="display.min" strokeWidth="0" label={<CustomizedLabel data={data}/>}  />
+      <ReferenceArea  {...ErrorInputProps} />
   </LineChart>
 </span>
 </div>
