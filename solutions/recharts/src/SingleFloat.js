@@ -195,9 +195,11 @@ const XAxisProps = {
      tickFormatter:formatXAxis,
 }
 
+const errorPoint = 53
+
 export const ErrorInputProps = {
-  x1:13,
-  x2:17,
+  x1: errorPoint - 2,
+  x2: errorPoint + 2,
   fill: "red",
   strokeOpacity:"0.5" 
 }
