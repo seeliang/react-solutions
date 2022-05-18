@@ -67,15 +67,15 @@ export const XDisplayReset = (value) => {
 }
 
 function roundToHalf (x) {
-  return Math.ceil(x/gap)*gap - gap / 2
+  return Math.ceil(x/YGap)*YGap - YGap / 2
 }
 
 function formatData (value)  {
   if (value < YDomain[0]) {
-    return gap / 2
+    return YGap / 2
   }
   if (value > YDomain[1]) {
-    return YDisplayReset(YDomain[1]) - gap / 2;
+    return YDisplayReset(YDomain[1]) - YGap / 2;
   }
 
   return roundToHalf(YDisplayReset(value))
@@ -125,18 +125,18 @@ export const TableHead = () => (
 )
 
   const YDomain = [34,42];
-  const gap = 0.4
+  const YGap = 0.4
   const safeRange = [36.0,38.0]
 
   function formatYAxis(value) {
 
 
-    const start = gap;
-    const end = parseFloat(YDisplayReset(YDomain[1] - gap).toFixed(1));
+    const start = YGap;
+    const end = parseFloat(YDisplayReset(YDomain[1] - YGap).toFixed(1));
 
-    if(value === end ) return "Over " + (YDomain[1] - gap)
+    if(value === end ) return "Over " + (YDomain[1] - YGap)
     if (value < end && value > start) return value + YDomain[0]
-    if(value === start) return "Under " + (YDomain[0] + gap )
+    if(value === start) return "Under " + (YDomain[0] + YGap )
     return ""
   }
 
@@ -169,7 +169,7 @@ export const timeToNum = (string) => {
   return result;
 }
 
-const YTickCount = (Math.ceil(YDisplayReset(YDomain[1])/gap) + 2).toString(10);
+const YTickCount = (Math.ceil(YDisplayReset(YDomain[1])/YGap) + 2).toString(10);
 
 const YAxisSharedProps = {
   tickCount: YTickCount,
@@ -177,13 +177,21 @@ const YAxisSharedProps = {
   tickFormatter: formatYAxis
 }
 
+const XGap = 15
+
+const lastCheckTime = data[data.length - 1].name;
+
+const XTickCount = (Math.ceil(XDisplayReset(timeToNum(lastCheckTime)) / XGap) + 2).toString(10)
+
+console.log(XTickCount);
+
 const XAxisProps = {
   dataKey:"display.time",
    type:"number",
    orientation:'top',
-    tickCount:"17",
+    tickCount: XTickCount,
      tickFormatter:formatXAxis,
-      padding: {left: 40},
+      padding: {left: 15},
 }
 
 export const ErrorInputProps = {
@@ -213,7 +221,7 @@ const LineChartProps = {
   <span className="cell">
     <LineChart width={1700} {...LineChartProps}>
       <ReferenceArea  y1={YDisplayReset(safeRange[1])} y2={YDisplayReset(YDomain[1])} fill="red" strokeOpacity={0.5} />
-      <ReferenceArea  y1={YDisplayReset(safeRange[1])} y2={YDisplayReset(safeRange[1] + gap / 2)} fill="red" strokeOpacity={0.5} />
+      <ReferenceArea  y1={YDisplayReset(safeRange[1])} y2={YDisplayReset(safeRange[1] + YGap / 2)} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={0} y2={YDisplayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
       <XAxis {...XAxisJustifiedProps}/>
       <Tooltip content={ModifyTooltip}/>
