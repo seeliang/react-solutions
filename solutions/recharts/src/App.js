@@ -1,12 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import Double, {TableHead} from './Double';
+import Double  from './Double';
 
 import Number from './SingleNumber'
 
 import OneRow from './OneRow'
 
-import SingleFloat from './SingleFloat'
+import SingleFloat ,{TableHead}from './SingleFloat'
 
 
 function App() {

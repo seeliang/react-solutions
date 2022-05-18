@@ -15,7 +15,7 @@ const data = [
     min: 39.0
   },
   {
-    name: "12:45",
+    name: "12:38",
     min: 36.0
   },
   {
@@ -62,6 +62,11 @@ const data = [
 
 const YDisplayReset = (value) => value - YDomain[0];
 
+const XDisplayReset = (value) => {
+  console.log("var",value)
+  return value - timeToNum(data[0].name); 
+}
+
 function roundToHalf (x) {
   return Math.ceil(x/gap)*gap - gap / 2
 }
@@ -78,15 +83,14 @@ function formatData (value)  {
 }
 
 function addDisplayToData (data) {
-
-  console.log(timeToNum(data[0].name));
   return data.map(i => ({...i, 
     display: {
     min: formatData(i.min),
-    time: timeToNum(i.name)
+    time: XDisplayReset(timeToNum(i.name))
     } 
   }) )
 }
+
 
 export class CustomizedLabel extends PureComponent {
   render() {
@@ -105,6 +109,22 @@ export class CustomizedLabel extends PureComponent {
   }
 }
 
+export const TableHead = () => (
+  <div className="table sticky-header">
+    <span className="sticky cell table">
+  <span className=" title"> From 21/07</span>
+  <span className="cell" >
+  
+  </span>
+  </span>
+  <span className="cell">
+  <LineChart width={1700} height={40} data={addDisplayToData(data)}>
+      <XAxis  {...XAxisProps}/>
+  </LineChart>
+  </span>
+  </div>
+)
+
   const YDomain = [34,42];
   const gap = 0.4
   const safeRange = [36.0,38.0]
@@ -119,6 +139,13 @@ export class CustomizedLabel extends PureComponent {
     if (value < end && value > start) return value + YDomain[0]
     if(value === start) return "Under " + (YDomain[0] + gap )
     return ""
+  }
+
+  function formatXAxis(value) {
+    const m = value % 60;
+    const h = Math.floor(value / 60) + 12;
+    const word = `${h} : ${m}`
+    return m === 0 ? `${word}0` : word
   }
 
   const ModifyTooltip = (props) => {
@@ -137,22 +164,30 @@ export class CustomizedLabel extends PureComponent {
     )
     }
 
-const timeToNum = (string) => {
-  console.log(string);
+export const timeToNum = (string) => {
   const raw = string.split(":");
-
   const result = parseInt(raw[0]) * 60 + parseInt(raw[1]) 
-  console.log(raw, result);
   return result;
 }
 
-const tickCount = (Math.ceil(YDisplayReset(YDomain[1])/gap) + 2).toString(10);
+const YTickCount = (Math.ceil(YDisplayReset(YDomain[1])/gap) + 2).toString(10);
 
 const YAxisSharedProps = {
-  tickCount,
+  tickCount: YTickCount,
   domain:[0,YDisplayReset(YDomain[1])],
   tickFormatter: formatYAxis
 }
+
+const XAxisProps = {
+  dataKey:"display.time",
+   type:"number",
+   orientation:'top',
+    tickCount:"17",
+     tickFormatter:formatXAxis,
+      padding: {left: 20}
+}
+
+export const XAxisJustifiedProps =  {...XAxisProps, hide: true}
 
 const LineChartProps = {
   height: 500,
@@ -174,7 +209,7 @@ const LineChartProps = {
       <ReferenceArea  y1={YDisplayReset(safeRange[1])} y2={YDisplayReset(YDomain[1])} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={YDisplayReset(safeRange[1])} y2={YDisplayReset(safeRange[1] + gap / 2)} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={0} y2={YDisplayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
-      <XAxis dataKey="display.time" type="number"/>
+      <XAxis {...XAxisJustifiedProps}/>
       <Tooltip content={ModifyTooltip}/>
       <CartesianGrid stroke="#ddd"/>
       <YAxis {...YAxisSharedProps} hide={true}/>
