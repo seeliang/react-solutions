@@ -181,9 +181,9 @@ const XGap = 15
 
 const lastCheckTime = data[data.length - 1].name;
 
+
 const XTickCount = (Math.ceil(XDisplayReset(timeToNum(lastCheckTime)) / XGap) + 2).toString(10)
 
-console.log(XTickCount);
 
 const XAxisProps = {
   dataKey:"display.time",
@@ -191,7 +191,7 @@ const XAxisProps = {
    orientation:'top',
     tickCount: XTickCount,
      tickFormatter:formatXAxis,
-      padding: {left: 15},
+      padding: {left: 30},
 }
 
 export const ErrorInputProps = {
