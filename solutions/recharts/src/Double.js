@@ -1,5 +1,6 @@
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip } from 'recharts';
+import {XAxisJustifiedProps, timeToNum, XDisplayReset} from './SingleFloat';
 
 const data = [
   {
@@ -83,6 +84,7 @@ function round5 (x) {
 function addDisplayToData (data) {
   return data.map(i => ({...i, 
     display: {
+    time: XDisplayReset(timeToNum(i.name)),
     max: i.max > YDomain[1] ? displayReset(YDomain[1] - 5) : round5(displayReset(i.max)), 
     min: i.min < YDomain[0] ? displayReset(YDomain[0] + 5) : round5(displayReset(i.min)) 
     } 
@@ -106,22 +108,6 @@ export class CustomizedLabel extends PureComponent {
     );
   }
 }
-
-export const TableHead = () => (
-  <div className="table sticky-header">
-    <span className="sticky cell table">
-  <span className=" title"> From 21/07</span>
-  <span className="cell" >
-  
-  </span>
-  </span>
-  <span className="cell">
-  <LineChart width={1700} height={40} data={addDisplayToData(data)}>
-  <XAxis dataKey={"name"} orientation='top' scale="band"/>
-  </LineChart>
-  </span>
-  </div>
-)
 
 const ModifyTooltip = (props) => {
   const {payload} = props;
@@ -202,7 +188,7 @@ const LineChartProps = {
       <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(YDomain[1])} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(safeRange[1] + 2)} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={0} y2={displayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
-      <XAxis dataKey={"name"} hide={true} orientation='top' scale="band"/>
+      <XAxis {...XAxisJustifiedProps}/>
       <CartesianGrid stroke="#ddd" />
       <Tooltip content={ModifyTooltip}/>
       <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>

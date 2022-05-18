@@ -62,7 +62,7 @@ const data = [
 
 const YDisplayReset = (value) => value - YDomain[0];
 
-const XDisplayReset = (value) => {
+export const XDisplayReset = (value) => {
   console.log("var",value)
   return value - timeToNum(data[0].name); 
 }
