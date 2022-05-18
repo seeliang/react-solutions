@@ -63,7 +63,7 @@ const data = [
 const YDisplayReset = (value) => value - YDomain[0];
 
 export const XDisplayReset = (value) => {
-  return value - timeToNum(data[0].name); 
+  return value - timeToNum(data[0].name) + XGap; 
 }
 
 function roundToHalf (x) {
@@ -140,7 +140,9 @@ export const TableHead = () => (
     return ""
   }
 
-  function formatXAxis(value) {
+  function formatXAxis(modifiedValue) {
+
+    const value = modifiedValue - XGap;
     const m = value % 60;
     const h = Math.floor(value / 60) + 12;
     const word = `${h} : ${m}`
@@ -191,7 +193,6 @@ const XAxisProps = {
    orientation:'top',
     tickCount: XTickCount,
      tickFormatter:formatXAxis,
-      padding: {left: 30},
 }
 
 export const ErrorInputProps = {
