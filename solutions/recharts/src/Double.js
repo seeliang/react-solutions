@@ -19,7 +19,7 @@ const data = [
     min: 90
   },
   {
-    name: "12:45",
+    name: "12:38",
     max: 90,
     min: 86
   },
@@ -54,7 +54,7 @@ const data = [
     min: 90
   },
   {
-    name: "14:45",
+    name: "14:38",
     max: 90,
     min: 86
   },

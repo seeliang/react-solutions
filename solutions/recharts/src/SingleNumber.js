@@ -1,5 +1,6 @@
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip } from 'recharts';
+import {XAxisJustifiedProps, timeToNum, XDisplayReset} from './SingleFloat';
 
 const data = [
   {
@@ -18,7 +19,7 @@ const data = [
     min: 90
   },
   {
-    name: "12:45",
+    name: "12:38",
     max: 90,
     min: 86
   },
@@ -53,7 +54,7 @@ const data = [
     min: 90
   },
   {
-    name: "14:45",
+    name: "14:38",
     max: 90,
     min: 86
   },
@@ -84,7 +85,7 @@ function addDisplayToData (data) {
   return data.map(i => ({...i, 
     display: {
     max: i.max > YDomain[1] ? displayReset(YDomain[1] - 5) : round5(displayReset(i.max)), 
-    min: i.min < YDomain[0] ? displayReset(YDomain[0] + 5) : round5(displayReset(i.min)) 
+    time: XDisplayReset(timeToNum(i.name))
     } 
   }) )
 }
@@ -167,7 +168,7 @@ const LineChartProps = {
       <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(YDomain[1])} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(safeRange[1] + 2)} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={0} y2={displayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
-      <XAxis dataKey={"name"} hide={true} orientation='top' scale="band" angle="-8"/>
+      <XAxis {...XAxisJustifiedProps}/>
       <CartesianGrid stroke="#ddd" />
       <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>
       <Line dataKey="display.max" stroke='green' label={<CustomizedLabel data={data}/>}  />

@@ -1,6 +1,8 @@
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis,  } from 'recharts';
 
+import {XAxisJustifiedProps, timeToNum, XDisplayReset} from './SingleFloat';
+
 const data = [
   {
     name: "12:00",
@@ -17,7 +19,7 @@ const data = [
     min: 9
   },
   {
-    name: "12:45",
+    name: "12:38",
 
     min: 8
   },
@@ -51,7 +53,7 @@ const data = [
     min: 9
   },
   {
-    name: "14:45",
+    name: "14:38",
  
     min: 8
   },
@@ -76,7 +78,8 @@ const data = [
 function addDisplayToData (data) {
   return data.map(i => ({...i, 
     display: {
-    min: 5
+    min: 5,
+    time: XDisplayReset(timeToNum(i.name))
     } 
   }) )
 }
@@ -142,7 +145,7 @@ const LineChartProps = {
   <span className="cell">
     <LineChart width={1700} {...LineChartProps}>
 
-      <XAxis dataKey={"name"} hide={true} orientation='top' scale="band" angle="-8"/>
+      <XAxis {...XAxisJustifiedProps}/>
 
       <YAxis {...YAxisSharedProps}  hide={true}/>
       <Line dataKey="display.min" strokeWidth="0" label={<CustomizedLabel data={data}/>}  />

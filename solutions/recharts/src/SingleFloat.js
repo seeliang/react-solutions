@@ -43,7 +43,7 @@ const data = [
     min: 39.0
   },
   {
-    name: "14:45",
+    name: "14:38",
     min: 38.6
   },
   {
@@ -63,7 +63,6 @@ const data = [
 const YDisplayReset = (value) => value - YDomain[0];
 
 export const XDisplayReset = (value) => {
-  console.log("var",value)
   return value - timeToNum(data[0].name); 
 }
 
