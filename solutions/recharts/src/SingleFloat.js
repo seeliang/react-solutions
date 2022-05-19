@@ -125,7 +125,7 @@ export const TableHead = () => (
 )
 
   const YDomain = [34,42];
-  const YGap = 0.4
+  const YGap = 0.5
   const safeRange = [36.0,38.0]
 
   function formatYAxis(value) {
