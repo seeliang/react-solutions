@@ -43,7 +43,8 @@ const ModifyTooltip = (props) => {
   if(!render[0]) {
     return;
   }
-  const {name, max, min} = render[0];
+  const {name, double} = render[0];
+  const {min, max} = double;
 
   return(
     <span className='tooltip'>
