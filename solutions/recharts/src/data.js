@@ -12,6 +12,9 @@ export const data = [
     },
     number: {
       max: 100,
+    },
+    one: {
+      min: 8,
     }
   },
   {
@@ -25,6 +28,9 @@ export const data = [
     },
     number: {
       max: 100,
+    },
+    one: {
+      min: 3
     }
   },
   {
@@ -38,6 +44,9 @@ export const data = [
     },
     number: {
       max: 100,
+    },
+    one: {
+      min: 9
     }
   },
   {
@@ -51,6 +60,9 @@ export const data = [
   },
   number: {
     max: 90,
+  },
+  one: {
+    min: 8
   }
   },
   {
@@ -64,6 +76,9 @@ export const data = [
     },
     number: {
       max: 77,
+    },
+    one: {
+      min: 6
     }
   },
   {
@@ -77,6 +92,9 @@ export const data = [
     },
     number: {
       max: 110,
+    },
+    one: {
+      min: 8
     }
   },
   {
@@ -90,6 +108,9 @@ export const data = [
     },
     number: {
       max: 308,
+    },
+    one: {
+      min: 1
     }
   },
   {
@@ -103,6 +124,9 @@ export const data = [
     },
     number: {
       max: 100,
+    },
+    one: {
+      min: 8,
     }
   },
   {
@@ -116,6 +140,9 @@ export const data = [
     },
     number: {
       max: 100,
+    },
+    one: {
+      min: 6
     }
   },
   {
@@ -129,6 +156,9 @@ export const data = [
     },
     number: {
       max: 100,
+    },
+    one: {
+      min: 9
     }
   },
   {
@@ -142,6 +172,9 @@ export const data = [
     },
     number: {
       max: 90,
+    },
+    one: {
+      min: 8
     }
   },
   {
@@ -155,7 +188,10 @@ export const data = [
     },
     number: {
       max: 70,
-    }
+    },
+    one: {
+      min: 6
+    },
   },
   {
     name: "15:15",
@@ -168,6 +204,9 @@ export const data = [
     },
     number: {
       max: 110,
+    },
+    one: {
+      min: 8
     }
   },
   {
@@ -181,6 +220,9 @@ export const data = [
     },
     number: {
       max: 140,
+    },
+    one: {
+      min: 1
     }
   }
 ];

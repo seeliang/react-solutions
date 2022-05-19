@@ -2,77 +2,7 @@ import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis,  ReferenceLine} from 'recharts';
 
 import {XAxisJustifiedProps, timeToNum, XDisplayReset, ErrorInputProps} from './SingleFloat';
-
-const data = [
-  {
-    name: "12:00",
-
-    min: 8,
-  },
-  {
-    name: "12:15",
-    min: 3
-  },
-  {
-    name: "12:30",
-
-    min: 9
-  },
-  {
-    name: "12:38",
-
-    min: 8
-  },
-  {
-    name: "13:00",
-    min: 6
-  },
-  {
-    name: "13:15",
-
-    min: 8
-  },
-  {
-    name: "13:30",
-
-    min: 1
-  },
-  {
-    name: "14:00",
-
-    min: 8,
-  },
-  {
-    name: "14:15",
-
-    min: 6
-  },
-  {
-    name: "14:30",
-
-    min: 9
-  },
-  {
-    name: "14:38",
- 
-    min: 8
-  },
-  {
-    name: "15:00",
-
-    min: 6
-  },
-  {
-    name: "15:15",
-
-    min: 8
-  },
-  {
-    name: "15:30",
-
-    min: 1
-  }
-];
+import { data } from './data'
 
 
 function addDisplayToData (data) {
@@ -93,7 +23,7 @@ export class CustomizedLabel extends PureComponent {
     return (<>
       <circle r="15" fill="green" cx={x} cy={y}/>
       <text x={x} y={y} dy={5} fontSize={14} fill={"white"} textAnchor="middle">
-        {data[index][content]}
+        {data[index].one[content]}
       </text>
       </>
 
