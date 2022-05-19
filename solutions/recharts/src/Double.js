@@ -27,7 +27,7 @@ export class CustomizedLabel extends PureComponent {
 
     const content = displayKey? displayKey : "max"
 
-    const word = data[index][content];
+    const word = data[index].double[content];
 
     return (
       <text x={x} y={y} dy={5} fontSize={14} fill="white" textAnchor="middle" >
