@@ -1,64 +1,8 @@
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip, ReferenceLine } from 'recharts';
 
-const data = [
-  {
-    name: "12:00",
-    min: 39.5,
-  },
-  {
-    name: "12:15",
-    min: 45.3
-  },
-  {
-    name: "12:30",
-    min: 39.0
-  },
-  {
-    name: "12:38",
-    min: 36.0
-  },
-  {
-    name: "13:00",
-    min: 44.0
-  },
-  {
-    name: "13:15",
-    min: 35.2
-  },
-  {
-    name: "13:30",
-    min: 41.0
-  },
-  {
-    name: "14:00",
-    min: 38.9,
-  },
-  {
-    name: "14:15",
-    min: 36.7
-  },
-  {
-    name: "14:30",
-    min: 39.0
-  },
-  {
-    name: "14:38",
-    min: 38.6
-  },
-  {
-    name: "15:00",
-    min: 46.4
-  },
-  {
-    name: "15:15",
-    min: 38.5
-  },
-  {
-    name: "15:30",
-    min: 41.1
-  }
-];
+
+import { data } from './data';
 
 const YDisplayReset = (value) => value - YDomain[0];
 
@@ -84,7 +28,7 @@ function formatData (value)  {
 function addDisplayToData (data) {
   return data.map(i => ({...i, 
     display: {
-    min: formatData(i.min),
+    min: formatData(i.float.min),
     time: XDisplayReset(timeToNum(i.name))
     } 
   }) )
@@ -155,12 +99,12 @@ export const TableHead = () => (
     if(!render[0]) {
       return;
     }
-    const {name, min } = render[0];
+    const {name, float } = render[0];
   
     return(
       <span className='tooltip'>
          <p> time: {name} </p>
-        <p> min: {min} </p>
+        <p> min: {float.min} </p>
       </span>
     )
     }

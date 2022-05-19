@@ -6,6 +6,9 @@ export const data = [
     double: {
       max: 100,
       min: 89,
+    },
+    float: {
+      min: 39.5
     }
   },
   {
@@ -13,6 +16,9 @@ export const data = [
     double: {
     max: 100,
     min: 35
+    },
+    float: {
+      min: 45.3
     }
   },
   {
@@ -20,6 +26,9 @@ export const data = [
     double: {
     max: 100,
     min: 90
+    },
+    float: {
+      min: 39.0
     }
   },
   {
@@ -27,6 +36,9 @@ export const data = [
     double: {
     max: 90,
     min: 86
+  },
+  float: {
+    min: 36.0
   }
   },
   {
@@ -34,6 +46,9 @@ export const data = [
     double: {
     max: 77,
     min: 64
+    },
+    float: {
+      min: 44.0
     }
   },
   {
@@ -41,6 +56,9 @@ export const data = [
     double: {
     max: 110,
     min: 85
+    },
+    float: {
+      min: 35.2
     }
   },
   {
@@ -48,6 +66,9 @@ export const data = [
     double: {
     max: 308,
     min: 110
+    },
+    float: {
+      min: 41.0
     }
   },
   {
@@ -55,6 +76,9 @@ export const data = [
     double: {
     max: 100,
     min: 89,
+    },
+    float: {
+      min: 38.9,
     }
   },
   {
@@ -62,13 +86,19 @@ export const data = [
     double: {
     max: 100,
     min: 67
+    },
+    float: {
+      min: 36.7
     }
   },
   {
     name: "14:30",
     double: {
     max: 100,
-    min: 90
+    min: 90,
+    },
+    float: {
+      min: 39.0
     }
   },
   {
@@ -76,6 +106,9 @@ export const data = [
     double: {
     max: 90,
     min: 86
+    },
+    float: {
+      min: 38.6
     }
   },
   {
@@ -83,6 +116,9 @@ export const data = [
     double: {
     max: 70,
     min: 64
+    },
+    float: {
+      min: 46.4
     }
   },
   {
@@ -90,6 +126,9 @@ export const data = [
     double: {
     max: 110,
     min: 85
+    },
+    float: {
+      min: 38.5
     }
   },
   {
@@ -97,6 +136,9 @@ export const data = [
     double: {
     max: 140,
     min: 110
+    },
+    float: {
+      min: 41.1
     }
   }
 ];
