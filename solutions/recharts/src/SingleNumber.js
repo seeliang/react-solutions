@@ -1,79 +1,7 @@
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, ReferenceLine } from 'recharts';
 import {XAxisJustifiedProps, timeToNum, XDisplayReset, ErrorInputProps} from './SingleFloat';
-
-const data = [
-  {
-    name: "12:00",
-    max: 100,
-    min: 89,
-  },
-  {
-    name: "12:15",
-    max: 100,
-    min: 35
-  },
-  {
-    name: "12:30",
-    max: 100,
-    min: 90
-  },
-  {
-    name: "12:38",
-    max: 90,
-    min: 86
-  },
-  {
-    name: "13:00",
-    max: 77,
-    min: 64
-  },
-  {
-    name: "13:15",
-    max: 110,
-    min: 85
-  },
-  {
-    name: "13:30",
-    max: 308,
-    min: 110
-  },
-  {
-    name: "14:00",
-    max: 100,
-    min: 89,
-  },
-  {
-    name: "14:15",
-    max: 100,
-    min: 67
-  },
-  {
-    name: "14:30",
-    max: 100,
-    min: 90
-  },
-  {
-    name: "14:38",
-    max: 90,
-    min: 86
-  },
-  {
-    name: "15:00",
-    max: 70,
-    min: 64
-  },
-  {
-    name: "15:15",
-    max: 110,
-    min: 85
-  },
-  {
-    name: "15:30",
-    max: 140,
-    min: 110
-  }
-];
+import { data } from './data';
 
 const displayReset = (value) => value - YDomain[0];
 
@@ -84,7 +12,7 @@ function round5 (x) {
 function addDisplayToData (data) {
   return data.map(i => ({...i, 
     display: {
-    max: i.max > YDomain[1] ? displayReset(YDomain[1] - 5) : round5(displayReset(i.max)), 
+    max: i.number.max > YDomain[1] ? displayReset(YDomain[1] - 5) : round5(displayReset(i.number.max)), 
     time: XDisplayReset(timeToNum(i.name))
     } 
   }) )
@@ -99,7 +27,7 @@ export class CustomizedLabel extends PureComponent {
     return (<>
       <circle r="15" fill="green" cx={x} cy={y}/>
       <text x={x} y={y} dy={5} fontSize={14} fill={"white"} textAnchor="middle">
-        {data[index][content]}
+        {data[index].number[content]}
       </text>
       </>
 

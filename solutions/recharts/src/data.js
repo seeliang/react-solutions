@@ -9,6 +9,9 @@ export const data = [
     },
     float: {
       min: 39.5
+    },
+    number: {
+      max: 100,
     }
   },
   {
@@ -19,6 +22,9 @@ export const data = [
     },
     float: {
       min: 45.3
+    },
+    number: {
+      max: 100,
     }
   },
   {
@@ -29,6 +35,9 @@ export const data = [
     },
     float: {
       min: 39.0
+    },
+    number: {
+      max: 100,
     }
   },
   {
@@ -39,6 +48,9 @@ export const data = [
   },
   float: {
     min: 36.0
+  },
+  number: {
+    max: 90,
   }
   },
   {
@@ -49,6 +61,9 @@ export const data = [
     },
     float: {
       min: 44.0
+    },
+    number: {
+      max: 77,
     }
   },
   {
@@ -59,6 +74,9 @@ export const data = [
     },
     float: {
       min: 35.2
+    },
+    number: {
+      max: 110,
     }
   },
   {
@@ -69,6 +87,9 @@ export const data = [
     },
     float: {
       min: 41.0
+    },
+    number: {
+      max: 308,
     }
   },
   {
@@ -79,6 +100,9 @@ export const data = [
     },
     float: {
       min: 38.9,
+    },
+    number: {
+      max: 100,
     }
   },
   {
@@ -89,6 +113,9 @@ export const data = [
     },
     float: {
       min: 36.7
+    },
+    number: {
+      max: 100,
     }
   },
   {
@@ -99,6 +126,9 @@ export const data = [
     },
     float: {
       min: 39.0
+    },
+    number: {
+      max: 100,
     }
   },
   {
@@ -109,6 +139,9 @@ export const data = [
     },
     float: {
       min: 38.6
+    },
+    number: {
+      max: 90,
     }
   },
   {
@@ -119,6 +152,9 @@ export const data = [
     },
     float: {
       min: 46.4
+    },
+    number: {
+      max: 70,
     }
   },
   {
@@ -129,6 +165,9 @@ export const data = [
     },
     float: {
       min: 38.5
+    },
+    number: {
+      max: 110,
     }
   },
   {
@@ -139,6 +178,9 @@ export const data = [
     },
     float: {
       min: 41.1
+    },
+    number: {
+      max: 140,
     }
   }
 ];
