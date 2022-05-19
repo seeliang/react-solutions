@@ -1,5 +1,5 @@
 import { PureComponent } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, ReferenceLine, Tooltip } from 'recharts';
 import {XAxisJustifiedProps, timeToNum, XDisplayReset, ErrorInputProps} from './SingleFloat';
 
 const data = [
@@ -192,7 +192,7 @@ const LineChartProps = {
       <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>
       <Line dataKey="display.max" stroke='blue' label={<ConditionLabel data={data} displayKey="max" color ="indigo"/>}  />
       <Line dataKey="display.min" stroke='green' label={<ConditionLabel data={data}  />} />
-      <ReferenceArea  {...ErrorInputProps} />
+      <ReferenceLine  {...ErrorInputProps} />
   </LineChart>
 </span>
 </div>

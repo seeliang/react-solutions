@@ -1,5 +1,5 @@
 import { PureComponent } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip, ReferenceLine } from 'recharts';
 
 const data = [
   {
@@ -198,10 +198,10 @@ const XAxisProps = {
 const errorPoint = 53
 
 export const ErrorInputProps = {
-  x1: errorPoint - 2,
-  x2: errorPoint + 2,
-  fill: "red",
-  strokeOpacity:"0.5" 
+  x:errorPoint,
+   stroke:"red",
+    strokeWidth: 4,
+     strokeDasharray: "6 6"
 }
 
 export const XAxisJustifiedProps =  {...XAxisProps, hide: true}
@@ -231,7 +231,7 @@ const LineChartProps = {
       <CartesianGrid stroke="#ddd"/>
       <YAxis {...YAxisSharedProps} hide={true}/>
       <Line dataKey="display.min" stroke='green' label={<CustomizedLabel data={data}/>}  />
-      <ReferenceArea  {...ErrorInputProps} />
+      <ReferenceLine {...ErrorInputProps} />
   </LineChart>
 </span>
 </div>

@@ -1,5 +1,5 @@
 import { PureComponent } from 'react';
-import { LineChart, Line, XAxis, YAxis,  ReferenceArea} from 'recharts';
+import { LineChart, Line, XAxis, YAxis,  ReferenceLine} from 'recharts';
 
 import {XAxisJustifiedProps, timeToNum, XDisplayReset, ErrorInputProps} from './SingleFloat';
 
@@ -150,7 +150,7 @@ const LineChartProps = {
       <YAxis {...YAxisSharedProps}  hide={true}/>
       
       <Line dataKey="display.min" strokeWidth="0" label={<CustomizedLabel data={data}/>}  />
-      <ReferenceArea  {...ErrorInputProps} />
+      <ReferenceLine  {...ErrorInputProps} />
   </LineChart>
 </span>
 </div>
