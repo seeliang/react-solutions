@@ -15,8 +15,8 @@ function addDisplayToData (data) {
   return data.map(i => ({...i, 
     display: {
     time: XDisplayReset(timeToNum(i.name)),
-    max: i.max > YDomain[1] ? displayReset(YDomain[1] - 5) : round5(displayReset(i.max)), 
-    min: i.min < YDomain[0] ? displayReset(YDomain[0] + 5) : round5(displayReset(i.min)) 
+    max: i.double.max > YDomain[1] ? displayReset(YDomain[1] - 5) : round5(displayReset(i.double.max)), 
+    min: i.double.min < YDomain[0] ? displayReset(YDomain[0] + 5) : round5(displayReset(i.double.min)) 
     } 
   }) )
 }
