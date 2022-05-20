@@ -2,6 +2,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip, Re
 import {XAxisJustifiedProps, ErrorInputProps, getResetTime,XWidth} from './XAxisFunc';
 import {DotLabel} from './Label';
 import { data } from './data';
+import ModifyTooltip from './Tooltip'
 
 const YDisplayReset = (value) => value - YDomain[0];
 
@@ -42,21 +43,19 @@ function addDisplayToData (data) {
     return ""
   }
 
-  const ModifyTooltip = (props) => {
-    const {payload} = props;
+  const CustomizedTooltip = ({payload}) => {
     const render = payload.map(i => i.payload);
     if(!render[0]) {
       return;
     }
     const {name, float } = render[0];
-  
-    return(
-      <span className='tooltip'>
-         <p> time: {name} </p>
-        <p> min: {float.min} </p>
-      </span>
-    )
+    const passing = {
+      time: name, min: float.min
     }
+    return(
+      <ModifyTooltip data={passing}/>
+    )
+  }
 
 
 const YTickCount = (Math.ceil(YDisplayReset(YDomain[1])/YGap) + 2).toString(10);
@@ -89,7 +88,7 @@ const LineChartProps = {
       <ReferenceArea  y1={YDisplayReset(safeRange[1])} y2={YDisplayReset(safeRange[1] + YGap / 2)} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={0} y2={YDisplayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
       <XAxis {...XAxisJustifiedProps}/>
-      <Tooltip content={ModifyTooltip}/>
+      <Tooltip content={CustomizedTooltip}/>
       <CartesianGrid stroke="#ddd"/>
       <YAxis {...YAxisSharedProps} hide={true}/>
       <Line dataKey="display.min" stroke='green' label={<DotLabel data={data}/>}  />

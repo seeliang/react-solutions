@@ -3,6 +3,8 @@ import {XAxisJustifiedProps, ErrorInputProps, getResetTime, XWidth} from './XAxi
 import {ConditionLabel} from './Label';
 import { data } from './data'
 
+import ModifyTooltip from './Tooltip'
+
 
 const displayReset = (value) => value - YDomain[0];
 
@@ -20,8 +22,7 @@ function addDisplayToData (data) {
   }) )
 }
 
-const ModifyTooltip = (props) => {
-  const {payload} = props;
+const CustomizedTooltip = ({payload}) => {
   const render = payload.map(i => i.payload);
   if(!render[0]) {
     return;
@@ -29,12 +30,12 @@ const ModifyTooltip = (props) => {
   const {name, double} = render[0];
   const {min, max} = double;
 
+  const passing = {
+    time: name, max, min
+  }
+
   return(
-    <span className='tooltip'>
-       <p> time: {name} </p>
-      <p> max: {max} </p>
-      <p> min: {min} </p>
-    </span>
+    <ModifyTooltip data={passing} />
   )
   }
   const YDomain = [60,220];
@@ -84,7 +85,7 @@ const LineChartProps = {
       <ReferenceArea  y1={0} y2={displayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
       <XAxis {...XAxisJustifiedProps}/>
       <CartesianGrid stroke="#ddd" />
-      <Tooltip content={ModifyTooltip}/>
+      <Tooltip content={CustomizedTooltip}/>
       <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>
       <Line dataKey="display.max" stroke='blue' label={<ConditionLabel section="double" data={data} displayKey="max" color ="indigo" displayReset={displayReset} safeRange={safeRange}/>}  />
       <Line dataKey="display.min" stroke='green' label={<ConditionLabel section="double" data={data} displayReset={displayReset} safeRange={safeRange} />} />
