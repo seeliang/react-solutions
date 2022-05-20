@@ -86,8 +86,8 @@ const LineChartProps = {
       <CartesianGrid stroke="#ddd" />
       <Tooltip content={ModifyTooltip}/>
       <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>
-      <Line dataKey="display.max" stroke='blue' label={<ConditionLabel data={data} displayKey="max" color ="indigo" displayReset={displayReset} safeRange={safeRange}/>}  />
-      <Line dataKey="display.min" stroke='green' label={<ConditionLabel data={data} displayReset={displayReset} safeRange={safeRange} />} />
+      <Line dataKey="display.max" stroke='blue' label={<ConditionLabel section="double" data={data} displayKey="max" color ="indigo" displayReset={displayReset} safeRange={safeRange}/>}  />
+      <Line dataKey="display.min" stroke='green' label={<ConditionLabel section="double" data={data} displayReset={displayReset} safeRange={safeRange} />} />
       <ReferenceLine  {...ErrorInputProps} />
   </LineChart>
 </span>

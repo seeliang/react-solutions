@@ -1,11 +1,9 @@
-import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip, ReferenceLine } from 'recharts';
 import {XAxisJustifiedProps, ErrorInputProps, getResetTime,XWidth} from './XAxisFunc';
-
+import {DotLabel} from './Label';
 import { data } from './data';
 
 const YDisplayReset = (value) => value - YDomain[0];
-
 
 function roundToHalf (x) {
   return Math.ceil(x/YGap)*YGap - YGap / 2
@@ -30,32 +28,11 @@ function addDisplayToData (data) {
     } 
   }) )
 }
-
-
-export class CustomizedLabel extends PureComponent {
-  render() {
-    const { x, y, index, data, displayKey } = this.props;
-
-    const content = displayKey? displayKey : "min"
-
-    return (<>
-      <circle r="8" fill="green" cx={x} cy={y}/>
-      {/* <text x={x} y={y} dy={5} fontSize={14} fill={"white"} textAnchor="middle">
-        {data[index][content]}
-      </text> */}
-      </>
-
-    );
-  }
-}
-
   const YDomain = [34,42];
   const YGap = 0.5
   const safeRange = [36.0,38.0]
 
   function formatYAxis(value) {
-
-
     const start = YGap;
     const end = parseFloat(YDisplayReset(YDomain[1] - YGap).toFixed(1));
 
@@ -115,7 +92,7 @@ const LineChartProps = {
       <Tooltip content={ModifyTooltip}/>
       <CartesianGrid stroke="#ddd"/>
       <YAxis {...YAxisSharedProps} hide={true}/>
-      <Line dataKey="display.min" stroke='green' label={<CustomizedLabel data={data}/>}  />
+      <Line dataKey="display.min" stroke='green' label={<DotLabel data={data}/>}  />
       <ReferenceLine {...ErrorInputProps} />
   </LineChart>
 </span>
