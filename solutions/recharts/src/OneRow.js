@@ -1,6 +1,6 @@
-import { PureComponent } from 'react';
-import { LineChart, Line, XAxis, YAxis,  ReferenceLine} from 'recharts';
 
+import { LineChart, Line, XAxis, YAxis,  ReferenceLine} from 'recharts';
+import CustomizedLabel, {dotStokeWidth} from './Label';
 import {XAxisJustifiedProps, ErrorInputProps, getResetTime, XWidth} from './XAxisFunc';
 import { data } from './data'
 
@@ -14,38 +14,6 @@ function addDisplayToData (data) {
   }) )
 }
 
-export class CustomizedLabel extends PureComponent {
-  render() {
-    const { x, y, index, data, displayKey } = this.props;
-
-    const content = displayKey? displayKey : "min"
-
-    return (<>
-      <circle r="15" fill="green" cx={x} cy={y}/>
-      <text x={x} y={y} dy={5} fontSize={14} fill={"white"} textAnchor="middle">
-        {data[index].one[content]}
-      </text>
-      </>
-
-    );
-  }
-}
-
-export const TableHead = () => (
-  <div className="table sticky-header">
-    <span className="sticky cell table">
-  <span className=" title"></span>
-  <span className="cell" >
-  
-  </span>
-  </span>
-  <span className="cell">
-  <LineChart width={XWidth} height={40} data={addDisplayToData(data)}>
-  <XAxis dataKey={"name"} orientation='top' scale="band" angle="-8"/>
-  </LineChart>
-  </span>
-  </div>
-)
 
   const YDomain = [0,10];
 
@@ -79,7 +47,7 @@ const LineChartProps = {
 
       <YAxis {...YAxisSharedProps}  hide={true}/>
       
-      <Line dataKey="display.min" strokeWidth="0" label={<CustomizedLabel data={data}/>}  />
+      <Line dataKey="display.min" strokeWidth="0" dot={{ stroke: 'green', strokeWidth: dotStokeWidth }} label={<CustomizedLabel data={data} section="one" displayKey="min"/>}  />
       <ReferenceLine  {...ErrorInputProps} />
   </LineChart>
 </span>

@@ -2,6 +2,7 @@ import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, ReferenceLine } from 'recharts';
 import {XAxisJustifiedProps, ErrorInputProps, getResetTime, XWidth} from './XAxisFunc';
 import { data } from './data';
+import CustomizedLabel, {dotStokeWidth} from './Label';
 
 const displayReset = (value) => value - YDomain[0];
 
@@ -16,23 +17,6 @@ function addDisplayToData (data) {
     time: getResetTime(i.name)
     } 
   }) )
-}
-
-export class CustomizedLabel extends PureComponent {
-  render() {
-    const { x, y, index, data, displayKey } = this.props;
-
-    const content = displayKey? displayKey : "max"
-
-    return (<>
-      <circle r="15" fill="green" cx={x} cy={y}/>
-      <text x={x} y={y} dy={5} fontSize={14} fill={"white"} textAnchor="middle">
-        {data[index].number[content]}
-      </text>
-      </>
-
-    );
-  }
 }
 
   const YDomain = [60,140];
@@ -83,7 +67,7 @@ const LineChartProps = {
       <XAxis {...XAxisJustifiedProps}/>
       <CartesianGrid stroke="#ddd" />
       <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>
-      <Line dataKey="display.max" stroke='green' label={<CustomizedLabel data={data}/>}  />
+      <Line dataKey="display.max" stroke='green' dot={{ strokeWidth: dotStokeWidth, stroke: "green"}} label={<CustomizedLabel data={data} section="number"/>}  />
       <ReferenceLine  {...ErrorInputProps} />
   </LineChart>
 </span>

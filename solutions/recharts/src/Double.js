@@ -1,7 +1,6 @@
-import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, ReferenceLine, Tooltip } from 'recharts';
 import {XAxisJustifiedProps, ErrorInputProps, getResetTime, XWidth} from './XAxisFunc';
-
+import {ConditionLabel} from './Label';
 import { data } from './data'
 
 
@@ -19,22 +18,6 @@ function addDisplayToData (data) {
     min: i.double.min < YDomain[0] ? displayReset(YDomain[0] + 5) : round5(displayReset(i.double.min)) 
     } 
   }) )
-}
-
-export class CustomizedLabel extends PureComponent {
-  render() {
-    const { x, y, index, data, displayKey } = this.props;
-
-    const content = displayKey? displayKey : "max"
-
-    const word = data[index].double[content];
-
-    return (
-      <text x={x} y={y} dy={5} fontSize={14} fill="white" textAnchor="middle" >
-        {word}
-      </text>
-    );
-  }
 }
 
 const ModifyTooltip = (props) => {
@@ -73,24 +56,6 @@ const ModifyTooltip = (props) => {
 
 const tickCount = (Math.ceil(displayReset(YDomain[1])/10) + 2).toString(10);
 
-
-const ConditionLabel = (props) => {
-  const {value, x, y, displayKey, color} = props;
-
-  const text = displayKey ? displayKey : "min"
-
-  const fill = color ? color : "green"
-
-  if (value < displayReset(safeRange[1])&& value > displayReset(safeRange[0])) {
-    return <circle r="7" fill={fill} cx={x} cy={y}/>;
-  };
-
-  return (<>
-    <circle r="15" fill={fill} cx={x} cy={y}/>;
-    <CustomizedLabel {...props} displayKey={text} />
-  </>)
-}
-
 const YAxisSharedProps = {
   tickCount,
   domain:[0,displayReset(YDomain[1])]
@@ -121,8 +86,8 @@ const LineChartProps = {
       <CartesianGrid stroke="#ddd" />
       <Tooltip content={ModifyTooltip}/>
       <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>
-      <Line dataKey="display.max" stroke='blue' label={<ConditionLabel data={data} displayKey="max" color ="indigo"/>}  />
-      <Line dataKey="display.min" stroke='green' label={<ConditionLabel data={data}  />} />
+      <Line dataKey="display.max" stroke='blue' label={<ConditionLabel data={data} displayKey="max" color ="indigo" displayReset={displayReset} safeRange={safeRange}/>}  />
+      <Line dataKey="display.min" stroke='green' label={<ConditionLabel data={data} displayReset={displayReset} safeRange={safeRange} />} />
       <ReferenceLine  {...ErrorInputProps} />
   </LineChart>
 </span>
