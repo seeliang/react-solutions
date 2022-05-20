@@ -1,14 +1,11 @@
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip, ReferenceLine } from 'recharts';
-
+import {XAxisJustifiedProps, timeToNum, XDisplayReset, ErrorInputProps, XAxisProps} from './XAxisFunc';
 
 import { data } from './data';
 
 const YDisplayReset = (value) => value - YDomain[0];
 
-export const XDisplayReset = (value) => {
-  return value - timeToNum(data[0].name) + XGap; 
-}
 
 function roundToHalf (x) {
   return Math.ceil(x/YGap)*YGap - YGap / 2
@@ -84,15 +81,6 @@ export const TableHead = () => (
     return ""
   }
 
-  function formatXAxis(modifiedValue) {
-
-    const value = modifiedValue - XGap;
-    const m = value % 60;
-    const h = Math.floor(value / 60) + 12;
-    const word = `${h} : ${m}`
-    return m === 0 ? `${word}0` : word
-  }
-
   const ModifyTooltip = (props) => {
     const {payload} = props;
     const render = payload.map(i => i.payload);
@@ -109,11 +97,6 @@ export const TableHead = () => (
     )
     }
 
-export const timeToNum = (string) => {
-  const raw = string.split(":");
-  const result = parseInt(raw[0]) * 60 + parseInt(raw[1]) 
-  return result;
-}
 
 const YTickCount = (Math.ceil(YDisplayReset(YDomain[1])/YGap) + 2).toString(10);
 
@@ -123,32 +106,6 @@ const YAxisSharedProps = {
   tickFormatter: formatYAxis
 }
 
-const XGap = 15
-
-const lastCheckTime = data[data.length - 1].name;
-
-
-const XTickCount = (Math.ceil(XDisplayReset(timeToNum(lastCheckTime)) / XGap) + 2).toString(10)
-
-
-const XAxisProps = {
-  dataKey:"display.time",
-   type:"number",
-   orientation:'top',
-    tickCount: XTickCount,
-     tickFormatter:formatXAxis,
-}
-
-const errorPoint = 53
-
-export const ErrorInputProps = {
-  x:errorPoint,
-   stroke:"red",
-    strokeWidth: 4,
-     strokeDasharray: "6 6"
-}
-
-export const XAxisJustifiedProps =  {...XAxisProps, hide: true}
 
 const LineChartProps = {
   height: 500,

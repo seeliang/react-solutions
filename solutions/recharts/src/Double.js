@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, ReferenceLine, Tooltip } from 'recharts';
-import {XAxisJustifiedProps, timeToNum, XDisplayReset, ErrorInputProps} from './SingleFloat';
+import {XAxisJustifiedProps, timeToNum, XDisplayReset, ErrorInputProps} from './XAxisFunc';
 
 import { data } from './data'
 

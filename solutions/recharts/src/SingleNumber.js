@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, ReferenceLine } from 'recharts';
-import {XAxisJustifiedProps, timeToNum, XDisplayReset, ErrorInputProps} from './SingleFloat';
+import {XAxisJustifiedProps, timeToNum, XDisplayReset, ErrorInputProps} from './XAxisFunc';
 import { data } from './data';
 
 const displayReset = (value) => value - YDomain[0];
