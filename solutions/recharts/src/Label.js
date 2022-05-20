@@ -1,4 +1,4 @@
-const CustomizedLabel = ({ x, y, index, data, displayKey, section}) => {
+const TextLabel = ({ x, y, index, data, displayKey, section}) => {
   const content = displayKey? displayKey : "max"
   const word = data[index][section][content];
   return (
@@ -21,10 +21,10 @@ export const ConditionLabel = (props) => {
 
   return (<>
     <circle r="15" fill={fill} cx={x} cy={y}/>;
-    <CustomizedLabel {...props} displayKey={text} section="double"/>
+    <TextLabel {...props} displayKey={text} section="double"/>
   </>)
 }
 
 export const dotStokeWidth = 24
 
-export default CustomizedLabel
+export default TextLabel

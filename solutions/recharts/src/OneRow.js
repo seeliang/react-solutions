@@ -1,6 +1,6 @@
 
 import { LineChart, Line, XAxis, YAxis,  ReferenceLine} from 'recharts';
-import CustomizedLabel, {dotStokeWidth} from './Label';
+import TextLabel, {dotStokeWidth} from './Label';
 import {XAxisJustifiedProps, ErrorInputProps, getResetTime, XWidth} from './XAxisFunc';
 import { data } from './data'
 
@@ -47,7 +47,7 @@ const LineChartProps = {
 
       <YAxis {...YAxisSharedProps}  hide={true}/>
       
-      <Line dataKey="display.min" strokeWidth="0" dot={{ stroke: 'green', strokeWidth: dotStokeWidth }} label={<CustomizedLabel data={data} section="one" displayKey="min"/>}  />
+      <Line dataKey="display.min" strokeWidth="0" dot={{ stroke: 'green', strokeWidth: dotStokeWidth }} label={<TextLabel data={data} section="one" displayKey="min"/>}  />
       <ReferenceLine  {...ErrorInputProps} />
   </LineChart>
 </span>

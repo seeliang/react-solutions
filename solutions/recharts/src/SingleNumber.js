@@ -2,7 +2,7 @@ import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, ReferenceLine } from 'recharts';
 import {XAxisJustifiedProps, ErrorInputProps, getResetTime, XWidth} from './XAxisFunc';
 import { data } from './data';
-import CustomizedLabel, {dotStokeWidth} from './Label';
+import TextLabel, {dotStokeWidth} from './Label';
 
 const displayReset = (value) => value - YDomain[0];
 
@@ -67,7 +67,7 @@ const LineChartProps = {
       <XAxis {...XAxisJustifiedProps}/>
       <CartesianGrid stroke="#ddd" />
       <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>
-      <Line dataKey="display.max" stroke='green' dot={{ strokeWidth: dotStokeWidth, stroke: "green"}} label={<CustomizedLabel data={data} section="number"/>}  />
+      <Line dataKey="display.max" stroke='green' dot={{ strokeWidth: dotStokeWidth, stroke: "green"}} label={<TextLabel data={data} section="number"/>}  />
       <ReferenceLine  {...ErrorInputProps} />
   </LineChart>
 </span>
