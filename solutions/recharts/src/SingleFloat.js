@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip, ReferenceLine } from 'recharts';
-import {XAxisJustifiedProps, timeToNum, XDisplayReset, ErrorInputProps, XAxisProps} from './XAxisFunc';
+import {XAxisJustifiedProps, ErrorInputProps, getResetTime} from './XAxisFunc';
 
 import { data } from './data';
 
@@ -26,7 +26,7 @@ function addDisplayToData (data) {
   return data.map(i => ({...i, 
     display: {
     min: formatData(i.float.min),
-    time: XDisplayReset(timeToNum(i.name))
+    time: getResetTime(i.name)
     } 
   }) )
 }

@@ -1,13 +1,13 @@
 
 import { LineChart, XAxis} from 'recharts';
-import { timeToNum, XDisplayReset, XAxisProps} from './XAxisFunc';
+import { XAxisProps, getResetTime} from './XAxisFunc';
 
 import { data } from './data';
 
 function addDisplayToData (data) {
   return data.map(i => ({...i, 
     display: {
-    time: XDisplayReset(timeToNum(i.name))
+    time: getResetTime(i.name)
     } 
   }) )
 }

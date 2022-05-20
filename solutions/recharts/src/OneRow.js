@@ -1,7 +1,7 @@
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis,  ReferenceLine} from 'recharts';
 
-import {XAxisJustifiedProps, timeToNum, XDisplayReset, ErrorInputProps} from './XAxisFunc';
+import {XAxisJustifiedProps, ErrorInputProps, getResetTime} from './XAxisFunc';
 import { data } from './data'
 
 
@@ -9,7 +9,7 @@ function addDisplayToData (data) {
   return data.map(i => ({...i, 
     display: {
     min: 5,
-    time: XDisplayReset(timeToNum(i.name))
+    time: getResetTime(i.name)
     } 
   }) )
 }

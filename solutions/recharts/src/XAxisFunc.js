@@ -22,9 +22,11 @@ function formatXAxis(modifiedValue) {
   return m === 0 ? `${word}0` : word
 }
 
+export const getResetTime = (time) => XDisplayReset(timeToNum(time));
+
 const lastCheckTime = data[data.length - 1].name;
 
-const XTickCount = (Math.ceil(XDisplayReset(timeToNum(lastCheckTime)) / XGap) + 2).toString(10)
+const XTickCount = (Math.ceil(getResetTime(lastCheckTime) / XGap) + 2).toString(10)
 
 export const XAxisProps = {
   dataKey:"display.time",

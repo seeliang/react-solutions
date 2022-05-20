@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, ReferenceLine, Tooltip } from 'recharts';
-import {XAxisJustifiedProps, timeToNum, XDisplayReset, ErrorInputProps} from './XAxisFunc';
+import {XAxisJustifiedProps, ErrorInputProps, getResetTime} from './XAxisFunc';
 
 import { data } from './data'
 
@@ -14,7 +14,7 @@ function round5 (x) {
 function addDisplayToData (data) {
   return data.map(i => ({...i, 
     display: {
-    time: XDisplayReset(timeToNum(i.name)),
+    time: getResetTime(i.name),
     max: i.double.max > YDomain[1] ? displayReset(YDomain[1] - 5) : round5(displayReset(i.double.max)), 
     min: i.double.min < YDomain[0] ? displayReset(YDomain[0] + 5) : round5(displayReset(i.double.min)) 
     } 
