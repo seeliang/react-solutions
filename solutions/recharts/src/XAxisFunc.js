@@ -13,6 +13,8 @@ export const XDisplayReset = (value) => {
 
 const XGap = 15;
 
+export const XWidth = (XGap + 2) * 100;
+
 function formatXAxis(modifiedValue) {
 
   const value = modifiedValue - XGap;

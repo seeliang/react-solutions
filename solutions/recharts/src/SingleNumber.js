@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, ReferenceLine } from 'recharts';
-import {XAxisJustifiedProps, ErrorInputProps, getResetTime} from './XAxisFunc';
+import {XAxisJustifiedProps, ErrorInputProps, getResetTime, XWidth} from './XAxisFunc';
 import { data } from './data';
 
 const displayReset = (value) => value - YDomain[0];
@@ -34,22 +34,6 @@ export class CustomizedLabel extends PureComponent {
     );
   }
 }
-
-export const TableHead = () => (
-  <div className="table sticky-header">
-    <span className="sticky cell table">
-  <span className=" title"></span>
-  <span className="cell" >
-  
-  </span>
-  </span>
-  <span className="cell">
-  <LineChart width={1700} height={40} data={addDisplayToData(data)}>
-  <XAxis dataKey={"name"} orientation='top' scale="band" angle="-8"/>
-  </LineChart>
-  </span>
-  </div>
-)
 
   const YDomain = [60,140];
 
@@ -91,7 +75,7 @@ const LineChartProps = {
     </span>
   </span>
   <span className="cell">
-    <LineChart width={1700} {...LineChartProps}>
+    <LineChart width={XWidth} {...LineChartProps}>
       <ReferenceArea  y1={displayReset(110)} y2={displayReset(safeRange[1])} fill="orange" strokeOpacity={0.5} />
       <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(YDomain[1])} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(safeRange[1] + 2)} fill="red" strokeOpacity={0.5} />

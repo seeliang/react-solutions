@@ -1,6 +1,6 @@
 
 import { LineChart, XAxis} from 'recharts';
-import { XAxisProps, getResetTime} from './XAxisFunc';
+import { XAxisProps, getResetTime,XWidth} from './XAxisFunc';
 
 import { data } from './data';
 
@@ -21,7 +21,7 @@ const TableHead = () => (
   </span>
   </span>
   <span className="cell">
-  <LineChart width={1700} height={40} data={addDisplayToData(data)}>
+  <LineChart width={XWidth} height={40} data={addDisplayToData(data)}>
       <XAxis  {...XAxisProps}/>
   </LineChart>
   </span>

@@ -1,7 +1,7 @@
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis,  ReferenceLine} from 'recharts';
 
-import {XAxisJustifiedProps, ErrorInputProps, getResetTime} from './XAxisFunc';
+import {XAxisJustifiedProps, ErrorInputProps, getResetTime, XWidth} from './XAxisFunc';
 import { data } from './data'
 
 
@@ -40,7 +40,7 @@ export const TableHead = () => (
   </span>
   </span>
   <span className="cell">
-  <LineChart width={1700} height={40} data={addDisplayToData(data)}>
+  <LineChart width={XWidth} height={40} data={addDisplayToData(data)}>
   <XAxis dataKey={"name"} orientation='top' scale="band" angle="-8"/>
   </LineChart>
   </span>
@@ -73,7 +73,7 @@ const LineChartProps = {
     </span>
   </span>
   <span className="cell">
-    <LineChart width={1700} {...LineChartProps}>
+    <LineChart width={XWidth} {...LineChartProps}>
 
       <XAxis {...XAxisJustifiedProps}/>
 

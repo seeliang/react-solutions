@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip, ReferenceLine } from 'recharts';
-import {XAxisJustifiedProps, ErrorInputProps, getResetTime} from './XAxisFunc';
+import {XAxisJustifiedProps, ErrorInputProps, getResetTime,XWidth} from './XAxisFunc';
 
 import { data } from './data';
 
@@ -107,7 +107,7 @@ const LineChartProps = {
     </span>
   </span>
   <span className="cell">
-    <LineChart width={1700} {...LineChartProps}>
+    <LineChart width={XWidth} {...LineChartProps}>
       <ReferenceArea  y1={YDisplayReset(safeRange[1])} y2={YDisplayReset(YDomain[1])} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={YDisplayReset(safeRange[1])} y2={YDisplayReset(safeRange[1] + YGap / 2)} fill="red" strokeOpacity={0.5} />
       <ReferenceArea  y1={0} y2={YDisplayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
