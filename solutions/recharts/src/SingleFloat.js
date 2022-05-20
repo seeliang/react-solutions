@@ -49,22 +49,6 @@ export class CustomizedLabel extends PureComponent {
   }
 }
 
-export const TableHead = () => (
-  <div className="table sticky-header">
-    <span className="sticky cell table">
-  <span className=" title"> From 21/07</span>
-  <span className="cell" >
-  
-  </span>
-  </span>
-  <span className="cell">
-  <LineChart width={1700} height={40} data={addDisplayToData(data)}>
-      <XAxis  {...XAxisProps}/>
-  </LineChart>
-  </span>
-  </div>
-)
-
   const YDomain = [34,42];
   const YGap = 0.5
   const safeRange = [36.0,38.0]
