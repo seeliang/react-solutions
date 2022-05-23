@@ -33,7 +33,7 @@ const LineChartProps = {
  const Sample = () => (
   <div className="table">
   <span className="sticky cell table">
-    <span className=" title">Heart Beat Rate</span>
+    <span className=" title">Data range</span>
     <span className="cell" >
       <LineChart width={120} {...LineChartProps}>
         <YAxis {...YAxisSharedProps} width={110} />
