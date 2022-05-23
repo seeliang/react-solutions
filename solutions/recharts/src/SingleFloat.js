@@ -3,7 +3,7 @@ import {XAxisJustifiedProps, ErrorInputProps, getResetTime,XWidth} from './XAxis
 import {DotLabel} from './Label';
 import { data } from './data';
 import ModifyTooltip from './Tooltip';
-import {getYAxisSharedProps, formatData} from './YAxisFunc'
+import {getYAxisSharedProps, formatData, getYAxisHeight} from './YAxisFunc'
 
 const YDisplayReset = (value) => value - YDomain[0];
 
@@ -36,7 +36,7 @@ function addDisplayToData (data) {
 const YAxisSharedProps = getYAxisSharedProps({gap: YGap, domain: YDomain})
 
 const LineChartProps = {
-  height: 500,
+  height: getYAxisHeight({domain: YDomain, gap: YGap}),
   data: addDisplayToData(data),
 }
 

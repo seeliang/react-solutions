@@ -30,7 +30,7 @@ export const formatYAxis = ({ domain, gap }) => (value) => {
   return ""
 }
 
-export const getYAxisHeight = (ticks) => ticks * 20;
+export const getYAxisHeight = ({domain, gap}) => getYTickCount({domain,gap}) * 35;
 
 export const getYAxisSharedProps = ({gap, domain}) => {
   return {
