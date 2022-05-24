@@ -5,7 +5,8 @@ import TextLabel from './Label';
 import {getYAxisSharedProps, formatData, getYAxisHeight} from './YAxisFunc';
 import backgroundFill from './backgroundFill';
 
-const YDomain = [60,160];
+// need to increase Domain or reduce gap to fix gap
+const YDomain = [60,160]; 
 const YGap = 10;
 const safeRange = [80,120]
 const backgroundSections = [{y1:safeRange[1], y2: YDomain[1]},{y1:safeRange[1], y2: (safeRange[1] + 2)},
