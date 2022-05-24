@@ -1,3 +1,5 @@
+import {YDisplayReset} from './YAxisFunc';
+
 const TextLabel = ({ x, y, index, data, displayKey, section, fill}) => {
   const content = displayKey? displayKey : "max"
   const word = data[index][section][content];
@@ -20,13 +22,13 @@ export const DotLabel  = ( { x, y, fill }) => {
 }
 
 export const ConditionLabel = (props) => {
-  const {value, x, y, displayKey, color, displayReset, safeRange, section} = props;
+  const {value, x, y, displayKey, color, domain, safeRange, section} = props;
 
   const text = displayKey ? displayKey : "min"
 
   const fill = color ? color : "green"
 
-  if (value < displayReset(safeRange[1])&& value > displayReset(safeRange[0])) {
+  if (value < YDisplayReset({value: safeRange[1], domain})&& value > YDisplayReset({value:safeRange[0],domain})) {
     return <DotLabel fill={fill} x={x} y={y}/>;
   };
 

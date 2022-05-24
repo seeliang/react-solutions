@@ -1,23 +1,23 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, ReferenceLine, Tooltip } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine } from 'recharts';
 import {XAxisJustifiedProps, ErrorInputProps, getResetTime, XWidth} from './XAxisFunc';
 import {ConditionLabel} from './Label';
 import { data } from './data'
+import { getYAxisHeight, getYAxisSharedProps, formatData} from './YAxisFunc'
+import ModifyTooltip from './Tooltip';
+import backgroundFill from './backgroundFill';
 
-import ModifyTooltip from './Tooltip'
-
-
-const displayReset = (value) => value - YDomain[0];
-
-function round5 (x) {
-  return Math.ceil(x/10)*10 - 5
-}
+const YDomain = [60,220];
+const safeRange = [80,180]
+const YGap = 10
+const backgroundSections= [{y1: 150, y2: safeRange[1], fill: "orange"},{y1: safeRange[1], y2: YDomain[1] },
+{y1: safeRange[1], y2: safeRange[1] + 2},{y1: YDomain[0], y2: safeRange[0], fill: "blue"} ]
 
 function addDisplayToData (data) {
   return data.map(i => ({...i, 
     display: {
     time: getResetTime(i.name),
-    max: i.double.max > YDomain[1] ? displayReset(YDomain[1] - 5) : round5(displayReset(i.double.max)), 
-    min: i.double.min < YDomain[0] ? displayReset(YDomain[0] + 5) : round5(displayReset(i.double.min)) 
+    max: formatData({domain: YDomain, gap: YGap, value: i.double.max}), 
+    min: formatData({domain: YDomain, gap: YGap, value: i.double.min}), 
     } 
   }) )
 }
@@ -37,33 +37,13 @@ const CustomizedTooltip = ({payload}) => {
   return(
     <ModifyTooltip data={passing} />
   )
-  }
-  const YDomain = [60,220];
-
-  const safeRange = [80,180]
-
-
-
-  function formatYAxis(value) {
-
-    const start = 10;
-    const end = displayReset(YDomain[1] - 10);
-
-    if(value === end ) return "Over " + (YDomain[1] - 10)
-    if (value < end && value > start) return value + YDomain[0]
-    if(value === start) return "Under " + (YDomain[0] + 10 )
-    return ""
-  }
-
-const tickCount = (Math.ceil(displayReset(YDomain[1])/10) + 2).toString(10);
-
-const YAxisSharedProps = {
-  tickCount,
-  domain:[0,displayReset(YDomain[1])]
 }
 
+
+const YAxisSharedProps = getYAxisSharedProps({domain: YDomain, gap: YGap})
+
 const LineChartProps = {
-  height: 400,
+  height: getYAxisHeight({domain: YDomain, gap: YGap}),
   data: addDisplayToData(data)
 }
 
@@ -73,22 +53,19 @@ const LineChartProps = {
     <span className=" title">Data range</span>
     <span className="cell" >
       <LineChart width={120} {...LineChartProps}>
-        <YAxis {...YAxisSharedProps} width={110} tickFormatter={formatYAxis} />
+        <YAxis {...YAxisSharedProps} width={110} />
       </LineChart>
     </span>
   </span>
   <span className="cell">
     <LineChart width={XWidth} {...LineChartProps}>
-      <ReferenceArea  y1={displayReset(150)} y2={displayReset(safeRange[1])} fill="orange" strokeOpacity={0.5} />
-      <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(YDomain[1])} fill="red" strokeOpacity={0.5} />
-      <ReferenceArea  y1={displayReset(safeRange[1])} y2={displayReset(safeRange[1] + 2)} fill="red" strokeOpacity={0.5} />
-      <ReferenceArea  y1={0} y2={displayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
+      {backgroundFill({array: backgroundSections, domain: YDomain})}
       <XAxis {...XAxisJustifiedProps}/>
       <CartesianGrid stroke="#ddd" />
       <Tooltip content={CustomizedTooltip}/>
-      <YAxis {...YAxisSharedProps} tickFormatter={formatYAxis} hide={true}/>
-      <Line dataKey="display.max" stroke='blue' label={<ConditionLabel section="double" data={data} displayKey="max" color ="indigo" displayReset={displayReset} safeRange={safeRange}/>}  />
-      <Line dataKey="display.min" stroke='green' label={<ConditionLabel section="double" data={data} displayReset={displayReset} safeRange={safeRange} />} />
+      <YAxis {...YAxisSharedProps} hide={true}/>
+      <Line dataKey="display.max" stroke='blue' label={<ConditionLabel section="double" data={data} displayKey="max" color ="indigo" domain={YDomain} safeRange={safeRange}/>}  />
+      <Line dataKey="display.min" stroke='green' label={<ConditionLabel section="double" data={data} domain={YDomain} safeRange={safeRange} />} />
       <ReferenceLine  {...ErrorInputProps} />
   </LineChart>
 </span>
