@@ -1,5 +1,5 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, ReferenceLine } from 'recharts';
-import {XAxisJustifiedProps, ErrorInputProps, getResetTime, XWidth} from './XAxisFunc';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
+import {XAxisJustifiedProps, errorIndicators, getResetTime, XWidth} from './XAxisFunc';
 import { data } from './data';
 import TextLabel from './Label';
 import {getYAxisSharedProps, formatData, getYAxisHeight} from './YAxisFunc';
@@ -47,7 +47,7 @@ const LineChartProps = {
       <CartesianGrid stroke="#ddd" />
       <YAxis {...YAxisSharedProps} hide={true}/>
       <Line dataKey="display.max" stroke='green' label={<TextLabel data={data} section="number"/>}  />
-      <ReferenceLine  {...ErrorInputProps} />
+      {errorIndicators()}
   </LineChart>
 </span>
 </div>

@@ -1,5 +1,5 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine } from 'recharts';
-import {XAxisJustifiedProps, ErrorInputProps, getResetTime, XWidth} from './XAxisFunc';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import {XAxisJustifiedProps, errorIndicators, getResetTime, XWidth} from './XAxisFunc';
 import {ConditionLabel} from './Label';
 import { data } from './data'
 import { getYAxisHeight, getYAxisSharedProps, formatData} from './YAxisFunc'
@@ -66,7 +66,7 @@ const LineChartProps = {
       <YAxis {...YAxisSharedProps} hide={true}/>
       <Line dataKey="display.max" stroke='blue' label={<ConditionLabel section="double" data={data} displayKey="max" color ="indigo" domain={YDomain} safeRange={safeRange}/>}  />
       <Line dataKey="display.min" stroke='green' label={<ConditionLabel section="double" data={data} domain={YDomain} safeRange={safeRange} />} />
-      <ReferenceLine  {...ErrorInputProps} />
+      {errorIndicators()}
   </LineChart>
 </span>
 </div>

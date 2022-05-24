@@ -1,4 +1,4 @@
-
+import { ReferenceLine } from 'recharts';
 import { data } from './data';
 
 export const timeToNum = (string) => {
@@ -38,13 +38,12 @@ export const XAxisProps = {
      tickFormatter:formatXAxis,
 }
 
-const errorPoint = 53
-
-export const ErrorInputProps = {
-  x:errorPoint,
+const ErrorInputProps = {
    stroke:"red",
     strokeWidth: 4,
      strokeDasharray: "6 6"
 }
 
 export const XAxisJustifiedProps =  {...XAxisProps, hide: true}
+const errorPoints = data.filter(input => input.isError === true ).map(i => getResetTime(i.name));
+export const errorIndicators = () => errorPoints.map( i => <ReferenceLine key={i} {...ErrorInputProps} x={i}/>)

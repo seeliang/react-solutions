@@ -196,6 +196,7 @@ export const data = [
   },
   {
     name: "15:15",
+    isError: true,
     double: {
     max: 110,
     min: 85

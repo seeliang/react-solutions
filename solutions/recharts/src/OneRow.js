@@ -1,7 +1,7 @@
 
-import { LineChart, Line, XAxis, YAxis,  ReferenceLine} from 'recharts';
+import { LineChart, Line, XAxis, YAxis} from 'recharts';
 import TextLabel from './Label';
-import {XAxisJustifiedProps, ErrorInputProps, getResetTime, XWidth} from './XAxisFunc';
+import {XAxisJustifiedProps, errorIndicators, getResetTime, XWidth} from './XAxisFunc';
 import { data } from './data';
 
 function addDisplayToData (data) {
@@ -41,7 +41,7 @@ const LineChartProps = {
       <XAxis {...XAxisJustifiedProps}/>
       <YAxis {...YAxisSharedProps}  hide={true}/>
       <Line dataKey="display.min" strokeWidth="0" label={<TextLabel data={data} section="one" displayKey="min"/>}  />
-      <ReferenceLine  {...ErrorInputProps} />
+      {errorIndicators()}
   </LineChart>
 </span>
 </div>

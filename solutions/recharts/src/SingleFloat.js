@@ -1,5 +1,5 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine } from 'recharts';
-import {XAxisJustifiedProps, ErrorInputProps, getResetTime,XWidth} from './XAxisFunc';
+import {XAxisJustifiedProps, getResetTime,XWidth, errorIndicators} from './XAxisFunc';
 import {DotLabel} from './Label';
 import { data } from './data';
 import ModifyTooltip from './Tooltip';
@@ -20,19 +20,19 @@ function addDisplayToData (data) {
   }) )
 }
 
-  const CustomizedTooltip = ({payload}) => {
-    const render = payload.map(i => i.payload);
-    if(!render[0]) {
-      return;
-    }
-    const {name, float } = render[0];
-    const passing = {
-      time: name, min: float.min
-    }
-    return(
-      <ModifyTooltip data={passing}/>
-    )
+const CustomizedTooltip = ({payload}) => {
+  const render = payload.map(i => i.payload);
+  if(!render[0]) {
+    return;
   }
+  const {name, float } = render[0];
+  const passing = {
+    time: name, min: float.min
+  }
+  return(
+    <ModifyTooltip data={passing}/>
+  )
+}
 
 const YAxisSharedProps = getYAxisSharedProps({gap: YGap, domain: YDomain})
 
@@ -59,7 +59,7 @@ const LineChartProps = {
       <CartesianGrid stroke="#ddd"/>
       <YAxis {...YAxisSharedProps} hide={true}/>
       <Line dataKey="display.min" stroke='green' label={<DotLabel data={data}/>}  />
-      <ReferenceLine {...ErrorInputProps} />
+      {errorIndicators()}
   </LineChart>
 </span>
 </div>
