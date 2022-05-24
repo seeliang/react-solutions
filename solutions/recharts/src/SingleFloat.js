@@ -1,11 +1,15 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid,ReferenceArea, Tooltip, ReferenceLine } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine } from 'recharts';
 import {XAxisJustifiedProps, ErrorInputProps, getResetTime,XWidth} from './XAxisFunc';
 import {DotLabel} from './Label';
 import { data } from './data';
 import ModifyTooltip from './Tooltip';
-import {getYAxisSharedProps, formatData, getYAxisHeight} from './YAxisFunc'
+import {getYAxisSharedProps, formatData, getYAxisHeight} from './YAxisFunc';
+import backgroundFill from './backgroundFill';
 
-const YDisplayReset = (value) => value - YDomain[0];
+const YDomain = [34,42];
+const YGap = 0.5
+const safeRange = [36.0,38.0]
+const backgroundSections = [{y1:safeRange[1], y2: YDomain[1]},{y1:safeRange[1], y2: (safeRange[1] + YGap / 2)},{y1:YDomain[0], y2: safeRange[0], fill: "blue"}]
 
 function addDisplayToData (data) {
   return data.map(i => ({...i, 
@@ -15,9 +19,6 @@ function addDisplayToData (data) {
     } 
   }) )
 }
-  const YDomain = [34,42];
-  const YGap = 0.5
-  const safeRange = [36.0,38.0]
 
   const CustomizedTooltip = ({payload}) => {
     const render = payload.map(i => i.payload);
@@ -43,7 +44,7 @@ const LineChartProps = {
  const Sample = () => (
   <div className="table">
   <span className="sticky cell table">
-    <span className=" title">Heart Beat Rate</span>
+    <span className=" title">Data range</span>
     <span className="cell" >
       <LineChart width={120} {...LineChartProps}>
         <YAxis {...YAxisSharedProps} width={110} />
@@ -52,9 +53,7 @@ const LineChartProps = {
   </span>
   <span className="cell">
     <LineChart width={XWidth} {...LineChartProps}>
-      <ReferenceArea  y1={YDisplayReset(safeRange[1])} y2={YDisplayReset(YDomain[1])} fill="red" strokeOpacity={0.5} />
-      <ReferenceArea  y1={YDisplayReset(safeRange[1])} y2={YDisplayReset(safeRange[1] + YGap / 2)} fill="red" strokeOpacity={0.5} />
-      <ReferenceArea  y1={0} y2={YDisplayReset(safeRange[0])} fill="blue" strokeOpacity={0.5} />
+      {backgroundFill({array: backgroundSections, domain: YDomain})}
       <XAxis {...XAxisJustifiedProps}/>
       <Tooltip content={CustomizedTooltip}/>
       <CartesianGrid stroke="#ddd"/>
