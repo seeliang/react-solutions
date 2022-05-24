@@ -2,8 +2,7 @@
 import { LineChart, Line, XAxis, YAxis,  ReferenceLine} from 'recharts';
 import TextLabel from './Label';
 import {XAxisJustifiedProps, ErrorInputProps, getResetTime, XWidth} from './XAxisFunc';
-import { data } from './data'
-
+import { data } from './data';
 
 function addDisplayToData (data) {
   return data.map(i => ({...i, 
@@ -14,10 +13,7 @@ function addDisplayToData (data) {
   }) )
 }
 
-
-  const YDomain = [0,10];
-
-
+const YDomain = [0,10];
 
 const tickCount = "2"
 const YAxisSharedProps = {
@@ -26,7 +22,7 @@ const YAxisSharedProps = {
 }
 
 const LineChartProps = {
-  height: 80,
+  height: 60,
   data: addDisplayToData(data)
 }
 
@@ -42,11 +38,8 @@ const LineChartProps = {
   </span>
   <span className="cell">
     <LineChart width={XWidth} {...LineChartProps}>
-
       <XAxis {...XAxisJustifiedProps}/>
-
       <YAxis {...YAxisSharedProps}  hide={true}/>
-      
       <Line dataKey="display.min" strokeWidth="0" label={<TextLabel data={data} section="one" displayKey="min"/>}  />
       <ReferenceLine  {...ErrorInputProps} />
   </LineChart>
