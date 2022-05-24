@@ -51,20 +51,21 @@ export const data = [
   },
   {
     name: "12:38",
+    isError: true,
     double: {
     max: 90,
     min: 86
-  },
-  float: {
-    min: 36.0
-  },
-  number: {
-    max: 90,
-  },
-  one: {
-    min: 8
-  }
-  },
+    },
+    float: {
+      min: 36.0
+    },
+    number: {
+      max: 90,
+    },
+    one: {
+      min: 8
+    }
+    },
   {
     name: "13:00",
     double: {
