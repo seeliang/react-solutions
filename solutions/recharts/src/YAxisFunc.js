@@ -3,12 +3,9 @@ export const YAxisWidth = 120;
 export const YDisplayReset = ({value, domain}) => {
   return value - domain[0]};
 
-export const getYTickCount = ({domain, gap}) => Math.ceil(YDisplayReset({value: domain[1], domain})/gap + 2).toString(10);
+export const getYTickCount = ({domain, gap}) => (Math.ceil(YDisplayReset({value: domain[1], domain})/gap) + 2).toString(10);
 
-export const roundToHalf = ({value, gap}) =>  {
-  
-  return Math.ceil(value/gap)*gap - gap / 2;
-}
+export const roundToHalf = ({value, gap}) =>  Math.ceil(value/gap)*gap - gap / 2;
 
 export const formatData = ({domain, gap,value}) => {
 
