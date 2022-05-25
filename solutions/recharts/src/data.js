@@ -1,7 +1,7 @@
 
 export const data = [
   {
-    name: "12:00",
+    name: "31/12/2021 23:00",
 
     double: {
       max: 100,
@@ -18,7 +18,7 @@ export const data = [
     }
   },
   {
-    name: "12:15",
+    name: "31/12/2021 23:15",
     double: {
     max: 100,
     min: 35
@@ -34,7 +34,7 @@ export const data = [
     }
   },
   {
-    name: "12:30",
+    name: "31/12/2021 23:30",
     double: {
     max: 100,
     min: 90
@@ -50,7 +50,7 @@ export const data = [
     }
   },
   {
-    name: "12:38",
+    name: "31/12/2021 23:38",
     isError: true,
     double: {
     max: 90,
@@ -67,7 +67,7 @@ export const data = [
     }
     },
   {
-    name: "13:00",
+    name: "01/01/2022 00:00",
     double: {
     max: 77,
     min: 64
@@ -83,7 +83,7 @@ export const data = [
     }
   },
   {
-    name: "13:15",
+    name: "01/01/2022 00:15",
     double: {
     max: 110,
     min: 85
@@ -99,7 +99,7 @@ export const data = [
     }
   },
   {
-    name: "13:30",
+    name: "01/01/2022 00:30",
     double: {
     max: 308,
     min: 110
@@ -115,7 +115,7 @@ export const data = [
     }
   },
   {
-    name: "14:00",
+    name: "01/01/2022 01:00",
     double: {
     max: 100,
     min: 89,
@@ -131,7 +131,7 @@ export const data = [
     }
   },
   {
-    name: "14:15",
+    name: "01/01/2022 01:15",
     double: {
     max: 100,
     min: 67
@@ -147,7 +147,7 @@ export const data = [
     }
   },
   {
-    name: "14:30",
+    name: "01/01/2022 01:30",
     double: {
     max: 100,
     min: 90,
@@ -163,7 +163,7 @@ export const data = [
     }
   },
   {
-    name: "14:38",
+    name: "01/01/2022 01:38",
     double: {
     max: 90,
     min: 86
@@ -179,7 +179,7 @@ export const data = [
     }
   },
   {
-    name: "15:00",
+    name: "01/01/2022 02:00",
     double: {
     max: 70,
     min: 64
@@ -195,7 +195,7 @@ export const data = [
     },
   },
   {
-    name: "15:15",
+    name: "01/01/2022 02:15",
     isError: true,
     double: {
     max: 110,
@@ -212,7 +212,7 @@ export const data = [
     }
   },
   {
-    name: "15:30",
+    name: "01/01/2022 02:30",
     double: {
     max: 140,
     min: 110

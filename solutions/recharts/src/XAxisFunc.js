@@ -1,37 +1,39 @@
 import { ReferenceLine } from 'recharts';
 import { data } from './data';
 
-export const timeToNum = (string) => {
-  const raw = string.split(":");
-  const result = parseInt(raw[0]) * 60 + parseInt(raw[1]) 
-  return result;
+const XGap = 900000;
+const regexGetDigits = /\D/g;
+
+const timeToNum = (string) => {
+  const raw = string.split(regexGetDigits).map( i => parseInt(i));
+  const mark = new Date( raw[2],raw[1] - 1 ,raw[0],raw[3],raw[4]);
+  console.log(mark, Date.parse(mark))
+  return  Date.parse(mark)
 }
 
-export const XDisplayReset = (value) => {
+const XDisplayReset = (value) => {
   return value - timeToNum(data[0].name) + XGap; 
 }
 
-const XGap = 15;
-
-export const XWidth = (XGap + 2) * 100;
+const addLeadZero = (value) => value < 10 ? `0${value}` : value
 
 function formatXAxis(modifiedValue) {
-
-  const value = modifiedValue - XGap;
-  const m = value % 60;
-  const h = Math.floor(value / 60) + 12;
-  const word = `${h} : ${m}`
-  return m === 0 ? `${word}0` : word
+  const dateNumber = modifiedValue + timeToNum(data[0].name);
+  const date = new Date(dateNumber);
+  return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${addLeadZero(date.getHours())}:${addLeadZero(date.getMinutes())}`
 }
 
 export const getResetTime = (time) => XDisplayReset(timeToNum(time));
 
 const lastCheckTime = data[data.length - 1].name;
 
-const XTickCount = (Math.ceil(getResetTime(lastCheckTime) / XGap) + 2).toString(10)
+const XTickCount = (Math.ceil(getResetTime(lastCheckTime) / XGap) + 3).toString(10)
+
+export const XWidth = (XTickCount) * 150;
 
 export const XAxisProps = {
   dataKey:"display.time",
+  domain: [0, getResetTime(lastCheckTime) + 2 * XGap ],
    type:"number",
    orientation:'top',
     tickCount: XTickCount,
@@ -39,9 +41,9 @@ export const XAxisProps = {
 }
 
 const ErrorInputProps = {
-   stroke:"red",
-    strokeWidth: 4,
-     strokeDasharray: "6 6"
+  stroke:"red",
+  strokeWidth: 4,
+  strokeDasharray: "6 6"
 }
 
 export const XAxisJustifiedProps =  {...XAxisProps, hide: true}
