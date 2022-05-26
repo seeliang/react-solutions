@@ -7,7 +7,6 @@ const regexGetDigits = /\D/g;
 const timeToNum = (string) => {
   const raw = string.split(regexGetDigits).map( i => parseInt(i));
   const mark = new Date( raw[2],raw[1] - 1 ,raw[0],raw[3],raw[4]);
-  console.log(mark, Date.parse(mark))
   return  Date.parse(mark)
 }
 
@@ -20,7 +19,9 @@ const addLeadZero = (value) => value < 10 ? `0${value}` : value
 function formatXAxis(modifiedValue) {
   const dateNumber = modifiedValue + timeToNum(data[0].name);
   const date = new Date(dateNumber);
-  return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${addLeadZero(date.getHours())}:${addLeadZero(date.getMinutes())}`
+  const isNewDate = date.getHours() + date.getMinutes() === 0;
+  const dateDisplay = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} `;
+  return `${isNewDate? dateDisplay: '' }${addLeadZero(date.getHours())}:${addLeadZero(date.getMinutes())}`
 }
 
 export const getResetTime = (time) => XDisplayReset(timeToNum(time));
