@@ -1,7 +1,7 @@
 import { ReferenceLine } from 'recharts';
 import { data } from './data';
 
-const XGap = 900000;
+const XGap = 900000; // 15min with ms
 const regexGetDigits = /\D/g;
 
 const timeToNum = (string) => {
