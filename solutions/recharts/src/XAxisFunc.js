@@ -7,7 +7,6 @@ const regexGetDigits = /\D/g;
 const timeToNum = (string) => {
   const raw = string.split(regexGetDigits).map( i => parseInt(i));
   const mark = new Date( raw[2],raw[1] - 1 ,raw[0],raw[3],raw[4]);
-  console.log(mark);
   return  Date.parse(mark)
 }
 
