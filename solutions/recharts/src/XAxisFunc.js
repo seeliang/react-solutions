@@ -20,7 +20,7 @@ function formatXAxis(modifiedValue) {
   const dateNumber = modifiedValue + timeToNum(data[0].name);
   const date = new Date(dateNumber);
   const isNewDate = date.getHours() + date.getMinutes() === 0;
-  const dateDisplay = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} `;
+  const dateDisplay = `${addLeadZero(date.getDate())}/${addLeadZero(date.getMonth() + 1)}/${date.getFullYear()} `;
   return `${isNewDate? dateDisplay: '' }${addLeadZero(date.getHours())}:${addLeadZero(date.getMinutes())}`
 }
 
