@@ -1,5 +1,5 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine } from 'recharts';
-import {XAxisJustifiedProps, getResetTime,XWidth, errorIndicators} from './XAxisFunc';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import {XAxisJustifiedProps, getResetTime,XWidth} from './XAxisFunc';
 import {DotLabel} from './Label';
 import { data } from './data';
 import ModifyTooltip from './Tooltip';
@@ -11,14 +11,14 @@ const YGap = 0.5
 const safeRange = [36.0,38.0]
 const backgroundSections = [{y1:safeRange[1], y2: YDomain[1]},{y1:safeRange[1], y2: (safeRange[1] + YGap / 2)},{y1:YDomain[0], y2: safeRange[0], fill: "blue"}]
 
-function addDisplayToData (data) {
-  return data.map(i => ({...i, 
+const addDisplayToData = (data) => data.filter(i => !i.isError ).map(i => 
+    ({...i, 
     display: {
     min: formatData({domain:YDomain, gap: YGap, value:i.float.min}),
     time: getResetTime(i.name)
     } 
-  }) )
-}
+  }))
+
 
 const CustomizedTooltip = ({payload}) => {
   const render = payload.map(i => i.payload);
@@ -59,7 +59,6 @@ const LineChartProps = {
       <CartesianGrid stroke="#ddd"/>
       <YAxis {...YAxisSharedProps} hide={true}/>
       <Line dataKey="display.min" stroke='black' label={<DotLabel data={data} fill="black"/>}  />
-      {errorIndicators()}
   </LineChart>
 </span>
 </div>
