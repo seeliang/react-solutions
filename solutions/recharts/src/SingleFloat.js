@@ -58,7 +58,7 @@ const LineChartProps = {
       <Tooltip content={CustomizedTooltip}/>
       <CartesianGrid stroke="#ddd"/>
       <YAxis {...YAxisSharedProps} hide={true}/>
-      <Line dataKey="display.min" stroke='green' label={<DotLabel data={data}/>}  />
+      <Line dataKey="display.min" stroke='black' label={<DotLabel data={data} fill="black"/>}  />
       {errorIndicators()}
   </LineChart>
 </span>
