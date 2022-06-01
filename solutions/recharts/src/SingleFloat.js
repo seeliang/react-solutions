@@ -1,4 +1,4 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import {LineChart, Scatter, ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import {XAxisJustifiedProps, getResetTime,XWidth} from './XAxisFunc';
 import {DotLabel} from './Label';
 import { data } from './data';
@@ -11,7 +11,12 @@ const YGap = 0.5
 const safeRange = [36.0,38.0]
 const backgroundSections = [{y1:safeRange[1], y2: YDomain[1]},{y1:safeRange[1], y2: (safeRange[1] + YGap / 2)},{y1:YDomain[0], y2: safeRange[0], fill: "blue"}]
 
-const addDisplayToData = (data) => data.filter(i => !i.isError ).map(i => 
+const addDisplayToData = (data) => data.map(i => i.isError ? ({...i, 
+  display: {
+    error: formatData({domain:YDomain, gap: YGap, value:i.float.min}),
+    time: getResetTime(i.name)
+    } 
+  }) :
     ({...i, 
     display: {
     min: formatData({domain:YDomain, gap: YGap, value:i.float.min}),
@@ -52,14 +57,15 @@ const LineChartProps = {
     </span>
   </span>
   <span className="cell">
-    <LineChart width={XWidth} {...LineChartProps}>
+    <ComposedChart width={XWidth} {...LineChartProps}>
       {backgroundFill({array: backgroundSections, domain: YDomain})}
       <XAxis {...XAxisJustifiedProps}/>
       <Tooltip content={CustomizedTooltip}/>
       <CartesianGrid stroke="#ddd"/>
       <YAxis {...YAxisSharedProps} hide={true}/>
-      <Line dataKey="display.min" stroke='black' label={<DotLabel data={data} fill="black"/>}  />
-  </LineChart>
+      <Scatter dataKey="display.error" fill="green" shape="wye" />
+      <Line dataKey="display.min" connectNulls stroke='black' label={<DotLabel data={data} fill="black"/>}  />
+  </ComposedChart>
 </span>
 </div>
 );

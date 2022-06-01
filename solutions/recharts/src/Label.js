@@ -13,11 +13,13 @@ const TextLabel = ({ x, y, index, data, displayKey, section, fill}) => {
   );
 }
 
-export const DotLabel  = ( { x, y, fill }) => {
-  return (<>
+export const DotLabel  = ( props) => {
+  const { x, y, fill, data, index} = props
+  if (data?.[index].isError) {
+    return
+  }
+  return (
     <circle r="8" fill={fill? fill : "green"} cx={x} cy={y}/>
-    </>
-
   );
 }
 
