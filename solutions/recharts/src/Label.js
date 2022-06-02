@@ -1,8 +1,11 @@
 import {YDisplayReset} from './YAxisFunc';
 
-const TextLabel = ({ x, y, index, data, displayKey, section, fill}) => {
+const TextLabel = ({ x, y, index, data, displayKey, section, fill,}) => {
   const content = displayKey? displayKey : "max"
   const word = data[index][section][content];
+  if (data?.[index].isError) { // hide error in data line
+    return
+  }
   return (
     <>
     <circle r="15" fill={fill ? fill : "green"} cx={x} cy={y}/>;
