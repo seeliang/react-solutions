@@ -7,6 +7,7 @@ import OneRow from './OneRow'
 
 import SingleFloat from './SingleFloat'
 import TableHead from './Header'
+import Split from './Split'
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     <div className="App">
       <TableHead />
       <SingleFloat />
+      <Split />
     <Double />
     <Number />
     <OneRow />

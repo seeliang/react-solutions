@@ -2,7 +2,9 @@
 export const data = [
   {
     name: "31/12/2021 23:00",
-
+    split: {
+      min: 139
+    },
     double: {
       max: 100,
       min: 89,
@@ -19,6 +21,9 @@ export const data = [
   },
   {
     name: "31/12/2021 23:15",
+    split: {
+      min: -139
+    },
     double: {
     max: 100,
     min: 35
@@ -35,6 +40,9 @@ export const data = [
   },
   {
     name: "31/12/2021 23:30",
+    split: {
+      min: 39
+    },
     double: {
     max: 100,
     min: 90
@@ -51,6 +59,9 @@ export const data = [
   },
   {
     name: "31/12/2021 23:38",
+    split: {
+      min: 19
+    },
     isError: true,
     double: {
     max: 90,
@@ -68,6 +79,9 @@ export const data = [
     },
   {
     name: "01/01/2022 00:00",
+    split: {
+      min: 135
+    },
     double: {
     max: 77,
     min: 64
@@ -84,6 +98,9 @@ export const data = [
   },
   {
     name: "01/01/2022 00:15",
+    split: {
+      min: -34
+    },
     double: {
     max: 110,
     min: 85
@@ -100,6 +117,9 @@ export const data = [
   },
   {
     name: "01/01/2022 00:30",
+    split: {
+      min: 9
+    },
     double: {
     max: 308,
     min: 110
@@ -116,6 +136,9 @@ export const data = [
   },
   {
     name: "01/01/2022 01:00",
+    split: {
+      min: 15
+    },
     double: {
     max: 100,
     min: 89,
@@ -132,6 +155,9 @@ export const data = [
   },
   {
     name: "01/01/2022 01:15",
+    split: {
+      min: -95
+    },
     double: {
     max: 100,
     min: 67
@@ -148,6 +174,9 @@ export const data = [
   },
   {
     name: "01/01/2022 01:30",
+    split: {
+      min: 59
+    },
     double: {
     max: 100,
     min: 90,
@@ -164,6 +193,9 @@ export const data = [
   },
   {
     name: "01/01/2022 01:38",
+    split: {
+      min: 69
+    },
     double: {
     max: 90,
     min: 86
@@ -180,6 +212,9 @@ export const data = [
   },
   {
     name: "01/01/2022 02:00",
+    split: {
+      min: 13
+    },
     double: {
     max: 70,
     min: 64
@@ -196,6 +231,9 @@ export const data = [
   },
   {
     name: "01/01/2022 02:15",
+    split: {
+      min: 36
+    },
     isError: true,
     double: {
     max: 110,
@@ -213,6 +251,9 @@ export const data = [
   },
   {
     name: "01/01/2022 02:30",
+    split: {
+      min: 33
+    },
     double: {
     max: 140,
     min: 110
