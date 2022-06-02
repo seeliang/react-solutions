@@ -63,7 +63,7 @@ const LineChartProps = {
       <Tooltip content={CustomizedTooltip}/>
       <CartesianGrid stroke="#ddd"/>
       <YAxis {...YAxisSharedProps} hide={true}/>
-      <Scatter dataKey="display.error" fill="green" shape="wye" />
+      <Scatter dataKey="display.error" fill="red" shape="star" />
       <Line dataKey="display.min" connectNulls stroke='black' label={<DotLabel data={data} fill="black"/>}  />
   </ComposedChart>
 </span>

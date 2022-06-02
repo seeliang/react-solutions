@@ -1,4 +1,3 @@
-import { ReferenceLine } from 'recharts';
 import { data } from './data';
 
 const XGap = 900000; // 15min with ms
@@ -41,12 +40,4 @@ export const XAxisProps = {
      tickFormatter:formatXAxis,
 }
 
-const ErrorInputProps = {
-  stroke:"red",
-  strokeWidth: 4,
-  strokeDasharray: "6 6"
-}
-
 export const XAxisJustifiedProps =  {...XAxisProps, hide: true}
-const errorPoints = data.filter(input => input.isError === true ).map(i => getResetTime(i.name));
-export const errorIndicators = () => errorPoints.map( i => <ReferenceLine key={i} {...ErrorInputProps} x={i}/>)
