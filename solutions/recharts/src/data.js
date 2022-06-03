@@ -22,7 +22,7 @@ export const data = [
   {
     name: "31/12/2021 23:15",
     split: {
-      min: -139
+      min: -39
     },
     double: {
     max: 100,

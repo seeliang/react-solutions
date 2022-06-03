@@ -7,7 +7,7 @@ import {getYAxisSharedProps, formatData, getYAxisHeight} from './YAxisFunc';
 import backgroundFill from './backgroundFill';
 
 // need to increase Domain or reduce gap to fix gap
-const YDomain = [-150,150]; 
+const YDomain = [-100,150]; 
 const YGap = 10;
 const backgroundSections = [{y1:-1, y2: 1}]
 

@@ -33,7 +33,8 @@ export const ConditionLabel = (props) => {
 
   const fill = color ? color : "green"
 
-  if (value < YDisplayReset({value: safeRange[1], domain})&& value > YDisplayReset({value:safeRange[0],domain})) {
+  if (value < YDisplayReset({value: safeRange[1], domain}) 
+  && value > YDisplayReset({value:safeRange[0],domain})) {
     return <DotLabel fill={fill} x={x} y={y}/>;
   };
 
