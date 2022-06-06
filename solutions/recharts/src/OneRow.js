@@ -59,9 +59,9 @@ const LineChartProps = {
     <ComposedChart width={XWidth} {...LineChartProps}>
       <XAxis {...XAxisJustifiedProps}/>
       <YAxis {...YAxisSharedProps}  hide={true}/>
-      <Tooltip dataKey="display.error" content={CustomizedTooltip}/>
+      <Tooltip dataKey="display.error"  cursor={false}  content={CustomizedTooltip}/>
       <Scatter dataKey="display.error" fill="red" shape="star" />
-      <Line dataKey="display.min" strokeWidth="0" label={<TextLabel data={data} section="one" displayKey="min"/>}  />
+      <Line dataKey="display.min" activeDot={false}strokeWidth="0" label={<TextLabel data={data} section="one" displayKey="min"/>}  />
   </ComposedChart>
 </span>
 </div>
