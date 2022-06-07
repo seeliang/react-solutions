@@ -1,6 +1,5 @@
-import { Scatter, ScatterChart, LineChart, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { Bar, BarChart, LineChart, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import {XAxisJustifiedProps, getResetTime, XWidth} from './XAxisFunc';
-import {ConditionLabel} from './Label';
 import { data } from './data'
 import { getYAxisHeight, getYAxisSharedProps, formatData} from './YAxisFunc'
 import ModifyTooltip from './Tooltip';
@@ -17,6 +16,7 @@ function addDisplayToData (data) {
     display: {
     time: getResetTime(i.name),
     max: formatData({domain: YDomain, gap: YGap, value: i.double.max}), 
+    middle: [formatData({domain: YDomain, gap: YGap, value: i.double.max}), formatData({domain: YDomain, gap: YGap, value: i.double.min})] ,
     min: formatData({domain: YDomain, gap: YGap, value: i.double.min}), 
     } 
   }) )
@@ -82,14 +82,14 @@ const LineChartProps = {
     </span>
   </span>
   <span className="cell">
-    <ScatterChart width={XWidth} {...LineChartProps}>
+    <BarChart width={XWidth} {...LineChartProps}>
       {backgroundFill({array: backgroundSections, domain: YDomain})}
       <XAxis {...XAxisJustifiedProps}/>
       <CartesianGrid stroke="#ddd" />
       <Tooltip content={CustomizedTooltip}/>
       <YAxis {...YAxisSharedProps} hide={true}/>
-      <Scatter dataKey="display.min" stroke='green' shape={<BarShape/>}/>
-  </ScatterChart>
+      <Bar dataKey="display.middle" stroke='green' />
+  </BarChart>
 </span>
 </div>
 );
