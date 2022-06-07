@@ -1,4 +1,4 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { Scatter, ScatterChart, LineChart, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import {XAxisJustifiedProps, getResetTime, XWidth} from './XAxisFunc';
 import {ConditionLabel} from './Label';
 import { data } from './data'
@@ -39,6 +39,30 @@ const CustomizedTooltip = ({payload}) => {
   )
 }
 
+const Line = ({x,y, gap}) => {
+  const strokeWidth = 2;
+  const capWith = 6;
+  const XCorrected = x + 4;
+  const YTop = y + gap;
+  const YBottom = y - gap;
+  return <>
+    <line stroke='black' strokeWidth={strokeWidth} x1={XCorrected - capWith} y1={YTop} x2={XCorrected + capWith} y2={YTop}/>
+    <line stroke='black' strokeWidth={strokeWidth} x1={XCorrected} y1={YBottom} x2={XCorrected} y2={YTop}/>
+    <line stroke='black' strokeWidth={strokeWidth} x1={XCorrected - capWith } y1={YBottom} x2={XCorrected + capWith} y2={YBottom}/>
+  </>
+}
+
+
+const BarShape = (props) => {
+  const {x,y, payload} = props
+  const {max, min} = payload.display;
+  const gap = max - min 
+
+  return (<>
+    <Line  x={x} y={y} gap={gap}/>
+  </>)
+}
+
 
 const YAxisSharedProps = getYAxisSharedProps({domain: YDomain, gap: YGap})
 
@@ -58,15 +82,14 @@ const LineChartProps = {
     </span>
   </span>
   <span className="cell">
-    <LineChart width={XWidth} {...LineChartProps}>
+    <ScatterChart width={XWidth} {...LineChartProps}>
       {backgroundFill({array: backgroundSections, domain: YDomain})}
       <XAxis {...XAxisJustifiedProps}/>
       <CartesianGrid stroke="#ddd" />
       <Tooltip content={CustomizedTooltip}/>
       <YAxis {...YAxisSharedProps} hide={true}/>
-      <Line dataKey="display.max" stroke='blue' label={<ConditionLabel section="double" data={data} displayKey="max" color ="indigo" domain={YDomain} safeRange={safeRange}/>}  />
-      <Line dataKey="display.min" stroke='green' label={<ConditionLabel section="double" data={data} domain={YDomain} safeRange={safeRange} />} />
-  </LineChart>
+      <Scatter dataKey="display.min" stroke='green' shape={<BarShape/>}/>
+  </ScatterChart>
 </span>
 </div>
 );

@@ -26,7 +26,7 @@ export const data = [
     },
     double: {
     max: 100,
-    min: 35
+    min: 65
     },
     float: {
       min: 45.3
