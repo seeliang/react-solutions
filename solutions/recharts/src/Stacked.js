@@ -3,7 +3,7 @@ import {XAxisJustifiedProps, getResetTime, XWidth} from './XAxisFunc';
 import { data } from './data'
 import { getYAxisHeight, getYAxisSharedProps, formatData} from './YAxisFunc'
 import ModifyTooltip from './Tooltip';
-const YDomain = [60,240];
+const YDomain = [0,310];
 const YGap = 10
 
 function addDisplayToData (data) {
@@ -18,7 +18,7 @@ function addDisplayToData (data) {
     ({...i,
     display: {
     time: getResetTime(i.name),
-    max: formatData({domain: YDomain, gap: YGap, value: i.double.max}),
+    max: formatData({domain: YDomain, gap: YGap, value: i.double.max}) + 5,
     min: formatData({domain: YDomain, gap: YGap, value: i.double.min}),
     } 
   }) )
@@ -40,9 +40,6 @@ const CustomizedTooltip = ({payload}) => {
     <ModifyTooltip data={passing} />
   )
 }
-
-
-
 
 const YAxisSharedProps = getYAxisSharedProps({domain: YDomain, gap: YGap})
 
@@ -68,8 +65,9 @@ const LineChartProps = {
       <Tooltip content={CustomizedTooltip}/>
       <YAxis {...YAxisSharedProps} hide={true}/>
       <Scatter dataKey="display.error" fill="red" shape="star" />
-      <Bar dataKey="display.max" stackId="join" fill="yellow"/>
+  
       <Bar dataKey="display.min" stackId="join" fill="indigo" />
+      <Bar dataKey="display.max" stackId="join" fill="aquamarine"/>
   </ComposedChart>
 </span>
 </div>
