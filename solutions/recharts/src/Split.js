@@ -9,7 +9,7 @@ import backgroundFill from './backgroundFill';
 // need to increase Domain or reduce gap to fix gap
 const YDomain = [-100,150]; 
 const YGap = 10;
-const backgroundSections = [{y1:-1, y2: 1}]
+const backgroundSections = [{y1:-0.5, y2: 0.5, }]
 
 const addDisplayToData = (data) =>  data.map(i => i.isError ? 
   {...i, 
@@ -63,7 +63,7 @@ const LineChartProps = {
       <CartesianGrid stroke="#ddd" />
       <YAxis {...YAxisSharedProps} hide={true}/>
       <Scatter dataKey="display.error" fill="red" shape="star" />
-      <Line dataKey="display.min" stroke='green' connectNulls label={<TextLabel data={data} section="split" displayKey="min"/>}  />
+      <Line dataKey="display.min" stroke='black' connectNulls label={<TextLabel data={data} section="split" displayKey="min" fill="black"/>}  />
   </ComposedChart>
 </span>
 </div>
