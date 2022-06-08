@@ -41,7 +41,7 @@ const CustomizedTooltip = ({payload}) => {
   )
 }
 
-const YAxisSharedProps = getYAxisSharedProps({domain: YDomain, gap: YGap})
+const YAxisSharedProps = getYAxisSharedProps({domain: YDomain, gap: YGap, isStartFromZero: true})
 
 const LineChartProps = {
   height: getYAxisHeight({domain: YDomain, gap: YGap}),
