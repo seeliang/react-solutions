@@ -64,7 +64,7 @@ export const data = [
     },
     isError: true,
     double: {
-    max: 90,
+    max: 120,
     min: 86
     },
     float: {
@@ -121,7 +121,7 @@ export const data = [
       min: 9
     },
     double: {
-    max: 308,
+    max: 182,
     min: 110
     },
     float: {
@@ -197,7 +197,7 @@ export const data = [
       min: 69
     },
     double: {
-    max: 90,
+    max: 120,
     min: 86
     },
     float: {
@@ -216,7 +216,7 @@ export const data = [
       min: 13
     },
     double: {
-    max: 70,
+    max: 80,
     min: 64
     },
     float: {
