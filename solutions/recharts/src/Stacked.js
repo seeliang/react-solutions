@@ -3,7 +3,7 @@ import {XAxisJustifiedProps, getResetTime, XWidth} from './XAxisFunc';
 import { data } from './data'
 import { getYAxisHeight, getYAxisSharedProps, formatData} from './YAxisFunc'
 import ModifyTooltip from './Tooltip';
-const YDomain = [60,220];
+const YDomain = [60,240];
 const YGap = 10
 
 function addDisplayToData (data) {
@@ -68,8 +68,8 @@ const LineChartProps = {
       <Tooltip content={CustomizedTooltip}/>
       <YAxis {...YAxisSharedProps} hide={true}/>
       <Scatter dataKey="display.error" fill="red" shape="star" />
-      <Bar dataKey="display.max" fill="yellow"/>
-      <Bar dataKey="display.min" fill="indigo" />
+      <Bar dataKey="display.max" stackId="join" fill="yellow"/>
+      <Bar dataKey="display.min" stackId="join" fill="indigo" />
   </ComposedChart>
 </span>
 </div>
