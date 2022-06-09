@@ -15,10 +15,11 @@ function App() {
   return (
     <div className="App">
       <TableHead />
+      <Double />
       <SingleFloat />
       <Stacked />
       <Split />
-    <Double />
+
     <Number />
     <OneRow />
     </div>
