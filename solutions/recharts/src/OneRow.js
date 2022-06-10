@@ -60,7 +60,7 @@ const LineChartProps = {
       <XAxis {...XAxisJustifiedProps}/>
       <YAxis {...YAxisSharedProps}  hide={true}/>
       <Tooltip dataKey="display.error"  cursor={false}  content={CustomizedTooltip}/>
-      <Scatter dataKey="display.error" fill="red" shape="star" />
+      <Scatter dataKey="display.error" fill="grey" shape="star" />
       <Line dataKey="display.min" activeDot={false}strokeWidth="0" label={<TextLabel data={data} section="one" displayKey="min"/>}  />
   </ComposedChart>
 </span>
