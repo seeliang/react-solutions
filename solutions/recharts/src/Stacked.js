@@ -18,7 +18,7 @@ function addDisplayToData (data) {
     ({...i,
     display: {
     time: getResetTime(i.name),
-    max: formatData({domain: YDomain, gap: YGap, value: i.double.max}) + 5,
+    max: formatData({domain: YDomain, gap: YGap, value: i.double.max}) + YGap / 2,
     min: formatData({domain: YDomain, gap: YGap, value: i.double.min}),
     } 
   }) )
