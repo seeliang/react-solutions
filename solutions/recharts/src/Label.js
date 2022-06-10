@@ -15,11 +15,10 @@ const TextLabel = ({ x, y, index, data, displayKey, section, fill,}) => {
 }
 
 export const LineLabel = (props) => {
-  const {x,y, displayKey, section, data, index, viewBox} = props
+  const {x,y, displayKey, section, data, index} = props
   if( !y || !section || !data) {
     return
   }
-  console.log(viewBox)
   const word = data[index][section][displayKey]
   const length = 70;
   const strokeWidth = 3;
@@ -43,7 +42,7 @@ export const DotLabel  = ( props) => {
 }
 
 export const ConditionLabel = (props) => {
-  const {x, y, displayKey, color, section, shouldShowText} = props;
+  const {x, y, displayKey, color, section, shouldShowText, index, data} = props;
 
   const text = displayKey ? displayKey : "min"
 
@@ -57,7 +56,7 @@ export const ConditionLabel = (props) => {
   )
   }
 
-  return <DotLabel fill={fill} x={x} y={y}/>;
+  return <DotLabel fill={fill} x={x} y={y} index={index} data={data}/>;
 }
 
 export default TextLabel
