@@ -1,5 +1,3 @@
-import {YDisplayReset} from './YAxisFunc';
-
 const TextLabel = ({ x, y, index, data, displayKey, section, fill,}) => {
   const content = displayKey? displayKey : "max"
   const word = data[index][section][content];
@@ -14,6 +12,24 @@ const TextLabel = ({ x, y, index, data, displayKey, section, fill,}) => {
     </text>
     </>
   );
+}
+
+export const LineLabel = (props) => {
+  const {x,y, displayKey, section, data, index, viewBox} = props
+  if( !y || !section || !data) {
+    return
+  }
+  console.log(viewBox)
+  const word = data[index][section][displayKey]
+  const length = 70;
+  const strokeWidth = 3;
+  const y1 = y + length / 2;
+  const y2 = y - length /2;
+  const fontSize = 16
+  return <>
+  <line stroke='black' strokeWidth={strokeWidth} x1={x} y1={y1} x2={x} y2={y2}/>
+  <text x={x - fontSize * 0.75} y={y1 + fontSize * 1.5} fontSize={fontSize}>{word}</text>
+  </>
 }
 
 export const DotLabel  = ( props) => {
@@ -34,8 +50,10 @@ export const ConditionLabel = (props) => {
   const fill = color ? color : "green"
 
   if (shouldShowText) {
-  return (
+  return (<>
+    <LineLabel {...props} displayKey={text} section={section}/>
     <TextLabel {...props} displayKey={text} section={section} fill={fill}/>
+    </>
   )
   }
 
