@@ -8,7 +8,7 @@ const TextLabel = ({ x, y, index, data, displayKey, section, fill,}) => {
   }
   return (
     <>
-    <circle r="15" fill={fill ? fill : "green"} cx={x} cy={y}/>;
+    <circle r="17" fill={fill ? fill : "green"} cx={x} cy={y}/>;
     <text x={x} y={y} dy={5} fontSize={14} fill="white" textAnchor="middle" >
       {word}
     </text>
@@ -27,20 +27,19 @@ export const DotLabel  = ( props) => {
 }
 
 export const ConditionLabel = (props) => {
-  const {value, x, y, displayKey, color, domain, safeRange, section} = props;
+  const {x, y, displayKey, color, section, shouldShowText} = props;
 
   const text = displayKey ? displayKey : "min"
 
   const fill = color ? color : "green"
 
-  if (value < YDisplayReset({value: safeRange[1], domain}) 
-  && value > YDisplayReset({value:safeRange[0],domain})) {
-    return <DotLabel fill={fill} x={x} y={y}/>;
-  };
-
+  if (shouldShowText) {
   return (
     <TextLabel {...props} displayKey={text} section={section} fill={fill}/>
   )
+  }
+
+  return <DotLabel fill={fill} x={x} y={y}/>;
 }
 
 export default TextLabel

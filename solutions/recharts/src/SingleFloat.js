@@ -1,6 +1,6 @@
 import {LineChart, Scatter, ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import {XAxisJustifiedProps, getResetTime,XWidth} from './XAxisFunc';
-import {DotLabel} from './Label';
+import {ConditionLabel} from './Label';
 import { data } from './data';
 import ModifyTooltip from './Tooltip';
 import {getYAxisSharedProps, formatData, getYAxisHeight} from './YAxisFunc';
@@ -39,6 +39,15 @@ const CustomizedTooltip = ({payload}) => {
   )
 }
 
+const getShouldShowText = (props) => props.index >= props.data.length - 3; // show last 2
+
+const CustomizedLabel = (props) => {
+  
+  const shouldShowText = getShouldShowText(props)
+
+  return <ConditionLabel {...props} shouldShowText={shouldShowText} color="black" />
+}
+
 const YAxisSharedProps = getYAxisSharedProps({gap: YGap, domain: YDomain})
 
 const LineChartProps = {
@@ -64,7 +73,7 @@ const LineChartProps = {
       <CartesianGrid stroke="#ddd"/>
       <YAxis {...YAxisSharedProps} hide={true}/>
       <Scatter dataKey="display.error" fill="red" shape="star" />
-      <Line dataKey="display.min" connectNulls stroke='black' label={<DotLabel data={data} fill="black"/>}  />
+      <Line dataKey="display.min" connectNulls stroke='black' label={<CustomizedLabel data={data} section="float" fill="black"/>}  />
   </ComposedChart>
 </span>
 </div>
