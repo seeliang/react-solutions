@@ -15,19 +15,21 @@ const TextLabel = ({ x, y, index, data, displayKey, section, fill,}) => {
 }
 
 export const LineLabel = (props) => {
-  const {x,y, displayKey, section, data, index} = props
+  const {x,y, displayKey, section, data, index, isTextTop = false} = props
   if( !y || !section || !data) {
     return
   }
   const word = data[index][section][displayKey]
-  const length = 70;
+  const length = 24;
   const strokeWidth = 3;
   const y1 = y + length / 2;
   const y2 = y - length /2;
-  const fontSize = 16
+  const fontSize = 14;
+  const textLineGap = fontSize * 2
+  const textPosition = isTextTop ? y1 - textLineGap - 2 : y1 + textLineGap
   return <>
   <line stroke='black' strokeWidth={strokeWidth} x1={x} y1={y1} x2={x} y2={y2}/>
-  <text x={x - fontSize * 0.75} y={y1 + fontSize * 1.5} fontSize={fontSize}>{word}</text>
+  <text x={x - fontSize} y={textPosition} textAnchor="center" fontSize={fontSize}>{word}</text>
   </>
 }
 
