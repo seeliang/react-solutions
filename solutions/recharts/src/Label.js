@@ -26,10 +26,10 @@ export const LineLabel = (props) => {
   const y2 = y - length /2;
   const fontSize = 14;
   const textLineGap = fontSize * 2
-  const textPosition = isTextTop ? y1 - textLineGap - 2 : y1 + textLineGap
+  const textPosition = isTextTop ? y1 - textLineGap : y1 + textLineGap
   return <>
   <line stroke='black' strokeWidth={strokeWidth} x1={x} y1={y1} x2={x} y2={y2}/>
-  <text x={x - fontSize} y={textPosition} textAnchor="center" fontSize={fontSize}>{word}</text>
+  <text x={x} y={textPosition} textAnchor="middle" fontSize={fontSize} width="150">{word}</text>
   </>
 }
 
