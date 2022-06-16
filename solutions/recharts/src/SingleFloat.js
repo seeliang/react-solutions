@@ -43,9 +43,10 @@ const getShouldShowText = (props) => props.index >= props.data.length - 3; // sh
 
 const CustomizedLabel = (props) => {
   
-  const shouldShowText = getShouldShowText(props)
+  const shouldShowText = getShouldShowText(props);
+  const isTextOnLeft = props.index === props.data.length - 3
 
-  return <ConditionLabel {...props} shouldShowText={shouldShowText} color="black" />
+  return <ConditionLabel {...props} shouldShowText={shouldShowText} isTextOnLeft={isTextOnLeft} color="black" />
 }
 
 const YAxisSharedProps = getYAxisSharedProps({gap: YGap, domain: YDomain})

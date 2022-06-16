@@ -16,7 +16,6 @@ const TextLabel = ({ x, y, index, data, displayKey, section, fill,}) => {
 
 const getYCenter = ({y, lineLength, fontSize}) => {
   const minSpaceForText = lineLength / 2 + fontSize 
-  console.log(minSpaceForText, y);
   if(minSpaceForText > y / 2 ) {
     return y + fontSize * 0.9
   }
@@ -24,7 +23,7 @@ const getYCenter = ({y, lineLength, fontSize}) => {
 }
 
 export const LineLabel = (props) => {
-  const {x,y, displayKey, section, data, index, isTextOnLeft = false} = props
+  const {x,y, displayKey, section, data, index, isTextOnLeft = false, shouldShowText = false} = props
   if( !y || !section || !data) {
     return
   }
@@ -34,16 +33,15 @@ export const LineLabel = (props) => {
   const YCenter = getYCenter({y, lineLength, fontSize})
   const y1 = YCenter + lineLength / 2;
   const y2 = YCenter - lineLength /2;
-
-
-  const word = data[index][section][displayKey]
+  const word = shouldShowText ? data[index][section][displayKey] : ''
   const textWithGap = isTextOnLeft ? x - 10 : x + 10; 
-  const textAnchor = isTextOnLeft ? "end" : "start"
+  const textAnchor = isTextOnLeft ? "end" : "start";
 
   return <>
-  <text x={textWithGap} y={y1} textAnchor={textAnchor} fontSize={fontSize} width={150} >{word}</text>
+  {shouldShowText && <text x={textWithGap} y={y2} textAnchor={textAnchor} fontSize={fontSize} width={150} >{word}</text>}
   <line stroke='black' strokeWidth={strokeWidth} x1={x} y1={y1} x2={x} y2={y2}/>
-  <text x={textWithGap} y={y2} textAnchor={textAnchor} fontSize={fontSize} width={150} >{word}</text>
+  {(shouldShowText && word.length > 0) && 
+  <text x={textWithGap} y={y1} textAnchor={textAnchor} fontSize={fontSize} width={150} >{word}</text>}
   </>
 }
 
