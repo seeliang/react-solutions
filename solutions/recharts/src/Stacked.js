@@ -64,7 +64,7 @@ const LineChartProps = {
       <CartesianGrid stroke="#ddd" />
       <Tooltip content={CustomizedTooltip}/>
       <YAxis {...YAxisSharedProps} hide={true}/>
-      <Scatter dataKey="display.error" fill="grey" shape="cross" />
+      <Scatter dataKey="display.error" fill="grey" />
   
       <Bar dataKey="display.min" stackId="join" fill="indigo" />
       <Bar dataKey="display.max" stackId="join" fill="aquamarine"/>
