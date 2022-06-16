@@ -10,7 +10,7 @@ const timeToNum = (string) => {
 }
 
 const XDisplayReset = (value) => {
-  return value - timeToNum(data[0].name) + XGap; 
+  return value - timeToNum(data[0].name); 
 }
 
 const addLeadZero = (value) => value < 10 ? `0${value}` : value

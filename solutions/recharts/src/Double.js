@@ -50,7 +50,7 @@ const CustomizedTooltip = ({payload}) => {
 const Line = ({x,y, gap}) => {
   const strokeWidth = 3;
   const capWidth = 7;
-  const XCorrected = x + 34;
+  const XCorrected = x + capWidth + strokeWidth / 2;
   const YTop = y;
   const YBottom = y + gap;
   return <>
