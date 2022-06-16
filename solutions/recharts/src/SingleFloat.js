@@ -41,12 +41,32 @@ const CustomizedTooltip = ({payload}) => {
 
 const getShouldShowText = (props) => props.index >= props.data.length - 2; // show last 2
 
+const getShouldShowLine = (props) => {
+  const intensiveGap = 1000 * 60 * 4
+  const {index,data} = props;
+  const currentDataTimeStamp = getResetTime(data[index].name);
+  if(index < data.length - 1) {
+    const nextDataTimeStamp = getResetTime(data[index + 1].name);
+    if((currentDataTimeStamp + intensiveGap) > nextDataTimeStamp) {
+      return true
+    }
+  }
+  if(index > 1) {
+   const prevDataTimeStamp = getResetTime(data[index - 1].name);
+   if((prevDataTimeStamp + intensiveGap) > currentDataTimeStamp) {
+    console.log(index, currentDataTimeStamp, prevDataTimeStamp)
+    return true
+    }
+  }
+  return false
+}
+
+
 const CustomizedLabel = (props) => {
   const { index, data} = props
-  console.log(props);
   const shouldShowText = getShouldShowText(props);
   const isTextOnLeft = index === data.length - 2;
-  const shouldShowLine = false
+  const shouldShowLine = getShouldShowLine(props)
 
   return <ConditionLabel {...props} shouldShowText={shouldShowText} isTextOnLeft={isTextOnLeft} color="black" shouldShowLine={shouldShowLine}/>
 }
