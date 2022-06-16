@@ -39,14 +39,16 @@ const CustomizedTooltip = ({payload}) => {
   )
 }
 
-const getShouldShowText = (props) => props.index >= props.data.length - 3; // show last 2
+const getShouldShowText = (props) => props.index >= props.data.length - 2; // show last 2
 
 const CustomizedLabel = (props) => {
-  
+  const { index, data} = props
+  console.log(props);
   const shouldShowText = getShouldShowText(props);
-  const isTextOnLeft = props.index === props.data.length - 3
+  const isTextOnLeft = index === data.length - 2;
+  const shouldShowLine = false
 
-  return <ConditionLabel {...props} shouldShowText={shouldShowText} isTextOnLeft={isTextOnLeft} color="black" />
+  return <ConditionLabel {...props} shouldShowText={shouldShowText} isTextOnLeft={isTextOnLeft} color="black" shouldShowLine={shouldShowLine}/>
 }
 
 const YAxisSharedProps = getYAxisSharedProps({gap: YGap, domain: YDomain})

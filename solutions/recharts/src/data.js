@@ -220,7 +220,7 @@ export const data = [
     min: 64
     },
     float: {
-      min: 46.4
+      min: 30.4
     },
     number: {
       max: 70,
@@ -259,7 +259,64 @@ export const data = [
     min: 110
     },
     float: {
+      min: 47.1
+    },
+    number: {
+      max: 140,
+    },
+    one: {
+      min: 1
+    }
+  },
+  {
+    name: "01/01/2022 02:32",
+    split: {
+      min: 33
+    },
+    double: {
+    max: 140,
+    min: 110
+    },
+    float: {
+      min: 40.1
+    },
+    number: {
+      max: 140,
+    },
+    one: {
+      min: 1
+    }
+  },
+  {
+    name: "01/01/2022 02:34",
+    split: {
+      min: 33
+    },
+    double: {
+    max: 140,
+    min: 110
+    },
+    float: {
       min: 41.1
+    },
+    number: {
+      max: 140,
+    },
+    one: {
+      min: 1
+    }
+  },
+  {
+    name: "01/01/2022 02:36",
+    split: {
+      min: 33
+    },
+    double: {
+    max: 140,
+    min: 110
+    },
+    float: {
+      min: 47.1
     },
     number: {
       max: 140,
