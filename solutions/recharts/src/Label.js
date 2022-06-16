@@ -37,13 +37,13 @@ export const LineLabel = (props) => {
 
 
   const word = data[index][section][displayKey]
-  const textGap = isTextOnLeft ? x - fontSize * 3 : x + fontSize * 1
-  const textAnchor = "right"
+  const textWithGap = isTextOnLeft ? x - 10 : x + 10; 
+  const textAnchor = isTextOnLeft ? "end" : "start"
 
   return <>
-  <text x={textGap} y={y1} textAnchor={textAnchor} fontSize={fontSize} >{word}</text>
+  <text x={textWithGap} y={y1} textAnchor={textAnchor} fontSize={fontSize} width={150} >{word}</text>
   <line stroke='black' strokeWidth={strokeWidth} x1={x} y1={y1} x2={x} y2={y2}/>
-  <text x={textGap} y={y2} textAnchor={textAnchor} fontSize={fontSize} >{word}</text>
+  <text x={textWithGap} y={y2} textAnchor={textAnchor} fontSize={fontSize} width={150} >{word}</text>
   </>
 }
 
