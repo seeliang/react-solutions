@@ -58,15 +58,15 @@ export const DotLabel  = ( props) => {
 export const ConditionLabel = (props) => {
   const {x, y, displayKey, color, section, shouldShowText, index, data, shouldShowLine} = props;
 
-  const text = displayKey ? displayKey : "min"
+  const textKey = displayKey ? displayKey : "min"
 
   const fill = color ? color : "green"
 
   if (shouldShowLine) {
-    return <LineLabel {...props} displayKey={text} section={section} />
+    return <LineLabel {...props} displayKey={textKey} section={section} />
   }
   if (shouldShowText) {
-  return <TextLabel {...props} displayKey={text} section={section} fill={fill}/>
+  return <TextLabel {...props} displayKey={textKey} section={section} fill={fill}/>
   }
 
   return <DotLabel fill={fill} x={x} y={y} index={index} data={data}/>;
