@@ -1,6 +1,6 @@
 import {LineChart, Scatter, ComposedChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import {XAxisJustifiedProps, getResetTime,XWidth} from './XAxisFunc';
-import {ConditionLabel} from './Label';
+import {ConditionLabel, getShouldShowLine, getShouldShowText} from './Label';
 import { data } from './data';
 import ModifyTooltip from './Tooltip';
 import {getYAxisSharedProps, formatData, getYAxisHeight} from './YAxisFunc';
@@ -39,27 +39,7 @@ const CustomizedTooltip = ({payload}) => {
   )
 }
 
-const getShouldShowText = (props) => props.index >= props.data.length - 2; // show last 2
 
-const getShouldShowLine = (props) => {
-  const intensiveGap = 1000 * 60 * 4
-  const {index,data} = props;
-  const currentDataTimeStamp = getResetTime(data[index].name);
-  if(index < data.length - 1) {
-    const nextDataTimeStamp = getResetTime(data[index + 1].name);
-    if((currentDataTimeStamp + intensiveGap) > nextDataTimeStamp) {
-      return true
-    }
-  }
-  if(index > 1) {
-   const prevDataTimeStamp = getResetTime(data[index - 1].name);
-   if((prevDataTimeStamp + intensiveGap) > currentDataTimeStamp) {
-    console.log(index, currentDataTimeStamp, prevDataTimeStamp)
-    return true
-    }
-  }
-  return false
-}
 
 
 const CustomizedLabel = (props) => {

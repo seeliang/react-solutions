@@ -1,3 +1,4 @@
+import { getResetTime} from './XAxisFunc';
 const TextLabel = ({ x, y, index, data, displayKey, section, fill,}) => {
   const content = displayKey? displayKey : "max"
   const word = data[index][section][content];
@@ -37,6 +38,10 @@ export const LineLabel = (props) => {
   const textWithGap = isTextOnLeft ? x - 10 : x + 10; 
   const textAnchor = isTextOnLeft ? "end" : "start";
 
+  if(displayKey === "double") {
+    //console.log(section,data[index][section]);
+    return
+  }
   return <>
   {shouldShowText && <text x={textWithGap} y={y2} textAnchor={textAnchor} fontSize={fontSize} width={150} >{word}</text>}
   <line stroke='black' strokeWidth={strokeWidth} x1={x} y1={y1} x2={x} y2={y2}/>
@@ -70,6 +75,27 @@ export const ConditionLabel = (props) => {
   }
 
   return <DotLabel fill={fill} x={x} y={y} index={index} data={data}/>;
+}
+
+export const getShouldShowText = (props) => props.index >= props.data.length - 2; // show last 2
+
+export const getShouldShowLine = (props) => {
+  const intensiveGap = 1000 * 60 * 4
+  const {index,data} = props;
+  const currentDataTimeStamp = getResetTime(data[index].name);
+  if(index < data.length - 1) {
+    const nextDataTimeStamp = getResetTime(data[index + 1].name);
+    if((currentDataTimeStamp + intensiveGap) > nextDataTimeStamp) {
+      return true
+    }
+  }
+  if(index > 1) {
+   const prevDataTimeStamp = getResetTime(data[index - 1].name);
+   if((prevDataTimeStamp + intensiveGap) > currentDataTimeStamp) {
+    return true
+    }
+  }
+  return false
 }
 
 export default TextLabel
