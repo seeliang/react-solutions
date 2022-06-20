@@ -10,13 +10,13 @@ const timeToNum = (string) => {
 }
 
 const XDisplayReset = (value) => {
-  return value - timeToNum(data[0].name) + XGap; 
+  return value - timeToNum(data[0].name); 
 }
 
 const addLeadZero = (value) => value < 10 ? `0${value}` : value
 
 function formatXAxis(modifiedValue) {
-  const dateNumber = modifiedValue + timeToNum(data[0].name) - XGap;
+  const dateNumber = modifiedValue + timeToNum(data[0].name);
   const date = new Date(dateNumber);
   const isNewDate = date.getHours() + date.getMinutes() === 0;
   const dateDisplay = `${addLeadZero(date.getDate())}/${addLeadZero(date.getMonth() + 1)}/${date.getFullYear()} `;
@@ -27,16 +27,16 @@ export const getResetTime = (time) => XDisplayReset(timeToNum(time));
 
 const lastCheckTime = data[data.length - 1].name;
 
-const XTickCount = (Math.ceil(getResetTime(lastCheckTime) / XGap) + 3).toString(10)
+const XTickCells = Math.ceil(getResetTime(lastCheckTime) / XGap)
 
-export const XWidth = (XTickCount) * 150;
+export const XWidth = XTickCells * 200;
 
 export const XAxisProps = {
   dataKey:"display.time",
-  domain: [0, getResetTime(lastCheckTime) + 2 * XGap ],
+  domain: [0, XTickCells * XGap ],
    type:"number",
    orientation:'top',
-    tickCount: XTickCount,
+    tickCount: XTickCells + 1,
      tickFormatter:formatXAxis,
 }
 
