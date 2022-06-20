@@ -4,7 +4,8 @@ import { data } from './data'
 import { getYAxisHeight, getYAxisSharedProps, formatData} from './YAxisFunc'
 import ModifyTooltip from './Tooltip';
 import backgroundFill from './backgroundFill';
-
+import { ConditionLabel, getShouldShowLine, getShouldShowText} from './Label';
+ 
 const YDomain = [60,220];
 const safeRange = [80,180]
 const YGap = 10
@@ -23,9 +24,7 @@ function addDisplayToData (data) {
     ({...i,
     display: {
     time: getResetTime(i.name),
-
-    middle: [formatData({domain: YDomain, gap: YGap, value: i.double.max}), formatData({domain: YDomain, gap: YGap, value: i.double.min})] ,
-
+    double: [formatData({domain: YDomain, gap: YGap, value: i.double.max}), formatData({domain: YDomain, gap: YGap, value: i.double.min})] ,
     } 
   }) )
 }
@@ -60,11 +59,16 @@ const Line = ({x,y, gap}) => {
   </>
 }
 
-
 const BarShape = (props) => {
-  const {x,y, height, isError} = props
+  const {x,y, height, isError, index} = props
   if(isError) {
     return
+  }
+  const shouldShowText = getShouldShowText(props);
+  const isTextOnLeft = index === data.length - 2;
+  const shouldShowLine = getShouldShowLine(props);
+  if(shouldShowLine) {
+    return <ConditionLabel {...props} shouldShowText={shouldShowText} isTextOnLeft={isTextOnLeft} color="black" shouldShowLine={shouldShowLine}/>
   }
   return (<>
     <Line  x={x} y={y} gap={height} />
@@ -97,7 +101,7 @@ const LineChartProps = {
       <Tooltip content={CustomizedTooltip}/>
       <YAxis {...YAxisSharedProps} hide={true}/>
       <Scatter dataKey="display.error" fill="grey"  />
-      <Bar dataKey="display.middle"  shape={<BarShape />} />
+      <Bar dataKey="display.double"  shape={<BarShape displayKey="double" section="double" data={data}/>} />
   </ComposedChart>
 </span>
 </div>

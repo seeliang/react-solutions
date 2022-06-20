@@ -34,19 +34,24 @@ export const LineLabel = (props) => {
   const YCenter = getYCenter({y, lineLength, fontSize})
   const y1 = YCenter + lineLength / 2;
   const y2 = YCenter - lineLength /2;
-  const word = shouldShowText ? data[index][section][displayKey] : ''
+
   const textWithGap = isTextOnLeft ? x - 10 : x + 10; 
   const textAnchor = isTextOnLeft ? "end" : "start";
+  const textData = data[index][section]
+  let words = [];
 
   if(displayKey === "double") {
-    //console.log(section,data[index][section]);
-    return
+    Object.keys(textData).forEach(i => words = [...words, textData[i]]);
+  }
+
+  if(words.length === 0 && shouldShowText){
+   words[0] = shouldShowText ? textData[displayKey] : ''
   }
   return <>
-  {shouldShowText && <text x={textWithGap} y={y2} textAnchor={textAnchor} fontSize={fontSize} width={150} >{word}</text>}
+  {shouldShowText && <text x={textWithGap} y={y2} textAnchor={textAnchor} fontSize={fontSize} width={150} >{words[0]}</text>}
   <line stroke='black' strokeWidth={strokeWidth} x1={x} y1={y1} x2={x} y2={y2}/>
-  {(shouldShowText && word.length > 0) && 
-  <text x={textWithGap} y={y1} textAnchor={textAnchor} fontSize={fontSize} width={150} >{word}</text>}
+  {(shouldShowText && words[1]) && 
+  <text x={textWithGap} y={y1} textAnchor={textAnchor} fontSize={fontSize} width={150} >{words[1]}</text>}
   </>
 }
 
