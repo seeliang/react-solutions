@@ -1,6 +1,6 @@
 import { data } from './data';
 
-const XGap = 900000; // 15min with ms
+const XGap = 1000 * 60 * 15; // 15min with ms
 const regexGetDigits = /\D/g;
 
 const timeToNum = (string) => {
@@ -27,17 +27,17 @@ export const getResetTime = (time) => XDisplayReset(timeToNum(time));
 
 const lastCheckTime = data[data.length - 1].name;
 
-const XTickCells = Math.ceil(getResetTime(lastCheckTime) / XGap)
+const XTickCells = Math.ceil(getResetTime(lastCheckTime) / XGap) + 1
 
 export const XWidth = XTickCells * 200;
 
 export const XAxisProps = {
   dataKey:"display.time",
-  domain: [0, XTickCells * XGap ],
-   type:"number",
-   orientation:'top',
-    tickCount: XTickCells + 1,
-     tickFormatter:formatXAxis,
+  domain: [0 - XGap, XTickCells * XGap ],
+  type:"number",
+  orientation:'top',
+  tickCount: XTickCells + 2,
+  tickFormatter:formatXAxis,
 }
 
 export const XAxisJustifiedProps =  {...XAxisProps, hide: true}
