@@ -10,13 +10,13 @@ const timeToNum = (string) => {
 }
 
 const XDisplayReset = (value) => {
-  return value - timeToNum(data[0].name); 
+  return value - timeToNum(data[0].name) + XGap; 
 }
 
 const addLeadZero = (value) => value < 10 ? `0${value}` : value
 
 function formatXAxis(modifiedValue) {
-  const dateNumber = modifiedValue + timeToNum(data[0].name);
+  const dateNumber = modifiedValue + timeToNum(data[0].name) - XGap;
   const date = new Date(dateNumber);
   const isNewDate = date.getHours() + date.getMinutes() === 0;
   const dateDisplay = `${addLeadZero(date.getDate())}/${addLeadZero(date.getMonth() + 1)}/${date.getFullYear()} `;
