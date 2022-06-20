@@ -24,28 +24,37 @@ const getYCenter = ({y, lineLength, fontSize}) => {
 }
 
 export const LineLabel = (props) => {
-  const {x,y, displayKey, section, data, index, isTextOnLeft = false, shouldShowText = false} = props
+  const {x,y, displayKey, section, data, index, isTextOnLeft = false, shouldShowText = false, height} = props
   if( !y || !section || !data) {
     return
   }
+
   const lineLength = 35;
   const strokeWidth = 3;
   const fontSize = 14;
   const YCenter = getYCenter({y, lineLength, fontSize})
-  const y1 = YCenter + lineLength / 2;
-  const y2 = YCenter - lineLength /2;
+
 
   const textWithGap = isTextOnLeft ? x - 10 : x + 10; 
   const textAnchor = isTextOnLeft ? "end" : "start";
-  const textData = data[index][section]
+  const textData = data[index][section];
+  let y1;
+  let y2
   let words = [];
 
   if(displayKey === "double") {
     Object.keys(textData).forEach(i => words = [...words, textData[i]]);
+    y1 = y;
+    y2 = y + height
   }
 
   if(words.length === 0 && shouldShowText){
-   words[0] = shouldShowText ? textData[displayKey] : ''
+    words[0] = shouldShowText ? textData[displayKey] : ''
+  }
+
+  if(!y1){
+    y1 = YCenter + lineLength / 2;
+    y2 = YCenter - lineLength / 2;
   }
   return <>
   {shouldShowText && <text x={textWithGap} y={y2} textAnchor={textAnchor} fontSize={fontSize} width={150} >{words[0]}</text>}

@@ -274,8 +274,8 @@ export const data = [
       min: 33
     },
     double: {
-    max: 140,
-    min: 110
+    max: 105,
+    min: 80
     },
     float: {
       min: 40.1
@@ -293,8 +293,8 @@ export const data = [
       min: 33
     },
     double: {
-    max: 140,
-    min: 110
+    max: 145,
+    min: 90
     },
     float: {
       min: 41.1
@@ -312,8 +312,8 @@ export const data = [
       min: 33
     },
     double: {
-    max: 140,
-    min: 110
+    max: 160,
+    min: 120
     },
     float: {
       min: 47.1
