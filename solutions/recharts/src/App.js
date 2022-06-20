@@ -17,8 +17,9 @@ function App() {
       <TableHead />
       <Double />
       <SingleFloat />
-      <Stacked />
       <Split />
+      <Stacked />
+
 
     <Number />
     <OneRow />

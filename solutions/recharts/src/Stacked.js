@@ -2,6 +2,7 @@ import { Bar, ComposedChart, Scatter, LineChart, XAxis, YAxis, CartesianGrid, To
 import {XAxisJustifiedProps, getResetTime, XWidth} from './XAxisFunc';
 import { data } from './data'
 import { getYAxisHeight, getYAxisSharedProps, formatData} from './YAxisFunc'
+import { EmptyShape } from './Label';
 import ModifyTooltip from './Tooltip';
 const YDomain = [0,310];
 const YGap = 10
@@ -64,7 +65,7 @@ const LineChartProps = {
       <CartesianGrid stroke="#ddd" />
       <Tooltip content={CustomizedTooltip}/>
       <YAxis {...YAxisSharedProps} hide={true}/>
-      <Scatter dataKey="display.error" fill="grey" />
+      <Scatter dataKey="display.error" fill="grey" shape={<EmptyShape data={data}/>} />
   
       <Bar dataKey="display.min" stackId="join" fill="indigo" />
       <Bar dataKey="display.max" stackId="join" fill="aquamarine"/>

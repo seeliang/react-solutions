@@ -23,6 +23,9 @@ const getYCenter = ({y, lineLength, fontSize}) => {
   return y
 }
 
+export const EmptyShape = ({x,y}) => <text x={x} y={y} fontSize={14}  >&empty;</text>
+
+
 export const LineLabel = (props) => {
   const {x,y, displayKey, section, data, index, isTextOnLeft = false, shouldShowText = false, height} = props
   if( !y || !section || !data) {

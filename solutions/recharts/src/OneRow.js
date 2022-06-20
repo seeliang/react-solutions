@@ -1,6 +1,6 @@
 
 import { ComposedChart,LineChart, Line, XAxis, YAxis, Tooltip, Scatter} from 'recharts';
-import TextLabel from './Label';
+import TextLabel, {EmptyShape} from './Label';
 import {XAxisJustifiedProps,  getResetTime, XWidth} from './XAxisFunc';
 import ModifyTooltip from './Tooltip';
 import { data } from './data';
@@ -60,7 +60,7 @@ const LineChartProps = {
       <XAxis {...XAxisJustifiedProps}/>
       <YAxis {...YAxisSharedProps}  hide={true}/>
       <Tooltip dataKey="display.error"  cursor={false}  content={CustomizedTooltip}/>
-      <Scatter dataKey="display.error" fill="grey"  />
+      <Scatter dataKey="display.error" fill="grey" shape={<EmptyShape data={data}/>}  />
       <Line dataKey="display.min" activeDot={false}strokeWidth="0" label={<TextLabel data={data} section="one" displayKey="min"/>}  />
   </ComposedChart>
 </span>

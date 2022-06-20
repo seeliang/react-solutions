@@ -4,7 +4,7 @@ import { data } from './data'
 import { getYAxisHeight, getYAxisSharedProps, formatData} from './YAxisFunc'
 import ModifyTooltip from './Tooltip';
 import backgroundFill from './backgroundFill';
-import { ConditionLabel, getShouldShowLine, getShouldShowText} from './Label';
+import { ConditionLabel, getShouldShowLine, getShouldShowText, EmptyShape} from './Label';
  
 const YDomain = [60,220];
 const safeRange = [80,180]
@@ -75,7 +75,6 @@ const BarShape = (props) => {
   </>)
 }
 
-
 const YAxisSharedProps = getYAxisSharedProps({domain: YDomain, gap: YGap})
 
 const LineChartProps = {
@@ -100,7 +99,7 @@ const LineChartProps = {
       <CartesianGrid stroke="#ddd" />
       <Tooltip content={CustomizedTooltip}/>
       <YAxis {...YAxisSharedProps} hide={true}/>
-      <Scatter dataKey="display.error" fill="grey"  />
+      <Scatter dataKey="display.error" fill="grey" shape={<EmptyShape data={data}/>}  />
       <Bar dataKey="display.double"  shape={<BarShape displayKey="double" section="double" data={data}/>} />
   </ComposedChart>
 </span>
