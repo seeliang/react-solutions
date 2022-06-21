@@ -1,16 +1,8 @@
 
 import { LineChart, XAxis} from 'recharts';
-import { XAxisProps, getResetTime,XWidth} from './XAxisFunc';
+import { XAxisTimeProps,XWidth} from './XAxisFunc';
 
 import { data } from './data';
-
-function addDisplayToData (data) {
-  return data.map(i => ({...i, 
-    display: {
-    time: getResetTime(i.name)
-    } 
-  }) )
-}
 
 const TableHead = () => (
   <div className="table sticky-header">
@@ -21,8 +13,8 @@ const TableHead = () => (
   </span>
   </span>
   <span className="cell">
-  <LineChart width={XWidth} height={40} data={addDisplayToData(data)}>
-      <XAxis  {...XAxisProps}/>
+  <LineChart width={XWidth} height={40} data={data}>
+      <XAxis  {...XAxisTimeProps}/>
   </LineChart>
   </span>
   </div>
