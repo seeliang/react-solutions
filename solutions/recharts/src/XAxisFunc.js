@@ -38,18 +38,17 @@ const end = (Math.ceil(timeToNum(lastCheckTime)/XGap) + 1) * XGap
 const ticks = (end - start) / XGap + 1
 
 export const XAxisTimeProps = {
-  dataKey:"display",
+  dataKey: "none",
   domain: [start, end ],
   type:"number",
-  orientation:'top',
   tickCount: ticks,
   tickFormatter:formatXAxis,
 }
 
 export const XAxisProps = {
+  
   dataKey:"display.time",
   domain: [0 - XGap, XTickCells * XGap ],
-  orientation:'top',
   tickCount: ticks,
   tickFormatter:formatXAxis,
 }
