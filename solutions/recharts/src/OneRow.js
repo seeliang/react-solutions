@@ -1,7 +1,7 @@
 
 import { ComposedChart,LineChart, Line, XAxis, YAxis, Tooltip, Scatter} from 'recharts';
 import TextLabel, {EmptyShape} from './Label';
-import {XAxisJustifiedProps,  getResetTime, XWidth} from './XAxisFunc';
+import {XAxisGraphProps,  timeToNum, XWidth} from './XAxisFunc';
 import ModifyTooltip from './Tooltip';
 import { data } from './data';
 
@@ -10,12 +10,12 @@ const addDisplayToData = (data) =>
     ({...i, 
       display: {
       error: 5,
-      time: getResetTime(i.name)
+      time: timeToNum(i.name)
       } 
     }) : ({...i, 
     display: {
     min: 5,
-    time: getResetTime(i.name)
+    time: timeToNum(i.name)
     } 
   }) )
 
@@ -57,11 +57,11 @@ const LineChartProps = {
   </span>
   <span className="cell">
     <ComposedChart width={XWidth} {...LineChartProps}>
-      <XAxis {...XAxisJustifiedProps}/>
+      <XAxis {...XAxisGraphProps}/>
       <YAxis {...YAxisSharedProps}  hide={true}/>
       <Tooltip dataKey="display.error"  cursor={false}  content={CustomizedTooltip}/>
-      <Scatter dataKey="display.error" fill="grey" shape={<EmptyShape data={data}/>}  />
-      <Line dataKey="display.min" activeDot={false}strokeWidth="0" label={<TextLabel data={data} section="one" displayKey="min"/>}  />
+      <Scatter dataKey="display.error" fill="grey" shape={<EmptyShape data={LineChartProps.data}/>}  />
+      <Line dataKey="display.min" activeDot={false} strokeWidth="0" label={<TextLabel data={LineChartProps.data} section="one" displayKey="min"/>}  />
   </ComposedChart>
 </span>
 </div>

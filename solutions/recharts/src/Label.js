@@ -1,7 +1,6 @@
 import { getResetTime} from './XAxisFunc';
-const TextLabel = ({ x, y, index, data, displayKey, section, fill,}) => {
-  const content = displayKey? displayKey : "max"
-  const word = data[index][section][content];
+const TextLabel = ({ x, y, index, data, displayKey = "max", section, fill,}) => {
+  const word = data[index][section][displayKey];
   if (data?.[index].isError) { // hide error in data line
     return
   }
@@ -60,10 +59,10 @@ export const LineLabel = (props) => {
     y2 = YCenter - lineLength / 2;
   }
   return <>
-  {shouldShowText && <text x={textWithGap} y={y2} textAnchor={textAnchor} fontSize={fontSize} width={150} >{words[0]}</text>}
-  <line stroke='black' strokeWidth={strokeWidth} x1={x} y1={y1} x2={x} y2={y2}/>
-  {(shouldShowText && words[1]) && 
-  <text x={textWithGap} y={y1} textAnchor={textAnchor} fontSize={fontSize} width={150} >{words[1]}</text>}
+    {shouldShowText && <text x={textWithGap} y={y2} textAnchor={textAnchor} fontSize={fontSize} width={150} >{words[0]}</text>}
+    <line stroke='black' strokeWidth={strokeWidth} x1={x} y1={y1} x2={x} y2={y2}/>
+    {(shouldShowText && words[1]) && 
+    <text x={textWithGap} y={y1} textAnchor={textAnchor} fontSize={fontSize} width={150} >{words[1]}</text>}
   </>
 }
 

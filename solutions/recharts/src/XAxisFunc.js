@@ -4,7 +4,7 @@ const XGap = 1000 * 60 * 15; // 15min with ms
 
 const regexGetDigits = /\D/g;
 
-const timeToNum = (string) => {
+export const timeToNum = (string) => {
   const raw = string.split(regexGetDigits).map( i => parseInt(i));
   const mark = new Date( raw[2],raw[1] - 1 ,raw[0],raw[3],raw[4]);
   return  Date.parse(mark)
@@ -38,7 +38,7 @@ const end = (Math.ceil(timeToNum(lastCheckTime)/XGap) + 1) * XGap
 const ticks = (end - start) / XGap + 1
 
 export const XAxisTimeProps = {
-  dataKey: "none",
+  dataKey: "display.time",
   domain: [start, end ],
   type:"number",
   tickCount: ticks,
@@ -52,5 +52,7 @@ export const XAxisProps = {
   tickCount: ticks,
   tickFormatter:formatXAxis,
 }
+
+export const XAxisGraphProps = {...XAxisTimeProps, hide: true}
 
 export const XAxisJustifiedProps =  {...XAxisProps, hide: true}
