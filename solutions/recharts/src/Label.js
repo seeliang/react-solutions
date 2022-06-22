@@ -1,4 +1,4 @@
-import { getResetTime} from './XAxisFunc';
+import { timeToNum} from './XAxisFunc';
 const TextLabel = ({ x, y, index, data, displayKey = "max", section, fill,}) => {
   const word = data[index][section][displayKey];
   if (data?.[index].isError) { // hide error in data line
@@ -98,15 +98,15 @@ export const getShouldShowText = (props) => props.index >= props.data.length - 2
 export const getShouldShowLine = (props) => {
   const intensiveGap = 1000 * 60 * 4
   const {index,data} = props;
-  const currentDataTimeStamp = getResetTime(data[index].name);
+  const currentDataTimeStamp = timeToNum(data[index].name);
   if(index < data.length - 1) {
-    const nextDataTimeStamp = getResetTime(data[index + 1].name);
+    const nextDataTimeStamp = timeToNum(data[index + 1].name);
     if((currentDataTimeStamp + intensiveGap) > nextDataTimeStamp) {
       return true
     }
   }
   if(index > 1) {
-   const prevDataTimeStamp = getResetTime(data[index - 1].name);
+   const prevDataTimeStamp = timeToNum(data[index - 1].name);
    if((prevDataTimeStamp + intensiveGap) > currentDataTimeStamp) {
     return true
     }

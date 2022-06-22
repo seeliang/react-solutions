@@ -1,5 +1,5 @@
 import { ComposedChart, LineChart, Line, XAxis, YAxis, CartesianGrid , Scatter, Tooltip} from 'recharts';
-import {XAxisJustifiedProps,  getResetTime, XWidth} from './XAxisFunc';
+import {XAxisGraphProps,  timeToNum, XWidth} from './XAxisFunc';
 import { data } from './data';
 import TextLabel, {EmptyShape} from './Label';
 import ModifyTooltip from './Tooltip';
@@ -18,12 +18,12 @@ const addDisplayToData = (data) =>  data.map(i => i.isError ?
   {...i, 
     display: {
       error: formatData({domain:YDomain, gap: YGap, value:i.number.max}),
-      time: getResetTime(i.name)
+      time: timeToNum(i.name)
     } 
   } : ({...i, 
     display: {
       max: formatData({domain:YDomain, gap: YGap, value:i.number.max}),
-      time: getResetTime(i.name)
+      time: timeToNum(i.name)
     } 
   }) )
 
@@ -61,7 +61,7 @@ const LineChartProps = {
   <span className="cell">
     <ComposedChart width={XWidth} {...LineChartProps}>
       {backgroundFill({array: backgroundSections, domain: YDomain})}
-      <XAxis {...XAxisJustifiedProps}/>
+      <XAxis {...XAxisGraphProps}/>
       <Tooltip dataKey="display.error" content={CustomizedTooltip}/>
       <CartesianGrid stroke="#ddd" />
       <YAxis {...YAxisSharedProps} hide={true}/>
