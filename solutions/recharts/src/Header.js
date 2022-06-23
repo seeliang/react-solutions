@@ -1,12 +1,11 @@
 
 import { LineChart, XAxis} from 'recharts';
-import { XAxisTimeProps, XWidth} from './XAxisFunc';
-
-import { data } from './data';
+import { XAxisTimeProps, XWidth, getXAxisForXGap} from './XAxisFunc';
 
 const XAxisProps = {
   ...XAxisTimeProps,
-  orientation: "top"
+  orientation: "top",
+  dataKey: "timeGap",
 }
 
 const TableHead = () => (
@@ -17,7 +16,7 @@ const TableHead = () => (
   </span>
   </span>
   <span className="cell">
-  <LineChart width={XWidth} height={40} data={data}>
+  <LineChart width={XWidth} height={40} data={getXAxisForXGap()}>
       <XAxis  {...XAxisProps}/>
   </LineChart>
   </span>
