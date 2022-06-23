@@ -1,7 +1,9 @@
 import { data } from './data';
 
+const is15min = false
+
 const hour = 1000 * 60 * 60
-const XGap = hour
+const XGap = is15min ? hour / 4 : hour
 
 const regexGetDigits = /\D/g;
 
@@ -24,7 +26,10 @@ const formatXAxis = (tickValue) => {
     const dateDisplay = `${weekday[date.getDay()]} ${addLeadZero(date.getDate())}/${addLeadZero(date.getMonth() + 1)}/${date.getFullYear()} `;
     return `${dateDisplay}`
   }
-  if(hour % 4 !== 2) {
+  if (is15min && minute !== 0 ) {
+    return ''
+  }
+  if(!is15min && hour % 4 !== 2) {
     return ''
   }
   return `${addLeadZero(hour)}:${addLeadZero(minute)}`
