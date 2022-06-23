@@ -6,7 +6,7 @@ import ModifyTooltip from './Tooltip';
 import {getYAxisSharedProps, formatData, getYAxisHeight} from './YAxisFunc';
 import backgroundFill from './backgroundFill';
 
-// need to increase Domain or reduce gap to fix gap
+// need to increase Domain or reduce gap to fix gap position
 const YDomain = [60,160]; 
 const YGap = 10;
 const safeRange = [80,120]
