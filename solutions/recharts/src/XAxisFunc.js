@@ -1,6 +1,7 @@
 import { data } from './data';
 
-const XGap = 1000 * 60 * 120; // 15min with ms
+const hour = 1000 * 60 * 60
+const XGap = hour / 4 // 15min with ms
 
 const regexGetDigits = /\D/g;
 
