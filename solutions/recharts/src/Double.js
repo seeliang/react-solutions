@@ -1,5 +1,5 @@
 import { Bar, ComposedChart, Scatter, LineChart, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
-import {XAxisGraphProps, timeToNum, XWidth} from './XAxisFunc';
+import {XAxisGraphProps, timeToNum, XWidth, CartesianGridProps} from './XAxisFunc';
 import { data } from './data'
 import { getYAxisHeight, getYAxisSharedProps, formatData} from './YAxisFunc'
 import ModifyTooltip from './Tooltip';
@@ -96,7 +96,7 @@ const LineChartProps = {
     <ComposedChart width={XWidth} {...LineChartProps}>
       {backgroundFill({array: backgroundSections, domain: YDomain})}
       <XAxis {...XAxisGraphProps}/>
-      <CartesianGrid stroke="#ddd" />
+      <CartesianGrid {...CartesianGridProps}/>
       <Tooltip content={CustomizedTooltip}/>
       <YAxis {...YAxisSharedProps} hide={true}/>
       <Scatter dataKey="display.error" fill="grey" shape={<EmptyShape data={data}/>}  />

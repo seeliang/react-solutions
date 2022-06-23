@@ -1,6 +1,6 @@
 import { data } from './data';
 
-const XGap = 1000 * 60 * 15; // 15min with ms
+const XGap = 1000 * 60 * 120; // 15min with ms
 
 const regexGetDigits = /\D/g;
 
@@ -45,3 +45,8 @@ export const XAxisTimeProps = {
 }
 
 export const XAxisGraphProps = {...XAxisTimeProps,  dataKey: "display.time", hide: true }
+
+export const CartesianGridProps = {
+  stroke:"#ddd",
+  vertical: false
+}
