@@ -1,7 +1,7 @@
 import { data } from './data';
 
 const hour = 1000 * 60 * 60
-const XGap = hour * 4
+const XGap = hour
 
 const regexGetDigits = /\D/g;
 
@@ -12,12 +12,22 @@ export const timeToNum = (string) => {
 }
 
 const addLeadZero = (value) => value < 10 ? `0${value}` : value
+const weekday = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
 
-function formatXAxis(tickValue) {
+const formatXAxis = (tickValue) => {
   const date = new Date(tickValue);
-  const isNewDate = date.getHours() + date.getMinutes() === 0;
-  const dateDisplay = `${addLeadZero(date.getDate())}/${addLeadZero(date.getMonth() + 1)}/${date.getFullYear()} `;
-  return `${isNewDate? dateDisplay: '' }${addLeadZero(date.getHours())}:${addLeadZero(date.getMinutes())}`
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  const isNewDate = hour + minute === 0;
+ 
+  if (isNewDate) {
+    const dateDisplay = `${weekday[date.getDay()]} ${addLeadZero(date.getDate())}/${addLeadZero(date.getMonth() + 1)}/${date.getFullYear()} `;
+    return `${dateDisplay}`
+  }
+  if(hour % 4 !== 2) {
+    return ''
+  }
+  return `${addLeadZero(hour)}:${addLeadZero(minute)}`
 }
 
 const lastCheckTime = data[data.length - 1].name;
@@ -25,7 +35,7 @@ const start = (Math.floor(timeToNum(data[0].name)/XGap) - 1) * XGap
 const end = (Math.ceil(timeToNum(lastCheckTime)/XGap) + 1) * XGap
 const cells = (end - start) / XGap
 const ticks = cells + 1
-export const XWidth = cells * 200;
+export const XWidth = cells * 90;
 
 export const getXAxisForXGap  = () => {
   let marker = start;
