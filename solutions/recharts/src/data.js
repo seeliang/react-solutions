@@ -1,7 +1,7 @@
 
 export const data = [
   {
-    name: "31/12/2021 23:00",
+    name: "31/12/2021 14:00",
     split: {
       min: 139
     },
@@ -20,7 +20,7 @@ export const data = [
     }
   },
   {
-    name: "31/12/2021 23:15",
+    name: "31/12/2021 18:00",
     split: {
       min: -39
     },
@@ -39,7 +39,7 @@ export const data = [
     }
   },
   {
-    name: "31/12/2021 23:30",
+    name: "31/12/2021 22:00",
     split: {
       min: 39
     },
@@ -58,7 +58,7 @@ export const data = [
     }
   },
   {
-    name: "31/12/2021 23:38",
+    name: "31/12/2021 22:38",
     split: {
       min: 19
     },
@@ -78,7 +78,7 @@ export const data = [
     }
     },
   {
-    name: "01/01/2022 00:00",
+    name: "01/01/2022 02:00",
     split: {
       min: 135
     },
@@ -97,7 +97,7 @@ export const data = [
     }
   },
   {
-    name: "01/01/2022 00:15",
+    name: "01/01/2022 06:00",
     split: {
       min: -34
     },
@@ -116,7 +116,7 @@ export const data = [
     }
   },
   {
-    name: "01/01/2022 00:30",
+    name: "01/01/2022 10:00",
     split: {
       min: 9
     },
@@ -135,7 +135,7 @@ export const data = [
     }
   },
   {
-    name: "01/01/2022 01:00",
+    name: "01/01/2022 14:00",
     split: {
       min: 15
     },
@@ -154,7 +154,7 @@ export const data = [
     }
   },
   {
-    name: "01/01/2022 01:15",
+    name: "01/01/2022 18:00",
     split: {
       min: -95
     },
@@ -173,7 +173,7 @@ export const data = [
     }
   },
   {
-    name: "01/01/2022 01:30",
+    name: "01/01/2022 22:00",
     split: {
       min: 59
     },
@@ -192,7 +192,7 @@ export const data = [
     }
   },
   {
-    name: "01/01/2022 01:38",
+    name: "02/01/2022 02:00",
     split: {
       min: 69
     },
@@ -211,7 +211,7 @@ export const data = [
     }
   },
   {
-    name: "01/01/2022 02:00",
+    name: "02/01/2022 06:00",
     split: {
       min: 13
     },
@@ -230,7 +230,7 @@ export const data = [
     },
   },
   {
-    name: "01/01/2022 02:15",
+    name: "02/01/2022 06:15",
     split: {
       min: 36
     },
@@ -250,7 +250,7 @@ export const data = [
     }
   },
   {
-    name: "01/01/2022 02:30",
+    name: "02/01/2022 06:30",
     split: {
       min: 33
     },
@@ -269,7 +269,7 @@ export const data = [
     }
   },
   {
-    name: "01/01/2022 02:32",
+    name: "02/01/2022 06:45",
     split: {
       min: 33
     },
@@ -288,7 +288,7 @@ export const data = [
     }
   },
   {
-    name: "01/01/2022 02:34",
+    name: "02/01/2022 07:04",
     split: {
       min: 33
     },
@@ -307,7 +307,7 @@ export const data = [
     }
   },
   {
-    name: "01/01/2022 02:36",
+    name: "2/01/2022 07:16",
     split: {
       min: 33
     },

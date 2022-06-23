@@ -96,18 +96,18 @@ export const ConditionLabel = (props) => {
 export const getShouldShowText = (props) => props.index >= props.data.length - 2; // show last 2
 
 export const getShouldShowLine = (props) => {
-  const intensiveGap = 1000 * 60 * 4
+  const intensiveGap = 1000 * 60 * 15
   const {index,data} = props;
   const currentDataTimeStamp = timeToNum(data[index].name);
   if(index < data.length - 1) {
     const nextDataTimeStamp = timeToNum(data[index + 1].name);
-    if((currentDataTimeStamp + intensiveGap) > nextDataTimeStamp) {
+    if((currentDataTimeStamp + intensiveGap) >= nextDataTimeStamp) {
       return true
     }
   }
   if(index > 1) {
    const prevDataTimeStamp = timeToNum(data[index - 1].name);
-   if((prevDataTimeStamp + intensiveGap) > currentDataTimeStamp) {
+   if((prevDataTimeStamp + intensiveGap) >= currentDataTimeStamp) {
     return true
     }
   }
