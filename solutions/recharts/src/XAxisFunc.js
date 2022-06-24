@@ -23,7 +23,7 @@ const formatXAxis = (tickValue) => {
   const isNewDate = hour + minute === 0;
  
   if (isNewDate) {
-    const dateDisplay = `${weekday[date.getDay()]} ${addLeadZero(date.getDate())}/${addLeadZero(date.getMonth() + 1)}/${date.getFullYear()} `;
+    const dateDisplay = `${weekday[date.getDay()]} ${addLeadZero(date.getDate())}/${date.toLocaleString('default', { month: 'short' })} `;
     return `${dateDisplay}`
   }
   if (is15min && minute !== 0 ) {
@@ -40,7 +40,7 @@ const start = (Math.floor(timeToNum(data[0].name)/XGap) - 1) * XGap
 const end = (Math.ceil(timeToNum(lastCheckTime)/XGap) + 1) * XGap
 const cells = (end - start) / XGap
 const ticks = cells + 1
-export const XWidth = cells * 90;
+export const XWidth = cells * 55;
 
 export const getXAxisForXGap  = () => {
   let marker = start;
