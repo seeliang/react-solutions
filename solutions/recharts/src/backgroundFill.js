@@ -1,7 +1,7 @@
 
 import {ReferenceArea  } from 'recharts';
 
-import {YDisplayReset} from './YAxisFunc'
+import {YDisplayReset, roundToHalf} from './YAxisFunc'
 
  const backgroundFill = ({array,domain}) => array.map( i => {
   const {y1, y2, fill, opacity} = i;
@@ -11,3 +11,8 @@ import {YDisplayReset} from './YAxisFunc'
 }) 
 
 export default backgroundFill;
+
+export const backgroundYFill = ({array}) => array.map( i => {
+  const {y1, y2, fill, opacity} = i;
+  return (<ReferenceArea key={y2 + y1} y1={y1} y2={y2} fill={fill? fill: "red"} strokeOpacity={opacity? opacity: 0.5}/> )
+}) 
