@@ -29,10 +29,6 @@ const addDisplayToData = (data) =>  data.map(i => i.isError ?
 
 const YAxisSharedProps = getYAxisProps({domain: YDomain, gap: YGap})
 
-
-
-console.log(getYAxisProps({domain: YDomain, gap: YGap}), YAxisSharedProps)
-
 const CustomizedTooltip = ({payload}) => {
   const render = payload.map(i => i.payload);
   if(!render[0] || !render[0].isError) {

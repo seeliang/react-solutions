@@ -59,16 +59,18 @@ const formatAxis = ({domain,gap}) => (value) => {
   const [start, end] = getDomain({domain, gap});
   const displayStart = start + gap ;
   const displayEnd = end - gap ;
+
   if(value === displayEnd) return "Over " + displayEnd
   if (value < displayEnd && value > displayStart ) return value
   if(value === displayStart) return "Under " + displayStart
   return ""
 }
 
-export const formatYData = ({domain, gap,value}) => {
+export const formatYData = ({domain, gap, value}) => {
   const [start, end] = getDomain({domain, gap});
   if (value < start) {
-    return gap / 2
+    console.log(roundToHalf({value: start, gap}))
+    return roundToHalf({value: start, gap}) + gap
   }
   if (value > end) {
     return roundToHalf({value: end, gap});

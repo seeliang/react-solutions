@@ -3,8 +3,8 @@ import {XAxisGraphProps, timeToNum,XWidth, CartesianGridProps} from './XAxisFunc
 import {ConditionLabel, getShouldShowLine, getShouldShowText, EmptyShape} from './Label';
 import { data } from './data';
 import ModifyTooltip from './Tooltip';
-import {getYAxisSharedProps, formatData, getYAxisHeight} from './YAxisFunc';
-import backgroundFill from './backgroundFill';
+import { formatYData, getYAxisHeight, getYAxisProps} from './YAxisFunc';
+import {backgroundYFill} from './backgroundFill';
 
 const YDomain = [34,42];
 const YGap = 0.5
@@ -13,13 +13,13 @@ const backgroundSections = [{y1:safeRange[1], y2: YDomain[1]},{y1:safeRange[1], 
 
 const addDisplayToData = (data) => data.map(i => i.isError ? ({...i, 
   display: {
-    error: formatData({domain:YDomain, gap: YGap, value:i.float.min}),
+    error: formatYData({domain:YDomain, gap: YGap, value:i.float.min}),
     time: timeToNum(i.name)
     } 
   }) :
     ({...i, 
     display: {
-    min: formatData({domain:YDomain, gap: YGap, value:i.float.min}),
+    min: formatYData({domain:YDomain, gap: YGap, value:i.float.min}),
     time: timeToNum(i.name)
     } 
   }))
@@ -51,7 +51,7 @@ const CustomizedLabel = (props) => {
   return <ConditionLabel {...props} shouldShowText={shouldShowText} isTextOnLeft={isTextOnLeft} color="black" shouldShowLine={shouldShowLine}/>
 }
 
-const YAxisSharedProps = getYAxisSharedProps({gap: YGap, domain: YDomain})
+const YAxisSharedProps = getYAxisProps({gap: YGap, domain: YDomain})
 
 const LineChartProps = {
   height: getYAxisHeight({domain: YDomain, gap: YGap}),
@@ -70,7 +70,7 @@ const LineChartProps = {
   </span>
   <span className="cell">
     <ComposedChart width={XWidth} {...LineChartProps}>
-      {backgroundFill({array: backgroundSections, domain: YDomain})}
+      {backgroundYFill({array: backgroundSections, domain: YDomain})}
       <XAxis {...XAxisGraphProps}/>
       <Tooltip content={CustomizedTooltip}/>
       <CartesianGrid {...CartesianGridProps}/>
