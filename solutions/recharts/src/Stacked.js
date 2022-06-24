@@ -1,7 +1,7 @@
 import { Bar, ComposedChart, Scatter, LineChart, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import {XAxisGraphProps, timeToNum, XWidth, CartesianGridProps} from './XAxisFunc';
 import { data } from './data'
-import { getYAxisHeight, getYAxisSharedProps, formatData} from './YAxisFunc'
+import { formatYData, getYAxisHeight, getYAxisProps} from './YAxisFunc';
 import { EmptyShape } from './Label';
 import ModifyTooltip from './Tooltip';
 const YDomain = [0,310];
@@ -12,15 +12,15 @@ function addDisplayToData (data) {
     ({...i,
       display: {
       time: timeToNum(i.name),
-      error:  formatData({domain: YDomain, gap: YGap, value: i.double.min}) ,
+      error:  formatYData({domain: YDomain, gap: YGap, value: i.double.min}) ,
       } 
     })
     :
     ({...i,
     display: {
     time: timeToNum(i.name),
-    max: formatData({domain: YDomain, gap: YGap, value: i.double.max}) + YGap / 2,
-    min: formatData({domain: YDomain, gap: YGap, value: i.double.min}),
+    max: formatYData({domain: YDomain, gap: YGap, value: i.double.max}) + YGap / 2,
+    min: formatYData({domain: YDomain, gap: YGap, value: i.double.min}),
     } 
   }) )
 }
@@ -42,7 +42,7 @@ const CustomizedTooltip = ({payload}) => {
   )
 }
 
-const YAxisSharedProps = getYAxisSharedProps({domain: YDomain, gap: YGap, isStartFromZero: true})
+const YAxisSharedProps = getYAxisProps({domain: YDomain, gap: YGap, isStartFromZero: true})
 
 const LineChartProps = {
   height: getYAxisHeight({domain: YDomain, gap: YGap}),

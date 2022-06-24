@@ -3,8 +3,8 @@ import {XAxisGraphProps,  timeToNum, XWidth, CartesianGridProps} from './XAxisFu
 import { data } from './data';
 import TextLabel,{EmptyShape} from './Label';
 import ModifyTooltip from './Tooltip';
-import {getYAxisSharedProps, formatData, getYAxisHeight} from './YAxisFunc';
-import backgroundFill from './backgroundFill';
+import { formatYData, getYAxisHeight, getYAxisProps} from './YAxisFunc';
+import {backgroundYFill} from './backgroundFill';
 
 // need to increase Domain or reduce gap to fix gap
 const YDomain = [-100,150]; 
@@ -14,17 +14,17 @@ const backgroundSections = [{y1:-0.5, y2: 0.5, }]
 const addDisplayToData = (data) =>  data.map(i => i.isError ? 
   {...i, 
     display: {
-      error: formatData({domain:YDomain, gap: YGap, value:i.split.min}),
+      error: formatYData({domain:YDomain, gap: YGap, value:i.split.min}),
       time: timeToNum(i.name)
     } 
   } : ({...i, 
     display: {
-      min: formatData({domain:YDomain, gap: YGap, value:i.split.min}),
+      min: formatYData({domain:YDomain, gap: YGap, value:i.split.min}),
       time: timeToNum(i.name)
     } 
   }) )
 
-const YAxisSharedProps = getYAxisSharedProps({domain: YDomain,gap: YGap});
+const YAxisSharedProps = getYAxisProps({domain: YDomain,gap: YGap});
 
 const CustomizedTooltip = ({payload}) => {
   const render = payload.map(i => i.payload);
@@ -57,7 +57,7 @@ const LineChartProps = {
   </span>
   <span className="cell">
     <ComposedChart width={XWidth} {...LineChartProps}>
-    {backgroundFill({array: backgroundSections, domain: YDomain})}
+    {backgroundYFill({array: backgroundSections, domain: YDomain})}
       <XAxis {...XAxisGraphProps}/>
       <Tooltip dataKey="display.error" content={CustomizedTooltip}/>
       <CartesianGrid {...CartesianGridProps} />

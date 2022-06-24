@@ -1,10 +1,10 @@
 import { Bar, ComposedChart, Scatter, LineChart, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import {XAxisGraphProps, timeToNum, XWidth, CartesianGridProps} from './XAxisFunc';
 import { data } from './data'
-import { getYAxisHeight, getYAxisSharedProps, formatData} from './YAxisFunc'
 import ModifyTooltip from './Tooltip';
-import backgroundFill from './backgroundFill';
 import { ConditionLabel, getShouldShowLine, getShouldShowText, EmptyShape} from './Label';
+import { formatYData, getYAxisHeight, getYAxisProps} from './YAxisFunc';
+import {backgroundYFill} from './backgroundFill';
  
 const YDomain = [60,220];
 const safeRange = [80,180]
@@ -17,14 +17,14 @@ function addDisplayToData (data) {
     ({...i,
       display: {
       time: timeToNum(i.name),
-      error:  formatData({domain: YDomain, gap: YGap, value: i.double.min}) ,
+      error:  formatYData({domain: YDomain, gap: YGap, value: i.double.min}) ,
       } 
     })
     :
     ({...i,
     display: {
     time: timeToNum(i.name),
-    double: [formatData({domain: YDomain, gap: YGap, value: i.double.max}), formatData({domain: YDomain, gap: YGap, value: i.double.min})] ,
+    double: [formatYData({domain: YDomain, gap: YGap, value: i.double.max}), formatYData({domain: YDomain, gap: YGap, value: i.double.min})] ,
     } 
   }) )
 }
@@ -75,7 +75,7 @@ const BarShape = (props) => {
   </>)
 }
 
-const YAxisSharedProps = getYAxisSharedProps({domain: YDomain, gap: YGap})
+const YAxisSharedProps = getYAxisProps({domain: YDomain, gap: YGap})
 
 const LineChartProps = {
   height: getYAxisHeight({domain: YDomain, gap: YGap}),
@@ -94,7 +94,7 @@ const LineChartProps = {
   </span>
   <span className="cell">
     <ComposedChart width={XWidth} {...LineChartProps}>
-      {backgroundFill({array: backgroundSections, domain: YDomain})}
+      {backgroundYFill({array: backgroundSections, domain: YDomain})}
       <XAxis {...XAxisGraphProps}/>
       <CartesianGrid {...CartesianGridProps}/>
       <Tooltip content={CustomizedTooltip}/>
