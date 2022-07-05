@@ -1,15 +1,11 @@
 
 import { LineChart, XAxis} from 'recharts';
-import { XAxisProps, getResetTime,XWidth} from './XAxisFunc';
+import { XAxisTimeProps, XWidth, getXAxisForXGap} from './XAxisFunc';
 
-import { data } from './data';
-
-function addDisplayToData (data) {
-  return data.map(i => ({...i, 
-    display: {
-    time: getResetTime(i.name)
-    } 
-  }) )
+const XAxisProps = {
+  ...XAxisTimeProps,
+  orientation: "top",
+  dataKey: "timeGap",
 }
 
 const TableHead = () => (
@@ -17,11 +13,10 @@ const TableHead = () => (
     <span className="sticky cell table">
   <span className=" title"> From 21/07</span>
   <span className="cell" >
-  
   </span>
   </span>
   <span className="cell">
-  <LineChart width={XWidth} height={40} data={addDisplayToData(data)}>
+  <LineChart width={XWidth} height={40} data={getXAxisForXGap()}>
       <XAxis  {...XAxisProps}/>
   </LineChart>
   </span>

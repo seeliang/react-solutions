@@ -1,17 +1,23 @@
 
-import { LineChart, Line, XAxis, YAxis} from 'recharts';
-import TextLabel from './Label';
-import {XAxisJustifiedProps, errorIndicators, getResetTime, XWidth} from './XAxisFunc';
+import { ComposedChart,LineChart, Line, XAxis, YAxis, Tooltip, Scatter} from 'recharts';
+import TextLabel, {EmptyShape} from './Label';
+import {XAxisGraphProps,  timeToNum, XWidth} from './XAxisFunc';
+import ModifyTooltip from './Tooltip';
 import { data } from './data';
 
-function addDisplayToData (data) {
-  return data.map(i => ({...i, 
+const addDisplayToData = (data) => 
+  data.map(i => i.isError ?
+    ({...i, 
+      display: {
+      error: 5,
+      time: timeToNum(i.name)
+      } 
+    }) : ({...i, 
     display: {
     min: 5,
-    time: getResetTime(i.name)
+    time: timeToNum(i.name)
     } 
   }) )
-}
 
 const YDomain = [0,10];
 
@@ -21,8 +27,21 @@ const YAxisSharedProps = {
   domain:YDomain
 }
 
+const CustomizedTooltip = ({payload}) => {
+  const render = payload.map(i => i.payload);
+  if(!render[0] || !render[0].isError) {
+    return;
+  }
+  const {name, one } = render[0];
+  const passing = {
+    time: name, min: one.min
+  }
+  return(
+    <ModifyTooltip data={passing}/>
+  )
+}
 const LineChartProps = {
-  height: 60,
+  height: 110,
   data: addDisplayToData(data)
 }
 
@@ -37,12 +56,13 @@ const LineChartProps = {
     </span>
   </span>
   <span className="cell">
-    <LineChart width={XWidth} {...LineChartProps}>
-      <XAxis {...XAxisJustifiedProps}/>
+    <ComposedChart width={XWidth} {...LineChartProps}>
+      <XAxis {...XAxisGraphProps}/>
       <YAxis {...YAxisSharedProps}  hide={true}/>
-      <Line dataKey="display.min" strokeWidth="0" label={<TextLabel data={data} section="one" displayKey="min"/>}  />
-      {errorIndicators()}
-  </LineChart>
+      <Tooltip dataKey="display.error"  cursor={false}  content={CustomizedTooltip}/>
+      <Scatter dataKey="display.error" fill="grey" shape={<EmptyShape data={LineChartProps.data}/>}  />
+      <Line dataKey="display.min" activeDot={false} strokeWidth="0" label={<TextLabel data={LineChartProps.data} section="one" displayKey="min"/>}  />
+  </ComposedChart>
 </span>
 </div>
 );

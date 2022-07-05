@@ -1,42 +1,39 @@
 import { ComposedChart, LineChart, Line, XAxis, YAxis, CartesianGrid , Scatter, Tooltip} from 'recharts';
-import {XAxisGraphProps,  timeToNum, XWidth,CartesianGridProps} from './XAxisFunc';
+import {XAxisGraphProps,  timeToNum, XWidth, CartesianGridProps} from './XAxisFunc';
 import { data } from './data';
-import TextLabel, {EmptyShape} from './Label';
+import TextLabel,{EmptyShape} from './Label';
 import ModifyTooltip from './Tooltip';
-import {formatYData, getYAxisHeight, getYAxisProps} from './YAxisFunc';
+import { formatYData, getYAxisHeight, getYAxisProps} from './YAxisFunc';
 import {backgroundYFill} from './backgroundFill';
 
-// need to increase Domain or reduce gap to fix gap position
-const YDomain = [60,160]; 
+// need to increase Domain or reduce gap to fix gap
+const YDomain = [-100,150]; 
 const YGap = 10;
-const safeRange = [80,120]
-const backgroundSections = [{y1:safeRange[1], y2: YDomain[1]},{y1:safeRange[1], y2: (safeRange[1] + 2)},
-{y1:YDomain[0], y2: safeRange[0], fill: "blue"},{y1:safeRange[1] - YGap, y2: safeRange[1], fill: "orange"}]
-
+const backgroundSections = [{y1:-0.5, y2: 0.5, }]
 
 const addDisplayToData = (data) =>  data.map(i => i.isError ? 
   {...i, 
     display: {
-      error: formatYData({domain:YDomain, gap: YGap, value:i.number.max}),
+      error: formatYData({domain:YDomain, gap: YGap, value:i.split.min}),
       time: timeToNum(i.name)
     } 
   } : ({...i, 
     display: {
-      max: formatYData({domain:YDomain, gap: YGap, value:i.number.max}),
+      min: formatYData({domain:YDomain, gap: YGap, value:i.split.min}),
       time: timeToNum(i.name)
     } 
   }) )
 
-const YAxisSharedProps = getYAxisProps({domain: YDomain, gap: YGap})
+const YAxisSharedProps = getYAxisProps({domain: YDomain,gap: YGap});
 
 const CustomizedTooltip = ({payload}) => {
   const render = payload.map(i => i.payload);
   if(!render[0] || !render[0].isError) {
     return;
   }
-  const {name, number } = render[0];
+  const {name, split } = render[0];
   const passing = {
-    time: name, max: number.max
+    time: name, min: split.min
   }
   return(
     <ModifyTooltip data={passing}/>
@@ -60,13 +57,13 @@ const LineChartProps = {
   </span>
   <span className="cell">
     <ComposedChart width={XWidth} {...LineChartProps}>
-      {backgroundYFill({array: backgroundSections, domain: YDomain})}
+    {backgroundYFill({array: backgroundSections, domain: YDomain})}
       <XAxis {...XAxisGraphProps}/>
       <Tooltip dataKey="display.error" content={CustomizedTooltip}/>
       <CartesianGrid {...CartesianGridProps} />
       <YAxis {...YAxisSharedProps} hide={true}/>
-      <Scatter dataKey="display.error" fill="grey"  shape={<EmptyShape data={data}/>} />
-      <Line dataKey="display.max" stroke='green' connectNulls label={<TextLabel data={data} section="number"/>}  />
+      <Scatter dataKey="display.error" fill="grey" shape={<EmptyShape data={data}/>} />
+      <Line dataKey="display.min" stroke='black' connectNulls label={<TextLabel data={data} section="split" displayKey="min" fill="black"/>}  />
   </ComposedChart>
 </span>
 </div>

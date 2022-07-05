@@ -1,11 +1,11 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
-import {XAxisJustifiedProps, errorIndicators, getResetTime, XWidth} from './XAxisFunc';
-import {ConditionLabel} from './Label';
+import { Bar, ComposedChart, Scatter, LineChart, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import {XAxisGraphProps, timeToNum, XWidth, CartesianGridProps} from './XAxisFunc';
 import { data } from './data'
-import { getYAxisHeight, getYAxisSharedProps, formatData} from './YAxisFunc'
 import ModifyTooltip from './Tooltip';
-import backgroundFill from './backgroundFill';
-
+import { ConditionLabel, getShouldShowLine, getShouldShowText, EmptyShape} from './Label';
+import { formatYData, getYAxisHeight, getYAxisProps} from './YAxisFunc';
+import {backgroundYFill} from './backgroundFill';
+ 
 const YDomain = [60,220];
 const safeRange = [80,180]
 const YGap = 10
@@ -13,11 +13,18 @@ const backgroundSections= [{y1: 150, y2: safeRange[1], fill: "orange"},{y1: safe
 {y1: safeRange[1], y2: safeRange[1] + 2},{y1: YDomain[0], y2: safeRange[0], fill: "blue"} ]
 
 function addDisplayToData (data) {
-  return data.map(i => ({...i, 
+  return data.map(i => i.isError ? 
+    ({...i,
+      display: {
+      time: timeToNum(i.name),
+      error:  formatYData({domain: YDomain, gap: YGap, value: i.double.min}) ,
+      } 
+    })
+    :
+    ({...i,
     display: {
-    time: getResetTime(i.name),
-    max: formatData({domain: YDomain, gap: YGap, value: i.double.max}), 
-    min: formatData({domain: YDomain, gap: YGap, value: i.double.min}), 
+    time: timeToNum(i.name),
+    double: [formatYData({domain: YDomain, gap: YGap, value: i.double.max}), formatYData({domain: YDomain, gap: YGap, value: i.double.min})] ,
     } 
   }) )
 }
@@ -39,8 +46,36 @@ const CustomizedTooltip = ({payload}) => {
   )
 }
 
+const Line = ({x,y, gap}) => {
+  const strokeWidth = 3;
+  const capWidth = 7;
+  const XCorrected = x + capWidth + strokeWidth / 2;
+  const YTop = y;
+  const YBottom = y + gap;
+  return <>
+    <line stroke='black' strokeWidth={strokeWidth} x1={XCorrected - capWidth} y1={YTop} x2={XCorrected + capWidth} y2={YTop}/>
+    <line stroke='black' strokeWidth={strokeWidth} x1={XCorrected} y1={YBottom} x2={XCorrected} y2={YTop}/>
+    <line stroke='black' strokeWidth={strokeWidth} x1={XCorrected - capWidth } y1={YBottom} x2={XCorrected + capWidth} y2={YBottom}/>
+  </>
+}
 
-const YAxisSharedProps = getYAxisSharedProps({domain: YDomain, gap: YGap})
+const BarShape = (props) => {
+  const {x,y, height, isError, index} = props
+  if(isError) {
+    return
+  }
+  const shouldShowText = getShouldShowText(props);
+  const isTextOnLeft = index === data.length - 2;
+  const shouldShowLine = getShouldShowLine(props);
+  if(shouldShowLine) {
+    return <ConditionLabel {...props} shouldShowText={shouldShowText} isTextOnLeft={isTextOnLeft} color="black" shouldShowLine={shouldShowLine}/>
+  }
+  return (<>
+    <Line  x={x} y={y} gap={height} />
+  </>)
+}
+
+const YAxisSharedProps = getYAxisProps({domain: YDomain, gap: YGap})
 
 const LineChartProps = {
   height: getYAxisHeight({domain: YDomain, gap: YGap}),
@@ -58,16 +93,15 @@ const LineChartProps = {
     </span>
   </span>
   <span className="cell">
-    <LineChart width={XWidth} {...LineChartProps}>
-      {backgroundFill({array: backgroundSections, domain: YDomain})}
-      <XAxis {...XAxisJustifiedProps}/>
-      <CartesianGrid stroke="#ddd" />
+    <ComposedChart width={XWidth} {...LineChartProps}>
+      {backgroundYFill({array: backgroundSections, domain: YDomain})}
+      <XAxis {...XAxisGraphProps}/>
+      <CartesianGrid {...CartesianGridProps}/>
       <Tooltip content={CustomizedTooltip}/>
       <YAxis {...YAxisSharedProps} hide={true}/>
-      <Line dataKey="display.max" stroke='blue' label={<ConditionLabel section="double" data={data} displayKey="max" color ="indigo" domain={YDomain} safeRange={safeRange}/>}  />
-      <Line dataKey="display.min" stroke='green' label={<ConditionLabel section="double" data={data} domain={YDomain} safeRange={safeRange} />} />
-      {errorIndicators()}
-  </LineChart>
+      <Scatter dataKey="display.error" fill="grey" shape={<EmptyShape data={data}/>}  />
+      <Bar dataKey="display.double"  shape={<BarShape displayKey="double" section="double" data={data}/>} />
+  </ComposedChart>
 </span>
 </div>
 );

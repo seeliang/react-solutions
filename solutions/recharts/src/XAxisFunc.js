@@ -1,52 +1,68 @@
-import { ReferenceLine } from 'recharts';
 import { data } from './data';
 
-const XGap = 900000; // 15min with ms
+const is15min = false
+
+const hour = 1000 * 60 * 60
+const XGap = is15min ? hour / 4 : hour
+
 const regexGetDigits = /\D/g;
 
-const timeToNum = (string) => {
+export const timeToNum = (string) => {
   const raw = string.split(regexGetDigits).map( i => parseInt(i));
   const mark = new Date( raw[2],raw[1] - 1 ,raw[0],raw[3],raw[4]);
   return  Date.parse(mark)
 }
 
-const XDisplayReset = (value) => {
-  return value - timeToNum(data[0].name) + XGap; 
-}
-
 const addLeadZero = (value) => value < 10 ? `0${value}` : value
+const weekday = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
 
-function formatXAxis(modifiedValue) {
-  const dateNumber = modifiedValue + timeToNum(data[0].name);
-  const date = new Date(dateNumber);
-  const isNewDate = date.getHours() + date.getMinutes() === 0;
-  const dateDisplay = `${addLeadZero(date.getDate())}/${addLeadZero(date.getMonth() + 1)}/${date.getFullYear()} `;
-  return `${isNewDate? dateDisplay: '' }${addLeadZero(date.getHours())}:${addLeadZero(date.getMinutes())}`
+const formatXAxis = (tickValue) => {
+  const date = new Date(tickValue);
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  const isNewDate = hour + minute === 0;
+ 
+  if (isNewDate) {
+    const dateDisplay = `${weekday[date.getDay()]} ${addLeadZero(date.getDate())}/${date.toLocaleString('default', { month: 'short' })} `;
+    return `${dateDisplay}`
+  }
+  if (is15min && minute !== 0 ) {
+    return ''
+  }
+  if(!is15min && hour % 4 !== 2) {
+    return ''
+  }
+  return `${addLeadZero(hour)}:${addLeadZero(minute)}`
 }
-
-export const getResetTime = (time) => XDisplayReset(timeToNum(time));
 
 const lastCheckTime = data[data.length - 1].name;
+const start = (Math.floor(timeToNum(data[0].name)/XGap) - 1) * XGap
+const end = (Math.ceil(timeToNum(lastCheckTime)/XGap) + 1) * XGap
+const cells = (end - start) / XGap
+const ticks = cells + 1
+export const XWidth = cells * 55;
 
-const XTickCount = (Math.ceil(getResetTime(lastCheckTime) / XGap) + 3).toString(10)
-
-export const XWidth = (XTickCount) * 150;
-
-export const XAxisProps = {
-  dataKey:"display.time",
-  domain: [0, getResetTime(lastCheckTime) + 2 * XGap ],
-   type:"number",
-   orientation:'top',
-    tickCount: XTickCount,
-     tickFormatter:formatXAxis,
+export const getXAxisForXGap  = () => {
+  let marker = start;
+  let result = []
+  while (marker < end) {
+    marker = marker + XGap
+    result.push({timeGap: marker})
+  }
+  return result
+}
+ 
+export const XAxisTimeProps = {
+  scale: "utc",
+  domain: [start, end ],
+  type:"number",
+  tickFormatter:formatXAxis,
+  tickCount: ticks
 }
 
-const ErrorInputProps = {
-  stroke:"red",
-  strokeWidth: 4,
-  strokeDasharray: "6 6"
-}
+export const XAxisGraphProps = {...XAxisTimeProps,  dataKey: "display.time", hide: true }
 
-export const XAxisJustifiedProps =  {...XAxisProps, hide: true}
-const errorPoints = data.filter(input => input.isError === true ).map(i => getResetTime(i.name));
-export const errorIndicators = () => errorPoints.map( i => <ReferenceLine key={i} {...ErrorInputProps} x={i}/>)
+export const CartesianGridProps = {
+  stroke:"#ddd",
+  vertical: false
+}
