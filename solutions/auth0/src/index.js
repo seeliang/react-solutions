@@ -14,6 +14,16 @@ const LoginButton = () => {
   return <button onClick={() => loginWithRedirect()}>Log In</button>;
 };
 
+const LogoutButton = () => {
+  const { logout } = useAuth0();
+
+  return (
+    <button onClick={() => logout({ returnTo: window.location.origin })}>
+      Log Out
+    </button>
+  );
+};
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -24,6 +34,7 @@ root.render(
       redirectUri={window.location.origin}
     >
       <LoginButton />
+      <LogoutButton />
       <App />
     </Auth0Provider>
   </React.StrictMode>
