@@ -9,6 +9,10 @@ const serverClient = StreamChat.getInstance(apiKey, apiSecret)
 
 const requestListener = function (req, res) {
   const token = serverClient.createToken('this boy');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Request-Method', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+  res.setHeader('Access-Control-Allow-Headers', '*');
   res.writeHead(200);
   console.log(req, token)
   res.end("My first server!");
