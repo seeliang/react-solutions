@@ -104,4 +104,4 @@ dist
 .tern-port
 .DS_Store
 solutions/auth0/src/credentials.js
-solutions/getstream/src/credentials.js
+solutions/getstream/credentials.js
