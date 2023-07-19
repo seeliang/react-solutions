@@ -1,24 +1,28 @@
-const http = require("http")
 const port = 1234;
 const host = 'localhost';
 const { StreamChat } = require('stream-chat')
 const cred = require('./credentials')
 const { apiKey, apiSecret } = cred
-
+const bodyParser = require('body-parser')
 const serverClient = StreamChat.getInstance(apiKey, apiSecret)
+var express = require('express')
+var cors = require('cors')
+const server = express()
 
+server.use(cors())
 const requestListener = function (req, res) {
-  const token = serverClient.createToken('this boy');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Request-Method', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
-  res.setHeader('Access-Control-Allow-Headers', '*');
+
+  const { user } = req.body
+  const token = serverClient.createToken(req.body.user || '');
   res.writeHead(200);
-  console.log(req, token)
-  res.end("My first server!");
+
+  res.end(JSON.stringify({ token, user, apiKey }));
 };
 
-const server = http.createServer(requestListener);
+server.use(bodyParser.json({ type: 'application/*+json' }))
+
 server.listen(port, host, () => {
   console.log(`Server is running on http://${host}:${port}`);
 });
+
+server.post('/name', bodyParser.urlencoded({ extended: false }), requestListener)
