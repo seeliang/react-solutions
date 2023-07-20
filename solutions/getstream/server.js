@@ -1,7 +1,7 @@
 const port = 1234;
 const host = 'localhost';
 const { StreamChat } = require('stream-chat')
-const cred = require('./credentials')
+const cred = require('./src/credentials')
 const { apiKey, apiSecret } = cred
 const bodyParser = require('body-parser')
 const serverClient = StreamChat.getInstance(apiKey, apiSecret)
