@@ -1878,6 +1878,16 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@kickoffready/generate-config@^1.2.1":
+  version "1.2.5"
+  resolved "https://registry.npmjs.org/@kickoffready/generate-config/-/generate-config-1.2.5.tgz#922867542c98565081df1f366f2455762913ba76"
+  integrity sha512-vbwq4wQbrOjftvdtNZNF2QYg6j1FJOU4TT6bujZy9WYgM4gDHnSqYIoVyrtPHbmaW6mfGEWeXWqC5BGVtlDZKA==
+
+"@kickoffready/webpack-react@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/@kickoffready/webpack-react/-/webpack-react-1.1.0.tgz#1b3af6e94d81b3c614f804d0e0db1e49c33aec98"
+  integrity sha512-mvgGrWnQNjkhp0ckkTeG0RhDxcFDKD1aPSyt9nwynsdt9DMkEmqYxs6u2aH6KYECfHoIi4YGsZWZ3JCMQs00cw==
+
 "@leichtgewicht/ip-codec@^2.0.1":
   version "2.0.3"
   resolved "https://registry.npmjs.org/@leichtgewicht/ip-codec/-/ip-codec-2.0.3.tgz"
