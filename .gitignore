@@ -105,3 +105,4 @@ dist
 .DS_Store
 solutions/auth0/src/credentials.js
 solutions/getstream/src/credentials.js
+package-lock.json
