@@ -2,35 +2,38 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 
-import { debounceTime } from 'rxjs/operators'
+import { debounceTime, buffer, throttleTime, filter } from 'rxjs/operators'
 import { Subject } from 'rxjs'
 
-const useDebounce = (time, initialValue) => {
-  const [value, setValue] = useState(initialValue)
-  const [values] = useState(() => new Subject())
-  useEffect(() => {
-    const sub = values.pipe(debounceTime(time)).subscribe(setValue)
-    return () => sub.unsubscribe()
-  }, [time, values])
-  return [value, (v) => values.next(v)]
-}
-
-
-// const useBuffer = (time, initialValue) => {
+// const useDebounce = (time, initialValue) => {
 //   const [value, setValue] = useState(initialValue)
 //   const [values] = useState(() => new Subject())
 //   useEffect(() => {
-//     console.log(value)
-//     const sub = values.pipe(
-//       buffer(values.pipe(throttleTime(time)))).subscribe(setValue)
+//     const sub = values.pipe(debounceTime(time)).subscribe(setValue)
 //     return () => sub.unsubscribe()
-
 //   }, [time, values])
 //   return [value, (v) => values.next(v)]
 // }
 
+
+const useBuffer = (time, initialValue) => {
+  const [value, setValue] = useState(initialValue)
+  const [values] = useState(() => new Subject())
+  useEffect(() => {
+    console.log(value)
+    const sub = values.pipe(
+      buffer(
+        values.pipe(throttleTime(time))
+      )
+    ).subscribe(setValue)
+    return () => sub.unsubscribe()
+
+  }, [time, values])
+  return [value, (v) => values.next(v)]
+}
+
 function App() {
-  const [list, setList] = useDebounce(1000, [])
+  const [list, setList] = useBuffer(500, [])
   const handleAddNewItem = () => {
     setList([1, ...list])
   }
