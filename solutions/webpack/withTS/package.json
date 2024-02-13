@@ -13,6 +13,7 @@
     "@babel/core": "^7.12.3",
     "@babel/preset-react": "^7.12.5",
     "@babel/preset-typescript": "^7.12.1",
+    "@kickoffready/webpack-react": "^1.1.0",
     "babel-loader": "^8.2.1",
     "copy-webpack-plugin": "^6.3.0",
     "webpack": "^5.2.0",

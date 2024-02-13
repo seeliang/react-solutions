@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider, useAuth0 } from '@auth0/auth0-react'
 import credentials from './credentials'
@@ -35,7 +34,6 @@ root.render(
     >
       <LoginButton />
       <LogoutButton />
-      <App />
     </Auth0Provider>
   </React.StrictMode>
 );
